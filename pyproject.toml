@@ -1,0 +1,10 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "stardustlib"
+author = "Reto Trappitsch"
+author-email = "reto@galactic-forensics.space"
+home-page = "https://github.com/galactic-forensics/stardustlib"
+classifiers = ["License :: OSI Approved :: MIT License"]
