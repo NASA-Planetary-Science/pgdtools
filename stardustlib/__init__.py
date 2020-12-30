@@ -1,7 +1,9 @@
 """Package to interact with the stardust database."""
 
 # import the standard module
-# from .main import IniAbu
+# todo
+
+print("Just a placeholder for now...")
 
 # Package information
 __version__ = "0.0.1"
