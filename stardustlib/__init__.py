@@ -1,9 +1,10 @@
 """Package to interact with the stardust database."""
 
 # import the standard module
-# todo
+from . import data
+from .stardustlib import StarDust
 
-print("Just a placeholder for now...")
+print("Really early dev version... user beware!")
 
 # Package information
 __version__ = "0.0.1"

@@ -1,1 +1,4 @@
+iniabu>=1.0.1
+matplotlib
 numpy
+pandas
