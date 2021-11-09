@@ -20,7 +20,22 @@ in order to find one that might work.
 
 Feedback extremely welcome!
 
-## Usage
+## Installation
+
+### Jupyterlab server (e.g., WENDI, ...)
+
+In the first cell of your jupyter notebook,
+run the following code:
+
+```
+%pip install git+https://github.com/galactic-forensics/stardustlib.git
+```
+
+This should pull the latest version
+of `stardustlib` from GitHub and install it.
+To test, follow steps below.
+
+### Local
 
 To use this module, 
 clone this repository
@@ -46,6 +61,8 @@ pip install ipython
 pip install -r requirements.txt
 flit install -s
 ```
+
+### Testing
 
 Now you should be ready to use `stardustlib`
 from your session. Try the following:
