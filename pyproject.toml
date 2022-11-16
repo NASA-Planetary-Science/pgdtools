@@ -8,3 +8,27 @@ author = "Reto Trappitsch"
 author-email = "reto@galactic-forensics.space"
 home-page = "https://github.com/galactic-forensics/stardustlib"
 classifiers = ["License :: OSI Approved :: MIT License"]
+requires = [
+    "iniabu>=1.0.1",
+    "matplotlib",
+    "pandas",
+    "numpy"
+]
+description-file = "README.md"
+
+[tool.flit.metadata.requires-extra]
+dev = [
+    "darglint>=1.5.1",
+    "flake8>=4,<5",
+    "flake8-bandit",
+    "flake8-black",
+    "flake8-bugbear",
+    "flake8-docstrings",
+    "flake8-import-order",
+    "bandit==1.7.2",
+    "hypothesis",
+    "pytest>=6.0.0",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-sugar",
+]

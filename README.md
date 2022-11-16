@@ -55,14 +55,10 @@ You can skip the jupyter and ipython line if you
 do not want to use these tools.
 
 ```
-pip install flit
-pip install jupyter
-pip install ipython
-pip install -r requirements.txt
-flit install -s
+pip install .
 ```
 
-### Testing
+### Give it a spin
 
 Now you should be ready to use `stardustlib`
 from your session. Try the following:
@@ -94,3 +90,16 @@ The current version of `stardustlib`
 includes the 2021-01-10 version
 of the presolar SiC grain database,
 which is the current version as of this writing (Nov 2021).
+
+## Development
+
+To make a development installation,
+type:
+
+```python
+pip install -e .[dev]
+```
+
+This will install all required packages. 
+
+More to come on this...
