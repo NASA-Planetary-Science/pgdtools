@@ -100,6 +100,6 @@ type:
 pip install -e .[dev]
 ```
 
-This will install all required packages. 
+This will install all required packages.
 
 More to come on this...
