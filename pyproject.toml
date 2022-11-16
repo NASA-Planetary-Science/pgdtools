@@ -31,4 +31,5 @@ dev = [
     "pytest-cov",
     "pytest-mock",
     "pytest-sugar",
+    "requests"
 ]
