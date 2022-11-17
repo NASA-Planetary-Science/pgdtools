@@ -1,10 +1,6 @@
 """Tests the database integrity tests with mock files."""
 
-from pathlib import Path
-from typing import Dict, Tuple
-from unittest import mock
-
-import pandas as pd
+from typing import Tuple
 
 from test_database.conftest import *
 from test_database import test_integrity as ti
