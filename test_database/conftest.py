@@ -7,7 +7,8 @@ import pandas as pd
 import pytest
 import requests
 
-from . import GH_FILES
+import test_database
+from test_database import GH_FILES
 
 
 def prepare_dataframe(fname: Path) -> pd.DataFrame:
@@ -17,7 +18,7 @@ def prepare_dataframe(fname: Path) -> pd.DataFrame:
 
     :return: Data frame of the file.
     """
-    kwargs = {"delimiter": ",", "header": 0, "index_col": 0, "na_filter": False}
+    kwargs = {"delimiter": ",", "header": 0, "index_col": 0}
     df = pd.read_csv(fname, **kwargs)
     return df
 
@@ -53,7 +54,8 @@ def curr_dbs(request) -> Dict[str, Path]:
 
     :return: Dictionary with file name (key), DataFrame with data (value)
     """
-    db_path = Path(request.fspath).parents[1].joinpath("database")
+    pth = Path(test_database.__file__).parents[1]
+    db_path = pth.joinpath("database")
     items = db_path.iterdir()
 
     retval = {}
