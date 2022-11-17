@@ -34,5 +34,6 @@ jobs:
         emoji: true
         verbose: true
         job-summary: true
+        click-to-expand: false
         report-title: "Database Integrity Test"
         custom-arguments: "test_database/"
