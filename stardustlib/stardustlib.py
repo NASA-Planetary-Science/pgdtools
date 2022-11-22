@@ -125,26 +125,40 @@ class StarDust:
         Fixme: Currently if no errors reported, the whole datapoint is rejected
             with the dropna...
 
+        .. note:: If the database contains asymmetric errors, an array of errors with
+            two entries per grain is returned. This array is transposed, such that
+            it can be directly used to plot errorbars using ``matplotlib``.
+
         :param isos1: Isotopes for first axis, as ratio, e.g., ("Si-29", "Si-28")
-        :type isos1: Tuple[str, str]
         :param isos2: Isotopes for first axis, as ratio, e.g., ("Si-30", "Si-28")
-        :type isos2: Tuple[str, str]
 
         :return: xdata, ydata, xerr, yerr
-        :rtype: Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]
         """
         hdr_x = self.header_ratio(isos1[0], isos1[1])[0]
         hdr_y = self.header_ratio(isos2[0], isos2[1])[0]
-        hdr_x_err = f"err[{hdr_x}]"
-        hdr_y_err = f"err[{hdr_y}]"
+        hdr_x_err = [f"err[{hdr_x}]"]
+        hdr_y_err = [f"err[{hdr_y}]"]
 
-        df = self.db[[hdr_x, hdr_y, hdr_x_err, hdr_y_err]].copy()
+        # check if we have symmetric or asymmetric errors
+        if hdr_x_err[0] not in self.db.columns:
+            hdr_x_err = [f"err-[{hdr_x}]", f"err+[{hdr_x}]"]
+        if hdr_y_err[0] not in self.db.columns:
+            hdr_y_err = [f"err-[{hdr_y}]", f"err+[{hdr_y}]"]
+
+        columns = [hdr_x, hdr_y] + hdr_x_err + hdr_y_err
+
+        df = self.db[columns].copy()
         df.dropna(inplace=True)
+
+        # x errors to return
+        xerr_ret = df[hdr_x_err].to_numpy()
+        yerr_ret = df[hdr_y_err].to_numpy()
+
         return (
             df[hdr_x].to_numpy(),
             df[hdr_y].to_numpy(),
-            df[hdr_x_err].to_numpy(),
-            df[hdr_y_err].to_numpy(),
+            xerr_ret.transpose() if xerr_ret.shape[1] > 1 else xerr_ret[:, 0],
+            yerr_ret.transpose() if yerr_ret.shape[1] > 1 else yerr_ret[:, 0],
         )
 
 
