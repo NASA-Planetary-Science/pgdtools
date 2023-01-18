@@ -1,7 +1,7 @@
 """Functions and routines to read the stardust database and return what we want."""
 
 from pathlib import Path
-from typing import Tuple
+from typing import List, Tuple
 
 import numpy as np
 import pandas as pd
@@ -22,6 +22,16 @@ class StarDust:
         filepath = MODULE_PATH.joinpath(f"data/{fname}")
         self.db = pd.read_csv(filepath, index_col=0)
         self._db = self.db.copy(deep=True)
+
+    # PROPERTIES #
+
+    @property
+    def reference(self) -> pd.DataFrame:
+        """Return a pandas dataframe with grain references of all entries."""
+        hdr = ["Reference"]
+        return self.db[hdr]
+
+    # METHODS #
 
     def filter_value(
         self, value: float, iso1: str, iso2: str, comparator: str, err=False
@@ -120,6 +130,9 @@ class StarDust:
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         """Grab ratios to plot after all the filtering was done.
 
+        This routine is mainly thought to get x,y data for plotting. Values that contain
+        empties are dropped.
+
         Fixme: Will always return values and errors, I think all data have values
             and errors
         Fixme: Currently if no errors reported, the whole datapoint is rejected
@@ -160,6 +173,56 @@ class StarDust:
             xerr_ret.transpose() if xerr_ret.shape[1] > 1 else xerr_ret[:, 0],
             yerr_ret.transpose() if yerr_ret.shape[1] > 1 else yerr_ret[:, 0],
         )
+
+    def return_ratios_empty(self, isos: List[str], normiso: str, filter: bool = False):
+        """Return isotope ratios for all isotopes, if they exist.
+
+        Entries are only dropped if no data at all exists. Only data with no ratios
+        are dropped if none exist. Errors are not part of dropping.
+
+        :param isos: List of isotopes (nominator) to find.
+        :param normiso: Normalization isotope for the given list.
+        :param filter: Filter the database to drop all other values?
+
+        :return: Ratios for all the data, Errors for all the data.
+        """
+        hdrs = [self.header_ratio(iso, normiso)[0] for iso in isos]
+        # error header
+        hdrs_err = []
+        for hdr in hdrs:
+            if (tmp := f"err[{hdr}]") in self.db.columns:
+                hdrs_err.append(tmp)
+            else:  # asymmetric errors
+                hdrs_err.append([f"err-[{hdr}]", f"err+[{hdr}]"])
+
+        all_cols = hdrs.copy()
+        for hdr_err in hdrs_err:
+            if isinstance(hdr_err, list):
+                all_cols += hdr_err
+            else:
+                all_cols.append(hdr_err)
+
+        data = self.db[all_cols].copy()
+        data.dropna(inplace=True, how="all")  # drop data if all ratios are empty
+
+        # todo: refractor this into its own filter
+        if filter:
+            self.db = self.db.dropna(subset=all_cols, how="all", axis=0)
+
+        ratios = data[hdrs].copy()
+
+        ratios_list = []
+        for hdr in hdrs:
+            ratios_list.append(ratios[hdr].to_numpy())
+
+        errors_list = []
+        for hdr_err in hdrs_err:
+            if not isinstance(hdr_err, list):
+                hdr_err = [hdr_err]
+            df = data[hdr_err].to_numpy()
+            errors_list.append(df.transpose() if df.shape[1] > 1 else df[:, 0])
+
+        return ratios_list, errors_list
 
 
 def create_db_iso(iso: str) -> str:
