@@ -3,10 +3,10 @@ requires = ["flit_core >=2,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
-module = "stardustlib"
+module = "pgdtools"
 author = "Reto Trappitsch"
 author-email = "reto@galactic-forensics.space"
-home-page = "https://github.com/galactic-forensics/stardustlib"
+home-page = "https://github.com/galactic-forensics/pgdtools"
 classifiers = ["License :: OSI Approved :: MIT License"]
 requires = [
     "iniabu>=1.0.1",

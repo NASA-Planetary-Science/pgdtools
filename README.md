@@ -1,13 +1,15 @@
-# Development version of `stardustlib`
+# Presolar grain database tools (pgdTools)
+
+Currently under development.
 
 This folder contains a very rough draft /
 development version /
 idea gathering file(s)
-for `stardustlib`.
+for `pgdtools`.
 Use at your own risk!
 
 The idea behind this folder is to have a place
-to share (really) early versions of `stardustlib`
+to share (really) early versions of `pgdtools`
 with colleagues for testing
 and feedback.
 Thinks might change at any time!
@@ -28,11 +30,11 @@ In the first cell of your jupyter notebook,
 run the following code:
 
 ```
-%pip install git+https://github.com/galactic-forensics/stardustlib.git
+%pip install git+https://github.com/galactic-forensics/pgdtools.git
 ```
 
 This should pull the latest version
-of `stardustlib` from GitHub and install it.
+of `pgdtools` from GitHub and install it.
 To test, follow steps below.
 
 ### Local
@@ -41,8 +43,8 @@ To use this module,
 clone this repository
 and enter it:
 ```bash
-git clone https://github.com/galactic-forensics/stardustlib.git
-cd stardustlib
+git clone https://github.com/galactic-forensics/pgdtools.git
+cd pgdtools
 ```
 
 It is recommended that you use
@@ -60,12 +62,13 @@ pip install .
 
 ### Give it a spin
 
-Now you should be ready to use `stardustlib`
+Now you should be ready to use `pgdtools`
 from your session. Try the following:
 
 ```python
-import stardustlib
-sdl = stardustlib.StarDust()
+import pgdtools
+
+pg = pgdtools.PresolarGrains()
 ```
 
 If this does not throw an error,
@@ -86,7 +89,7 @@ can be found at
 https://presolar.physics.wustl.edu/presolar-grain-database/.
 Note that only the SiC database
 is currently thought of being error free.
-The current version of `stardustlib`
+The current version of `pgdtools`
 includes the 2021-01-10 version
 of the presolar SiC grain database,
 which is the current version as of this writing (Nov 2021).

@@ -1,4 +1,4 @@
-"""Functions and routines to read the stardust database and return what we want."""
+"""Tools to read and work with the presolar grain database."""
 
 from pathlib import Path
 from typing import List, Tuple
@@ -10,9 +10,9 @@ import pandas as pd
 MODULE_PATH = Path(__file__).parent
 
 
-class StarDust:
+class PresolarGrains:
     def __init__(self, fname: str = "PGD_SiC_2021-01-10.csv"):
-        """Initialize the stardust class.
+        """Initialize the presolar grain class.
 
         Load the database into self.db and self._db as a backup
 
@@ -56,9 +56,9 @@ class StarDust:
         :raise ValueError: Comparator is invalid
 
         Example to filter d(Si-29/Si-28) > 0.1, all others are out:
-            >>> from stardustlib import StarDust
-            >>> sd = StarDust()
-            >>> sd.filter_value(0.1, "Si-29", "Si-28", ">")
+            >>> from pgdtools import PresolarGrains
+            >>> pg = PresolarGrains()
+            >>> pg.filter_value(0.1, "Si-29", "Si-28", ">")
         """
         hdr = self.header_ratio(iso1, iso2)[0]
 
@@ -239,7 +239,7 @@ def create_db_iso(iso: str) -> str:
 
 
 if __name__ == "__main__":
-    a = StarDust()
+    a = PresolarGrains()
     a.filter_type("M")
     # a.filter_value(10.0, "Si-29", "Si-28", comparator="<=", err=True)
     # a.filter_value(10.0, "Si-30", "Si-28", comparator="<=", err=True)

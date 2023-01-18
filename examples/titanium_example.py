@@ -4,7 +4,7 @@ from iniabu import inimf  # import as mass_fraction values right away
 import matplotlib.pyplot as plt
 import numpy as np
 
-import stardustlib
+import pgdtools
 
 # ### Deal with some model data ###
 # Fake Modeldata: I assume we have mass fraction np.ndarrays of individual isotopes
@@ -20,23 +20,23 @@ delta47ti_model = inimf.iso_delta("Ti-47", "Ti-48", ti47_model / ti48_model)
 delta49ti_model = inimf.iso_delta("Ti-49", "Ti-48", ti49_model / ti48_model)
 
 # ### Grab the grain data and work with those ###
-# initialize the stardustlib - this will change probably with time
-sd = stardustlib.StarDust()
+# initialize the pgdtools - this will change probably with time
+pg = pgdtools.PresolarGrains()
 
 # let's only use Mainstream grains -> the ones from AGB stars
-sd.filter_type("M")
+pg.filter_type("M")
 
 # reject some datapoints with too large errors
 # @Benoit: This is really the only one thing that I would do, otherwise, some grains
 # with insane error bars also show up in the plot.
-sd.filter_value(100.0, "Ti-46", "Ti-48", "<=", err=True)
+pg.filter_value(100.0, "Ti-46", "Ti-48", "<=", err=True)
 
 # Now grab our x and y data to plot:
 x_isos = ("Ti-46", "Ti-48")
 y_isos47 = ("Ti-47", "Ti-48")
 y_isos49 = ("Ti-49", "Ti-48")
-xdat47, ydat47, xerr47, yerr47 = sd.return_ratios(x_isos, y_isos47)
-xdat49, ydat49, xerr49, yerr49 = sd.return_ratios(x_isos, y_isos49)
+xdat47, ydat47, xerr47, yerr47 = pg.return_ratios(x_isos, y_isos47)
+xdat49, ydat49, xerr49, yerr49 = pg.return_ratios(x_isos, y_isos49)
 
 # ### Plot ###
 fig, ax = plt.subplots(1, 2)

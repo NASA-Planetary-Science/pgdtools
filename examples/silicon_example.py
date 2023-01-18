@@ -4,7 +4,7 @@ from iniabu import inimf  # import as mass_fraction values right away
 import matplotlib.pyplot as plt
 import numpy as np
 
-import stardustlib
+import pgdtools
 
 # ### Deal with some model data ###
 # Fake Modeldata: I assume we have mass fraction np.ndarrays of individual isotopes
@@ -22,21 +22,21 @@ delta29si_model = inimf.iso_delta("Si-29", "Si-28", si29_model / si28_model)
 delta30si_model = inimf.iso_delta("Si-30", "Si-28", si30_model / si28_model)
 
 # ### Grab the grain data and work with those ###
-# initialize the stardustlib - this will change probably with time
-sd = stardustlib.StarDust()
+# initialize the pgdtools - this will change probably with time
+pg = pgdtools.PresolarGrains()
 
 # let's only use Mainstream grains -> the ones from AGB stars
-sd.filter_type("M")
+pg.filter_type("M")
 
 # let's limit ourselves to measurements with Si isotopes with <10 permil uncertainties
 # Note: These data are already in delta-notation
-sd.filter_value(10.0, "Si-29", "Si-28", "<=", err=True)
-sd.filter_value(10.0, "Si-30", "Si-28", "<=", err=True)
+pg.filter_value(10.0, "Si-29", "Si-28", "<=", err=True)
+pg.filter_value(10.0, "Si-30", "Si-28", "<=", err=True)
 
 # Now grab our x and y data to plot:
 x_isos = ("Si-30", "Si-28")
 y_isos = ("Si-29", "Si-28")
-xdat, ydat, xerr, yerr = sd.return_ratios(x_isos, y_isos)
+xdat, ydat, xerr, yerr = pg.return_ratios(x_isos, y_isos)
 
 # ### Plot ###
 fig, ax = plt.subplots(1, 1)

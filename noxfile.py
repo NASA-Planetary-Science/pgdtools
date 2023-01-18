@@ -5,8 +5,8 @@ import nox
 
 nox.options.sessions = "lint", "safety", "tests", "xdoctest"
 
-package = "stardustlib"
-locations = "stardustlib", "tests", "noxfile.py", "docs/conf.py"
+package = "pgdtools"
+locations = "pgdtools", "tests", "noxfile.py", "docs/conf.py"
 python_suite = ["3.9", "3.8", "3.7", "3.6"]
 python_main = "3.9"
 
@@ -21,7 +21,7 @@ def black(session):
 
 @nox.session(python=python_main)
 def build(session):
-    """Pack stardustlib for release on PyPi."""
+    """Pack pgdtools for release on PyPi."""
     session.install("flit")
     session.run("flit", "build")
 
