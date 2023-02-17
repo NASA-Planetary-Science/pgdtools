@@ -33,3 +33,7 @@ dev = [
     "pytest-sugar",
     "requests"
 ]
+
+pds = [
+    "bibtexparser"
+]
