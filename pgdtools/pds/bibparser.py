@@ -31,8 +31,15 @@ import bibtexparser.customization as bibcust
 BIBFILE = Path("../data/pgd_references.bib")
 
 
-def process_bib_file(savename: Path = Path("pgd_library_olaf.txt")):
-    """Process the bib file and save out an OLAF compatible txt file."""
+def process_bib_file(
+    savename: Path = Path("pgd_library_olaf.txt"),
+    id_doi_file: Path = Path("tmp_keyfile.csv"),
+):
+    """Process the bib file and save out an OLAF compatible txt file.
+
+    :param savename: Name of the output file for the database to move to OLAF.
+    :param doifile: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
+    """
 
     def customizations(record):
         record = bibcust.convert_to_unicode(record)
@@ -73,6 +80,17 @@ def process_bib_file(savename: Path = Path("pgd_library_olaf.txt")):
                 pass
             fout.write("--------------------------------")
             fout.write("\n\n")
+
+    with open(id_doi_file, "w") as fout:
+        for it, entry in enumerate(db.entries):
+            fout.write(entry["ID"])
+            fout.write(",")
+            try:
+                fout.write(entry["doi"])
+                fout.write(",")  # need to add keys by hand
+            except KeyError:
+                fout.write(",")  # no doi available
+            fout.write("\n")
 
 
 def clean_str(inp: str):
