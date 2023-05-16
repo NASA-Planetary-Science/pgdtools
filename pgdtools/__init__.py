@@ -2,6 +2,7 @@
 
 # import the standard module
 from . import data
+from .classify import classify_grain
 from .pgdtools import PresolarGrains
 
 print("Really early dev version... user beware!")

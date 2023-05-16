@@ -1,17 +1,19 @@
 """Tools to read and work with the presolar grain database."""
 
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
+from iniabu import ini
 import numpy as np
 import pandas as pd
 
+from . import utilities as utils
 
 MODULE_PATH = Path(__file__).parent
 
 
 class PresolarGrains:
-    def __init__(self, fname: str = "PGD_SiC_2021-01-10.csv"):
+    def __init__(self, fname: str = "PGD_SiC_2023-05-03_rt.csv"):
         """Initialize the presolar grain class.
 
         Load the database into self.db and self._db as a backup
@@ -23,11 +25,102 @@ class PresolarGrains:
         self.db = pd.read_csv(filepath, index_col=0)
         self._db = self.db.copy(deep=True)
 
+    class Grain:
+        """Class to represent a single grain."""
+
+        def __init__(self, parent: "PresolarGrains", id: str):
+            """Initialize the class for a single grain.
+
+            :param parent: Parent class, must be of type ``PresolarGrains``.
+            :param id: PGD ID of the grain to initialize, or list of IDs.
+
+            :raise TypeError: Parent class is not of type ``PresolarGrains``.
+            """
+            if not isinstance(parent, PresolarGrains):
+                raise TypeError("Parent class must be of type PresolarGrains.")
+
+            self.parent = parent
+            self.id = id
+
+            self._entry = self.parent.db.loc[self.id]
+
+        @property
+        def pgd_type(self) -> Union[Tuple[str, str], Tuple[pd.Series, pd.Series]]:
+            """Return the PGD type and subtype of the grain(s).
+
+            :return: PGD type and subtype. If no subtype, returns ``NaN``.
+            """
+            subtype = self._entry["PGD Subtype"]
+            if isinstance(subtype, pd.Series):
+                subtype.replace({np.nan: None}, inplace=True)
+            elif subtype == np.nan:
+                subtype = None
+            return (
+                utils.return_list_simplifier(self._entry["PGD Type"]),
+                utils.return_list_simplifier(subtype),
+            )
+
+        @property
+        def reference(self) -> Union[str, pd.Series]:
+            """Return the reference of the grain."""
+            return utils.return_list_simplifier(self._entry["Reference"])
+
+        def correlation(self, iso1: str, iso2: str) -> Union[float, pd.Series]:
+            """Return the correlation between two isotopes.
+
+            If no correlation is recorded, zero is returned (no correlation).
+
+            :param iso1: First isotope.
+            :param iso2: Second isotope.
+
+            :return: Correlation between the two isotopes.
+            """
+            corr = self._entry[self.parent.header_correlation(iso1, iso2)]
+            if isinstance(corr, pd.Series):
+                corr.replace({np.nan: 0}, inplace=True)
+            elif corr == np.nan:
+                corr = 0
+            return corr
+
+        def value(
+            self, iso1: str, iso2: str
+        ) -> Union[
+            Tuple[float, Union[float, Tuple[float, float]], bool],
+            Tuple[pd.Series, Union[pd.Series, Tuple[pd.Series, pd.Series]], bool],
+        ]:
+            """Return the value stored isotope ratio.
+
+            If no value is recorded, ``NaN`` is returned.
+
+            :param iso1: Nominator isotope.
+            :param iso2: Denominator isotope.
+
+            :return: value, sigma or (sigma+, sigma-), is_delta?
+            """
+            hdr, err, is_delta = self.parent.header_ratio(iso1, iso2)
+            if isinstance(err, Tuple):
+                errors = utils.return_list_simplifier(
+                    self._entry[err[0]]
+                ), utils.return_list_simplifier(self._entry[err[1]])
+            else:
+                errors = utils.return_list_simplifier(self._entry[err])
+            return utils.return_list_simplifier(self._entry[hdr]), errors, is_delta
+
     # PROPERTIES #
 
     @property
+    def grain(self):
+        """Return instance for (a) specific grain ID(s)."""
+        valid_keys = list(self.db.index)
+        return utils.ProxyList(self, self.Grain, valid_keys)
+
+    @property
     def reference(self) -> pd.DataFrame:
-        """Return a pandas dataframe with grain references of all entries."""
+        """Return a pandas dataframe with grain references of all entries.
+
+        fixme: garbage
+        """
+
         hdr = ["Reference"]
         return self.db[hdr]
 
@@ -37,6 +130,8 @@ class PresolarGrains:
         self, value: float, iso1: str, iso2: str, comparator: str, err=False
     ):
         """Filter an isotope ratio (iso1 / iso2) for a given value.
+
+        fixme: garbage
 
         Will filter the database such that
         isotope_entry comparator value
@@ -84,6 +179,9 @@ class PresolarGrains:
     def filter_type(self, grain_type):
         """Filter grain database by grain type.
 
+        fixme: garbage
+
+
         :param grain_type: Grain type.
         :type grain_type: str, List[str]
         """
@@ -92,22 +190,39 @@ class PresolarGrains:
 
         self.db = self.db[self.db["PGD Type"].isin(grain_type)]
 
-    def header_ratio(self, iso1: str, iso2: str) -> Tuple[str, bool]:
+    def header_correlation(self, iso1: str, iso2: str) -> Union[str, None]:
+        """Return the header of the correlation between two isotopes, if available.
+
+        Returns ``None`` if no correlation is available.
+
+        :param iso1: First isotope.
+        :param iso2: Second isotope.
+
+        :return: Header of the correlation.
+        """
+        corr_hdr = f"rho[{create_db_iso(iso1)}-{create_db_iso(iso2)}]"
+        header = list(self.db.columns.values)
+        if corr_hdr in header:
+            return corr_hdr
+        else:
+            return None
+
+    def header_ratio(
+        self, iso1: str, iso2: str
+    ) -> Union[Tuple[str, Union[str, Tuple[str, str], bool]], None]:
         """Check if isotope ratio is available and return it plus additional info.
 
         :param iso1: Nominator isotope, in format "Si-30"
-        :type iso1: str
         :param iso2: Denominator isotope, in format "Si-28"
-        :type iso2: str
 
-        :return: name of ratio if exists or "none", Ratio is delta (bool)
-        :rtype: Tuple[str, bool]
+        :return: name of ratio, name of sigma or (name of sigma+, name of sigma-),
+            is delta?
         """
         header = list(self.db.columns.values)
 
         isos = (create_db_iso(iso1), create_db_iso(iso2))
 
-        # test delta
+        # check for delta
         hdr_ratio = f"{isos[0]}/{isos[1]}"
         hdr_delta = f"d({hdr_ratio})"
         if hdr_delta in header:
@@ -117,9 +232,14 @@ class PresolarGrains:
             delta = False
             hdr = hdr_ratio
         else:
-            return "none", False
+            return None
 
-        return hdr, delta
+        # get errors
+        hdr_err = f"err[{hdr}]"
+        if hdr_err not in header:
+            hdr_err = f"err+[{hdr}]", f"err-[{hdr}]"
+
+        return hdr, hdr_err, delta
 
     def reset(self):
         """Reset the database."""
@@ -129,6 +249,9 @@ class PresolarGrains:
         self, isos1: Tuple[str, str], isos2: Tuple[str, str]
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         """Grab ratios to plot after all the filtering was done.
+
+        fixme: garbage
+
 
         This routine is mainly thought to get x,y data for plotting. Values that contain
         empties are dropped.
@@ -147,18 +270,10 @@ class PresolarGrains:
 
         :return: xdata, ydata, xerr, yerr
         """
-        hdr_x = self.header_ratio(isos1[0], isos1[1])[0]
-        hdr_y = self.header_ratio(isos2[0], isos2[1])[0]
-        hdr_x_err = [f"err[{hdr_x}]"]
-        hdr_y_err = [f"err[{hdr_y}]"]
+        hdr_x, hdr_x_err, _ = self.header_ratio(isos1[0], isos1[1])
+        hdr_y, hdr_y_err, _ = self.header_ratio(isos2[0], isos2[1])
 
-        # check if we have symmetric or asymmetric errors
-        if hdr_x_err[0] not in self.db.columns:
-            hdr_x_err = [f"err-[{hdr_x}]", f"err+[{hdr_x}]"]
-        if hdr_y_err[0] not in self.db.columns:
-            hdr_y_err = [f"err-[{hdr_y}]", f"err+[{hdr_y}]"]
-
-        columns = [hdr_x, hdr_y] + hdr_x_err + hdr_y_err
+        columns = [hdr_x, hdr_y] + list(hdr_x_err) + list(hdr_y_err)
 
         df = self.db[columns].copy()
         df.dropna(inplace=True)
@@ -176,6 +291,9 @@ class PresolarGrains:
 
     def return_ratios_empty(self, isos: List[str], normiso: str, filter: bool = False):
         """Return isotope ratios for all isotopes, if they exist.
+
+        fixme: garbage
+
 
         Entries are only dropped if no data at all exists. Only data with no ratios
         are dropped if none exist. Errors are not part of dropping.
@@ -234,7 +352,8 @@ def create_db_iso(iso: str) -> str:
     :return: Isotope name in database style, e.g., "28Si"
     :rtype: str
     """
-    iso_split = iso.split("-")
+    iso_ini = ini.iso[iso]
+    iso_split = iso_ini.name.split("-")
     return iso_split[1] + iso_split[0]
 
 
