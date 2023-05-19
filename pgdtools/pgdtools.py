@@ -13,7 +13,7 @@ MODULE_PATH = Path(__file__).parent
 
 
 class PresolarGrains:
-    def __init__(self, fname: str = "PGD_SiC_2023-05-03_rt.csv"):
+    def __init__(self, fname: str = "PGD_SiC_2023-05-03.csv"):
         """Initialize the presolar grain class.
 
         Load the database into self.db and self._db as a backup

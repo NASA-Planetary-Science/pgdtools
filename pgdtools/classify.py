@@ -43,13 +43,7 @@ def classify_grain(
     """
     # todo some checking of input data
 
-    if (
-        c12_c13 is None
-        and n14_n15 is None
-        and d29si is None
-        and d30si is None
-        and al26_al27 is None
-    ):
+    if c12_c13 is None and n14_n15 is None and d29si is None and d30si is None:
         return "U", None  # unclassified
 
     c12_c13 = _replace_errors(c12_c13)
@@ -66,7 +60,7 @@ def classify_grain(
     prob_n = nitrogen_probabilities(n14_n15)
     prob_si = silicon_probabilities(d29si, d30si, rho_si)
 
-    types = ["M", "AB", "Y", "Z", "X", "N", "C", "D"]
+    types = ["M", "AB", "Y", "Z", "N", "X", "C", "D"]
     probabilities = np.zeros(len(types))
 
     for it, gtype in enumerate(types):
@@ -127,7 +121,7 @@ def carbon_probabilities(
 
     if msr is not None:
         prob_dict["M"] = probability_value(msr, 100) - probability_value(msr, 13.5)
-        prob_dict["X"] = 1 - 0.8 * probability_value(msr, 13.5)
+        prob_dict["X"] = 1
         prob_dict["Y"] = 1 - probability_value(msr, 100)
         prob_dict["Z"] = 1 - probability_value(msr, 13.5)
         prob_dict["AB"] = 0.8 * probability_value(msr, 13.5) + 0.2 * probability_value(
@@ -318,7 +312,7 @@ def silicon_probabilities(
         )
         prob_dict["AB"] = prob_dict["M"]
         prob_dict["C"] = (1 - probability_value(msr_d29si, 200)) * (
-            1 - probability_value(msr_d30si, 233)
+            1 - probability_value(msr_d30si, 230)
         )
         prob_dict["D"] = (
             (1 - probability_slope(msr_d30si, msr_d29si, pm1, rho))
@@ -345,14 +339,14 @@ def silicon_probabilities(
         prob_dict["D"] = 0.2 * (1 - probability_value(msr_d29si, -50))
         prob_dict["N"] = 0.2 * probability_value(msr_d29si, 150)
     elif msr_d30si is not None:  # only d30Si available
-        prob_dict["M"] = probability_value(msr_d30si, 233) - probability_value(
+        prob_dict["M"] = probability_value(msr_d30si, 230) - probability_value(
             msr_d30si, -100
         )
         prob_dict["X"] = probability_value(msr_d30si, -100)
         prob_dict["Y"] = prob_dict["M"]
         prob_dict["Z"] = 0.2 * (1 - probability_value(msr_d30si, 0))
         prob_dict["AB"] = prob_dict["M"]
-        prob_dict["C"] = 0.2 * (1 - probability_value(msr_d30si, 233))
+        prob_dict["C"] = 0.2 * (1 - probability_value(msr_d30si, 230))
         prob_dict["D"] = 0.2 * probability_value(msr_d30si, 150)
         prob_dict["N"] = 0.2 * (1 - probability_value(msr_d30si, 0))
 

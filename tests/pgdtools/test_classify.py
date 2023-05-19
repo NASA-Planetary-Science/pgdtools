@@ -83,12 +83,7 @@ def test_classify_grain_whole_db():
     db = pgd.db
     grain_ids = list(db.index)
 
-    problem_list = ["SiC-2010-HOP-002106", "SiC-2010-HOP-002107", "SiC-2010-HOP-002110"]
-
     for id in grain_ids:
-        if id in problem_list:
-            continue
-
         grain = pgd.grain[id]
         type_db, subtype_db = grain.pgd_type
         if subtype_db == np.nan:
