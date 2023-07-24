@@ -42,9 +42,14 @@ def classify_grain(
     :return: Tuple of grain type and subtype or dictionary of probabilities.
     """
     # todo some checking of input data
+    types = ["M", "AB", "Y", "Z", "X", "C", "N", "D"]
+    probabilities = np.zeros(len(types))
 
     if c12_c13 is None and n14_n15 is None and d29si is None and d30si is None:
-        return "U", None  # unclassified
+        if not ret_probabilities:
+            return "U", None  # unclassified
+        else:
+            return dict(zip(types, probabilities))
 
     c12_c13 = _replace_errors(c12_c13)
     n14_n15 = _replace_errors(n14_n15)
@@ -60,9 +65,6 @@ def classify_grain(
     prob_n = nitrogen_probabilities(n14_n15)
     prob_si = silicon_probabilities(d29si, d30si, rho_si)
 
-    types = ["M", "AB", "Y", "Z", "N", "X", "C", "D"]
-    probabilities = np.zeros(len(types))
-
     for it, gtype in enumerate(types):
         probabilities[it] = (
             prob_al[gtype] * prob_c[gtype] * prob_n[gtype] * prob_si[gtype]
@@ -73,7 +75,7 @@ def classify_grain(
     # preference given by numpy to first element in case of equal probabilities
     index_max = np.argsort(1 - probabilities)[0]
 
-    if probabilities[index_max] == 0:
+    if probabilities[index_max] < 0.01:
         gtype = "U"
     else:
         gtype = types[index_max]
@@ -99,11 +101,21 @@ def aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]
     prob_dict = {"M": 1, "AB": 1, "Y": 1, "Z": 1, "X": 1, "N": 1, "C": 1, "D": 1}
 
     if msr is not None:
-        prob_dict["M"] = 0.2 + 0.8 * probability_value(msr, 0.02)
-        prob_dict["X"] = 1 - 0.8 * probability_value(msr, 0.02)
-        prob_dict["Y"] = 0.2 + 0.8 * probability_value(msr, 0.02)
-        prob_dict["Z"] = 0.2 + 0.8 * probability_value(msr, 0.02)
-        prob_dict["N"] = 1 - 0.8 * probability_value(msr, 0.02)
+        prob_dict["M"] = probability_value(msr, 0.02)
+
+        prob_dict["Y"] = prob_dict["M"]
+
+        prob_dict["Z"] = prob_dict["M"]
+
+        prob_dict["X"] = 0.05 + 0.95 * (1 - probability_value(msr, 0.01))
+
+        prob_dict["C"] = prob_dict["X"]
+
+        prob_dict["D"] = prob_dict["X"]
+
+        prob_dict["N"] = prob_dict["X"]
+
+        prob_dict["AB"] = 1
 
     return prob_dict
 
@@ -121,18 +133,12 @@ def carbon_probabilities(
 
     if msr is not None:
         prob_dict["M"] = probability_value(msr, 100) - probability_value(msr, 13.5)
-        prob_dict["X"] = 1
+        prob_dict["Z"] = prob_dict["M"]
         prob_dict["Y"] = 1 - probability_value(msr, 100)
-        prob_dict["Z"] = 1 - probability_value(msr, 13.5)
         prob_dict["AB"] = 0.8 * probability_value(msr, 13.5) + 0.2 * probability_value(
             msr, 25
         )
-        prob_dict["D"] = 0.2 + 0.8 * (
-            probability_value(msr, 100) - probability_value(msr, 13.5)
-        )
-        prob_dict["N"] = 0.8 * probability_value(msr, 13.5) + 0.2 * probability_value(
-            msr, 25
-        )
+        prob_dict["N"] = prob_dict["AB"]
 
     return prob_dict
 
@@ -220,12 +226,12 @@ def nitrogen_probabilities(
 
     if msr is not None:
         prob_dict["M"] = 1 - probability_value(msr, 200)
-        prob_dict["X"] = 0.2 + 0.8 * probability_value(msr, 272)
-        prob_dict["Y"] = 1 - probability_value(msr, 200)
-        prob_dict["Z"] = 1 - probability_value(msr, 200)
-        prob_dict["AB"] = 1 - probability_value(msr, 15)
-        prob_dict["D"] = 1 - 0.8 * probability_value(msr, 200)
-        prob_dict["C"] = 0.20 + 0.8 * probability_value(msr, 60)
+        prob_dict["Y"] = prob_dict["M"]
+        prob_dict["Z"] = prob_dict["M"]
+        prob_dict["X"] = probability_value(msr, 272)
+        prob_dict["C"] = prob_dict["X"]
+        prob_dict["D"] = prob_dict["X"]
+        prob_dict["N"] = prob_dict["X"]
 
     return prob_dict
 
@@ -284,12 +290,13 @@ def silicon_probabilities(
     :return: Dictionary of probabilities for each grain type.
     """
     # define parameters for the lines in silicon 3 isotope plot
-    pm1 = (-18.9 + 125, 1.339)
-    pm2 = (-18.9 - 125, 1.339)
-    pm3 = (-18.9 + 200 * (1.339 + 1 / 1.339), -1 / 1.339)
-    pm4 = (-18.9 - 75 * (1.339 + 1 / 1.339), -1 / 1.339)
+    pm0 = (-19, 1.342)
+    pm1 = (-19 + 250 * 1.342, 1.342)
+    pm2 = (-19 - 100 * 1.342, 1.342)
+    pm3 = (-19 + 200 * (1.342 + 1 / 1.342), -1 / 1.342)
+    pm4 = (-19 - 75 * (1.342 + 1 / 1.342), -1 / 1.342)
 
-    prob_dict = {"M": 1, "AB": 1, "Y": 1, "Z": 0, "X": 0.2, "N": 0.2, "C": 0, "D": 0}
+    prob_dict = {"M": 1, "AB": 1, "Y": 1, "Z": 0, "X": 0.2, "N": 0, "C": 0, "D": 0}
 
     if msr_d29si is not None and msr_d30si is not None:  # values for both
         prob_dict["M"] = (
@@ -299,56 +306,96 @@ def silicon_probabilities(
             probability_slope(msr_d30si, msr_d29si, pm3, rho)
             - probability_slope(msr_d30si, msr_d29si, pm4, rho)
         )
+
+        prob_dict["AB"] = prob_dict["M"]
+
         prob_dict["X"] = (
             probability_value(msr_d29si, 0)
             * probability_value(msr_d30si, 0)
             * (0.2 + 0.8 * probability_slope(msr_d30si, msr_d29si, pm4, rho))
         )
-        prob_dict["Y"] = prob_dict["M"]
+
+        prob_dict["Y"] = (
+            probability_slope(msr_d30si, msr_d29si, pm1, rho)
+            * (
+                1
+                - (1 - probability_slope(msr_d30si, msr_d29si, pm3, rho))
+                * (1 - probability_value(msr_d29si, 200))
+            )
+            * (
+                1
+                - probability_slope(msr_d30si, msr_d29si, pm4, rho)
+                * probability_value(msr_d30si, 0)
+            )
+            * (1 - probability_value(msr_d29si, -200))
+        )
+
         prob_dict["Z"] = (
             probability_slope(msr_d30si, msr_d29si, pm2, rho)
-            * (probability_value(msr_d29si, 150) - probability_value(msr_d29si, -200))
+            * (probability_value(msr_d29si, 200) - probability_value(msr_d29si, -200))
             * (1 - probability_value(msr_d30si, 0))
         )
-        prob_dict["AB"] = prob_dict["M"]
-        prob_dict["C"] = (1 - probability_value(msr_d29si, 200)) * (
-            1 - probability_value(msr_d30si, 230)
+
+        prob_dict["C"] = (
+            (1 - probability_value(msr_d29si, 200))
+            * (1 - probability_value(msr_d30si, 200))
+            * (1 - probability_slope(msr_d30si, msr_d29si, pm3, rho))
         )
+
         prob_dict["D"] = (
-            (1 - probability_slope(msr_d30si, msr_d29si, pm1, rho))
-            * (1 - probability_value(msr_d29si, -50))
-            * probability_value(msr_d30si, 150)
+            (1 - probability_value(msr_d29si, 0))
+            * probability_value(msr_d30si, 200)
+            * (
+                1
+                - 0.8 * probability_slope(msr_d30si, msr_d29si, pm1, rho)
+                - 0.2 * probability_slope(msr_d30si, msr_d29si, pm0, rho)
+            )
         )
 
         prob_dict["N"] = (
             probability_slope(msr_d30si, msr_d29si, pm2, rho)
-            * probability_value(msr_d29si, 150)
+            * probability_value(msr_d29si, 200)
             * (1 - probability_value(msr_d30si, 0))
         )
     elif msr_d29si is not None:  # only d29Si available
         prob_dict["M"] = probability_value(msr_d29si, 200) - probability_value(
-            msr_d29si, -125
+            msr_d29si, -120
         )
-        prob_dict["X"] = probability_value(msr_d29si, -125)
-        prob_dict["Y"] = prob_dict["M"]
-        prob_dict["Z"] = 0.2 * (
-            probability_value(msr_d29si, 150) - probability_value(msr_d29si, -200)
-        )
+
         prob_dict["AB"] = prob_dict["M"]
-        prob_dict["C"] = 0.2 * (1 - probability_value(msr_d29si, 200))
-        prob_dict["D"] = 0.2 * (1 - probability_value(msr_d29si, -50))
-        prob_dict["N"] = 0.2 * probability_value(msr_d29si, 150)
+
+        prob_dict["X"] = probability_value(msr_d29si, -120)
+
+        prob_dict["Y"] = probability_value(msr_d29si, 200) - probability_value(
+            msr_d29si, -200
+        )
+
+        prob_dict["Z"] = 0
+
+        prob_dict["C"] = prob_dict["Z"]
+
+        prob_dict["D"] = prob_dict["Z"]
+
+        prob_dict["N"] = prob_dict["Z"]
+
     elif msr_d30si is not None:  # only d30Si available
-        prob_dict["M"] = probability_value(msr_d30si, 230) - probability_value(
+        prob_dict["M"] = probability_value(msr_d30si, 200) - probability_value(
             msr_d30si, -100
         )
-        prob_dict["X"] = probability_value(msr_d30si, -100)
-        prob_dict["Y"] = prob_dict["M"]
-        prob_dict["Z"] = 0.2 * (1 - probability_value(msr_d30si, 0))
+
         prob_dict["AB"] = prob_dict["M"]
-        prob_dict["C"] = 0.2 * (1 - probability_value(msr_d30si, 230))
-        prob_dict["D"] = 0.2 * probability_value(msr_d30si, 150)
-        prob_dict["N"] = 0.2 * (1 - probability_value(msr_d30si, 0))
+
+        prob_dict["X"] = probability_value(msr_d30si, -100)
+
+        prob_dict["Y"] = 1 - probability_value(msr_d30si, -100)
+
+        prob_dict["Z"] = 0
+
+        prob_dict["C"] = prob_dict["Z"]
+
+        prob_dict["D"] = prob_dict["Z"]
+
+        prob_dict["N"] = prob_dict["Z"]
 
     return prob_dict
 
@@ -356,7 +403,9 @@ def silicon_probabilities(
 def probability_value(
     msr: Tuple[float, Union[float, Tuple[float, float]]], comp: float
 ) -> float:
-    """Calculate the probability of one ratio in comparison to another.
+    """Calculate the probability  `p(msr < comp`).
+
+    As defined in equation (3) - (5) in the paper.
 
     :param msr: Measurement and uncertainty, as a Tuple.
     :param comp: Comparison value.

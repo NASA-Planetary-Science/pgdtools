@@ -42,6 +42,25 @@ def test_pg_grain_pgd_type_single_id(pgd):
     assert grain.pgd_type == ("M", None)
 
 
+def test_pg_grain_probabilities_single_id(pgd):
+    """Probabilities for a given grain."""
+    id = "SiC-1996-HOP-200030"
+    grain = pgd.grain[id]
+
+    probs_expected = {
+        "M": 0.765,
+        "X": 0.103,
+        "Y": 0.05,
+        "Z": 0,
+        "AB": 0.001,
+        "C": 0,
+        "D": 0,
+        "N": 0,
+    }
+
+    assert grain.probabilities == probs_expected
+
+
 def test_pg_grain_reference_single_id(pgd):
     """Test reference for a given grain."""
     id = "SiC-1992-VIR-000026"

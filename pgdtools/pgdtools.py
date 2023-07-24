@@ -13,7 +13,7 @@ MODULE_PATH = Path(__file__).parent
 
 
 class PresolarGrains:
-    def __init__(self, fname: str = "PGD_SiC_2023-05-03.csv"):
+    def __init__(self, fname: str = "PGD_SiC_2023-07-22.csv"):
         """Initialize the presolar grain class.
 
         Load the database into self.db and self._db as a backup
@@ -59,6 +59,23 @@ class PresolarGrains:
                 utils.return_list_simplifier(self._entry["PGD Type"]),
                 utils.return_list_simplifier(subtype),
             )
+
+        @property
+        def probabilities(self) -> dict:
+            """Return the probabilities for all types for a given grain.
+
+            The probabilities are returned as a dictionary with key values of all types,
+            namely M, X, Y, Z, AB, C, D, and N. The values are the probabilities for
+            the given grain to be of the given type. See the paper for detail.
+
+            :return: Probabilities for all types.
+            """
+            ret_dict = {}
+            for pgd_type in ["M", "X", "Y", "Z", "AB", "C", "D", "N"]:
+                ret_dict[pgd_type] = utils.return_list_simplifier(
+                    self._entry[f"p({pgd_type})"]
+                )
+            return ret_dict
 
         @property
         def reference(self) -> Union[str, pd.Series]:

@@ -12,7 +12,8 @@ requires = [
     "iniabu>=1.0.1",
     "matplotlib",
     "pandas",
-    "numpy"
+    "numpy",
+    "scipy"
 ]
 description-file = "README.md"
 

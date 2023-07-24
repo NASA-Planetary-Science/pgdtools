@@ -27,7 +27,7 @@ GRAIN_EXAMPLES = [
         ],
         None,
         ("AB", None),
-    ],  # SiC-0000-GYN-0000001
+    ],  # SiC-0000-GYN-000001
     [
         [
             (20.0910687966414, (0.148923016686695, 0.148923016686695)),
@@ -51,21 +51,32 @@ GRAIN_EXAMPLES = [
         ("U", None),
     ],  # SiC-2010-HOP-002106
     [
-        [
-            (138.674465468262, (1.4378027705659, 1.4378027705659)),
-            (16.6278181598623, (0.343038104843092, 0.343038104843092)),
-            (60.678699273462, 17.5771124080633),
-            (57.6361448173834, 13.5037014583254),
-            (0.0623910427236267, 0.00100851492307657),
-        ],
-        None,
-        ("U", None),
-    ],  # SiC-2018-LIU-200012
-    [
         [(11, (0.3, 0.3)), (13, (0.3, 0.3)), (-282, 101), (-3, 131), None],
         None,
         ("X", "X2"),
     ],  # SiC-2016-LIU-000005
+    [
+        [
+            (258.2239612619, (8.8265045517372, 8.8265045517372)),
+            (529.1688, (67.30157, 53.6538)),
+            (23.23, 4.71695487974753),
+            (134.98, 3.93278993367635),
+            (0.00089428763819095, 0.00017743658291457),
+        ],
+        -0.269542481757476,
+        ("Y", None),
+    ],  # SiC-1994-HOP-000425
+    [
+        [
+            (50.762, (0.423508, 0.416553)),
+            (250.734, (13.3598, 12.0732)),
+            (-21.34, 10.4385210385083),
+            (-43.52, 10.071533077373),
+            (0.0325437, 0.0014007),
+        ],
+        0.00459506923176846,
+        ("X", "X1"),
+    ],  # SiC-1996-NIT-100051
 ]
 
 
@@ -93,6 +104,7 @@ def test_classify_grain_whole_db():
         type_db, subtype_db = grain.pgd_type
         if subtype_db == np.nan:
             subtype_db = None
+        probs_db = grain.probabilities
 
         c12_c13 = grain.value("C12", "C13")[0:2]
         n14_n15 = grain.value("N14", "N15")[0:2]
@@ -115,9 +127,24 @@ def test_classify_grain_whole_db():
         type_rec, subtype_rec = classify_grain(
             c12_c13, n14_n15, d29Si, d30Si, al26_al27, rho_si=rho_si
         )
+        # get the probabilities for all the grains
+        probs_rec = classify_grain(
+            c12_c13,
+            n14_n15,
+            d29Si,
+            d30Si,
+            al26_al27,
+            rho_si=rho_si,
+            ret_probabilities=True,
+        )
 
-        assert type_rec == type_db
-        assert subtype_rec == subtype_db
+        try:
+            assert type_rec == type_db
+            assert subtype_rec == subtype_db
+            assert probs_rec == probs_db
+        except AssertionError:
+            print(id)
+            raise AssertionError
 
 
 # TEST PRIVATE ROUTINES #
