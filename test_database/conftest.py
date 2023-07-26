@@ -12,7 +12,7 @@ from test_database import GH_FILES
 
 
 def prepare_dataframe(fname: Path) -> pd.DataFrame:
-    """Reads in a csv file and returns it as our standard defined pandas dataframe.
+    """Read in a csv file and returns it as our standard defined pandas dataframe.
 
     :param fname: File to read.
 
@@ -32,6 +32,8 @@ def gh_dbs(tmp_path) -> Dict[str, pd.DataFrame]:
     are the filename of the db, e.g., `sic.csv`) and a default formatted
     ``pd.DataFrame`` as the value.
 
+    :param tmp_path: Temporary path fixture.
+
     :return: Dictionary with file name (key), DataFrame with data (value)
     """
     retval = {}
@@ -45,7 +47,7 @@ def gh_dbs(tmp_path) -> Dict[str, pd.DataFrame]:
 
 
 @pytest.fixture()
-def curr_dbs(request) -> Dict[str, Path]:
+def curr_dbs() -> Dict[str, pd.DataFrame]:
     """Get the current database and return file name and path to file.
 
     This fixtures reads the current database stored locally and returns a

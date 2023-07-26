@@ -7,12 +7,21 @@ from iniabu import ini
 import numpy as np
 import pandas as pd
 
-from . import utilities as utils
+from pgdtools import utilities as utils
+
 
 MODULE_PATH = Path(__file__).parent
 
 
 class PresolarGrains:
+    """Presolar grain database class.
+
+    This class is the main class to work with the presolar grain database.
+
+    Example:
+        Todo
+    """
+
     def __init__(self, fname: str = "PGD_SiC_2023-07-22.csv"):
         """Initialize the presolar grain class.
 
@@ -34,7 +43,7 @@ class PresolarGrains:
             :param parent: Parent class, must be of type ``PresolarGrains``.
             :param id: PGD ID of the grain to initialize, or list of IDs.
 
-            :raise TypeError: Parent class is not of type ``PresolarGrains``.
+            :raises TypeError: Parent class is not of type ``PresolarGrains``.
             """
             if not isinstance(parent, PresolarGrains):
                 raise TypeError("Parent class must be of type PresolarGrains.")
@@ -49,6 +58,8 @@ class PresolarGrains:
             """Return the whole data set of this entry.
 
             If only one entry is in dataframe, a pandas series is returned.
+
+            :return: Data set of the grain.
             """
             if self._entry.shape[0] == 1:  # A Series
                 ret_val = self._entry.iloc[0]
@@ -158,8 +169,9 @@ class PresolarGrains:
         """Return a pandas dataframe with grain references of all entries.
 
         fixme: garbage
-        """
 
+        :return: Dataframe with grain references.
+        """
         hdr = ["Reference"]
         return self.db[hdr]
 
@@ -187,7 +199,7 @@ class PresolarGrains:
         :param err: Is the filter taking place on errors?
         :type err: bool
 
-        :raise ValueError: Comparator is invalid
+        :raises ValueError: Comparator is invalid
 
         Example to filter d(Si-29/Si-28) > 0.1, all others are out:
             >>> from pgdtools import PresolarGrains

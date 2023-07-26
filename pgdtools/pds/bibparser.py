@@ -31,6 +31,11 @@ import bibtexparser.customization as bibcust
 from pgdtools.data import BIBFILE
 
 
+# where to save the temporary files to
+PGD_LIBRARY_OLAF = Path("tmp/pgd_library_olaf.txt")
+KEY_DOI_FILE = Path("tmp/key_doi_file.csv")
+
+
 def get_bibfile():
     """Get and return the bib file."""
 
@@ -48,20 +53,19 @@ def get_bibfile():
 
 
 def process_bib_file(
-    savename: Path = Path("pgd_library_olaf.txt"),
-    id_doi_file: Path = Path("tmp_keyfile.csv"),
+    savename: Path = PGD_LIBRARY_OLAF,
+    id_doi_file: Path = KEY_DOI_FILE,
 ):
     """Process the bib file and save out an OLAF compatible txt file.
 
     :param savename: Name of the output file for the database to move to OLAF.
-    :param doifile: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
+    :param id_doi_file: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
     """
-
     # get the bib file
     db = get_bibfile()
 
     with open(savename, "w") as fout:
-        for it, entry in enumerate(db.entries):
+        for entry in db.entries:
             authors = format_authors(entry["author"])
             fout.write(authors[0][0])
             fout.write("\n\n")
@@ -91,7 +95,7 @@ def process_bib_file(
             fout.write("\n\n")
 
     with open(id_doi_file, "w") as fout:
-        for it, entry in enumerate(db.entries):
+        for entry in db.entries:
             fout.write(entry["ID"])
             fout.write(",")
             try:
@@ -103,11 +107,11 @@ def process_bib_file(
 
 
 def clean_str(inp: str):
-    """Clean up the string.
+    r"""Clean up the string.
 
     Replace multiple dashes with single dash.
-    Replace '\\textmu ' with 'µ'
-    Remove '\\emph', '\\textsuperscript' and '\\textsubscript' from the string.
+    Replace '\textmu ' with 'µ'
+    Remove '\emph', '\textsuperscript' and '\textsubscript' from the string.
 
     :param inp: Input string
 
@@ -125,8 +129,12 @@ def clean_str(inp: str):
 def format_authors(authors: List[str]) -> List[Tuple[str, str]]:
     """Format author list.
 
-    Take the author list in form 'Lastname, Firstname Initial and Secondln, Fn Initial'
-    and return a list of authors, each line containing a tuple of (Lastname, F.I.).
+    Take the author list in form 'Lastname1, Firstname1 Initial1 and Lastname2,
+    Firstname2 Initial2' and return a list of authors, each line containing
+    a tuple of (Lastname, F.I.).
+
+    :param authors: List of authors in the format
+        'Lastname1, Firstname1 Initial1 and Lastname2, Firstname2 Initial2'
 
     :return: Lastname, Firstnames formatted according to my specs.
     """

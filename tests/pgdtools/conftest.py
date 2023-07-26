@@ -1,8 +1,8 @@
 """Configuration for pytest."""
 
-from pgdtools import PresolarGrains
-
 import pytest
+
+from pgdtools import PresolarGrains
 
 
 @pytest.fixture(scope="session")

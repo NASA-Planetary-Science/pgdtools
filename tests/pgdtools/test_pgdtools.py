@@ -1,7 +1,7 @@
 """Functional tests for the PGD tools."""
 
-import pytest
 import numpy as np
+import pytest
 
 
 # TESTS FOR PRESOLAR GRAINS CLASS #

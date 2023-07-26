@@ -1,7 +1,7 @@
 """Functional tests for classification routine."""
 
-import pytest
 import numpy as np
+import pytest
 
 from pgdtools import classify as cl, classify_grain, PresolarGrains
 
@@ -141,9 +141,8 @@ def test_classify_grain_whole_db():
             assert type_rec == type_db
             assert subtype_rec == subtype_db
             assert probs_rec == probs_db
-        except AssertionError:
-            print(id)
-            raise AssertionError
+        except AssertionError as err:
+            raise AssertionError(f"Grain id: {id}") from err
 
 
 # TEST PRIVATE ROUTINES #

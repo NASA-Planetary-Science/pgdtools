@@ -1,3 +1,5 @@
+"""Tests for bibparser routines in PDS submodule."""
+
 import pytest
 
 from pgdtools.pds import bibparser as bprs

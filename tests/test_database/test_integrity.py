@@ -6,8 +6,8 @@ from typing import Dict, Tuple
 import pandas as pd
 import pytest
 
-from test_database.conftest import *
 from test_database import test_integrity as ti
+from test_database.conftest import *  # noqa: F403
 
 
 def prepare_databases(
@@ -22,8 +22,8 @@ def prepare_databases(
 
     :return: Tuple of dictionaries with github databases and current databases.
     """
-    gh_dbs = {"sic": prepare_dataframe(gh_fname.absolute())}
-    curr_dbs = {"sic": prepare_dataframe(curr_fname.absolute())}
+    gh_dbs = {"sic": prepare_dataframe(gh_fname.absolute())}  # noqa: F405
+    curr_dbs = {"sic": prepare_dataframe(curr_fname.absolute())}  # noqa: F405
     return gh_dbs, curr_dbs
 
 

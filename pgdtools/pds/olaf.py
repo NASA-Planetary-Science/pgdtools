@@ -19,10 +19,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-import pgdtools
+from pgdtools.data import OLAFKEYFILE
 from pgdtools.pds import bibparser
 from pgdtools.pgdtools import PresolarGrains
-from pgdtools.data import OLAFKEYFILE
 
 # GLOBAL VARIABLES THAT DEFINE OUTPUT BEHAVIOR
 
@@ -67,9 +66,6 @@ COLUMNS_DESC = {
 }
 
 
-### NON-USER GLOBAL VARIABLES ###
-
-
 def _authordict_creator() -> dict:
     """Create a dictionary of the bibliography to return the authors.
 
@@ -110,6 +106,8 @@ def column_desc(col_name: str) -> List[str]:
     :param col_name: Name of the column.
 
     :return: List of column type, unit, and description.
+
+    :raises KeyError: If the column name is not in the COLUMNS_DESC dictionary.
     """
     # sanitize input
     if "size" in col_name.lower():  # we have a size, throw away the unit
@@ -151,6 +149,8 @@ def get_authors(grain: PresolarGrains.Grain) -> str:
     """Get the authors from a grain ID string.
 
     :param grain: Grain instance.
+
+    :return: String of authors in OLAF format.
     """
     # check for unpublished grains
     if "unpublished" in grain.reference.lower():
@@ -173,7 +173,7 @@ def get_authors(grain: PresolarGrains.Grain) -> str:
 
 
 def olaf_export():
-    """Main function to create the database according to the defined variables."""
+    """Create the database to import into OLAF as csv with embedded metadata."""
     # create th export path, if it does not exist
     EXPORT_PATH.mkdir(parents=True, exist_ok=True)
 
@@ -239,7 +239,7 @@ def olaf_export():
                 col_types += f"{tp}{sep}"
                 col_units += f"{unit}{sep}"
                 col_desc += f"{desc}{sep}"
-                col_data += f"{data[it]}{sep}"
+                col_data += f"{dat}{sep}"
 
             fout.writelines(col_names)
             fout.writelines(col_types)

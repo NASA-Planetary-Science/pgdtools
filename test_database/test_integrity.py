@@ -32,5 +32,7 @@ def test_is_subset(gh_dbs, curr_dbs):
             subset = curr_db.loc[gh_db.index]
             try:
                 pd.testing.assert_frame_equal(subset, gh_db)
-            except AssertionError:
-                raise AssertionError("Existing values in the database have changed.")
+            except AssertionError as err:
+                raise AssertionError(
+                    "Existing values in the database have changed."
+                ) from err
