@@ -28,7 +28,7 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 import bibtexparser.customization as bibcust
 
-BIBFILE = Path("../data/pgd_references.bib")
+from pgdtools.data import BIBFILE
 
 
 def get_bibfile():

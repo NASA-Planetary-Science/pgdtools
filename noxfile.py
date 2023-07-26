@@ -7,23 +7,8 @@ nox.options.sessions = "lint", "safety", "tests", "xdoctest"
 
 package = "pgdtools"
 locations = "pgdtools", "tests", "noxfile.py", "docs/conf.py"
-python_suite = ["3.9", "3.8", "3.7", "3.6"]
-python_main = "3.9"
-
-
-@nox.session(python=python_main)
-def black(session):
-    """Autoformat all python files with black."""
-    args = session.posargs or locations
-    session.install("black==20.8b1")
-    session.run("black", *args)
-
-
-@nox.session(python=python_main)
-def build(session):
-    """Pack pgdtools for release on PyPi."""
-    session.install("flit")
-    session.run("flit", "build")
+python_suite = ["3.11", "3.10", "3.9", "3.8"]
+python_main = "3.11"
 
 
 # @nox.session(python=python_main)
@@ -40,21 +25,21 @@ def build(session):
 def lint(session):
     """Lint project using ``flake8``."""
     args = session.posargs or locations
-    session.install("-r", "dev-requirements.txt")
+    session.install(".[dev, pds]")
     session.run("flake8", *args)
 
 
 @nox.session(python=python_suite)
 def tests(session):
     """Test the project using ``pytest``."""
-    session.install("-r", "requirements.txt", "-r", "dev-requirements.txt")
+    session.install(".[dev, pds]")
     session.run("pytest")
 
 
 @nox.session(python=python_main)
 def safety(session):
     """Safety check for all dependencies."""
-    session.install("safety", "-r", "requirements.txt", "-r", "dev-requirements.txt")
+    session.install(".[dev, pds]", "safety")
     session.run(
         "safety",
         "check",
@@ -66,5 +51,5 @@ def safety(session):
 def xdoctest(session):
     """Test docstring examples with xdoctest."""
     args = session.posargs or ["all"]
-    session.install("xdoctest[all]", "-r", "requirements.txt")
+    session.install("xdoctest[all]", ".[pds]")
     session.run("python", "-m", "xdoctest", package, *args)

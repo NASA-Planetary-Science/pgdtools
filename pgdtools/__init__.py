@@ -1,7 +1,7 @@
 """Package to interact with the presolar grain database."""
 
-# import the standard module
-from . import data
+# import the standard modules
+from . import data, pds
 from .classify import classify_grain
 from .pgdtools import PresolarGrains
 

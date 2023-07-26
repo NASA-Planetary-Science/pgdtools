@@ -19,24 +19,23 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-import bibparser
 import pgdtools
-from pgdtools import PresolarGrains
+from pgdtools.pds import bibparser
+from pgdtools.pgdtools import PresolarGrains
+from pgdtools.data import OLAFKEYFILE
 
 # GLOBAL VARIABLES THAT DEFINE OUTPUT BEHAVIOR
 
 EXPORT_PATH = Path(
-    f"data/olaf_export/{datetime.now()}".replace(" ", "_")
+    f"tmp/export_olaf_{datetime.now()}".replace(" ", "_")
     .replace(":", "-")
     .replace(".", "-")
 )
 LIMIT_TO_GRAINS = None
 
-# EXPORT_PATH = Path("data/olaf_export")
+# some testing settings - uncomment if wanted
+# EXPORT_PATH = Path("tmp/export_olaf")
 # LIMIT_TO_GRAINS = ["SiC-2021-NIT-000024"]
-
-OLAFREFKEY = "pgd_library_id_doi_olafkey.csv"
-
 
 # dictionary that defines the columns of the output file for PDS
 # list entries are [type, unit, description]
@@ -90,10 +89,10 @@ def _authordict_creator() -> dict:
 _AUTHOR_DICT = _authordict_creator()
 
 
-def bibkey_olaf(grain: pgdtools.PresolarGrains.Grain) -> str:
+def bibkey_olaf(grain: PresolarGrains.Grain) -> str:
     """Get the OLAF bibliography key from a grain ID string."""
     ref_id = _get_ref_id(grain.id)
-    with open(OLAFREFKEY, "r") as fin:
+    with open(OLAFKEYFILE, "r") as fin:
         for line in fin:
             if ref_id in line:
                 return line.split(",")[-1].strip()
@@ -148,7 +147,7 @@ def column_desc(col_name: str) -> List[str]:
             raise KeyError(f"Column name {col_name} not found in parser.")
 
 
-def get_authors(grain: pgdtools.PresolarGrains.Grain) -> str:
+def get_authors(grain: PresolarGrains.Grain) -> str:
     """Get the authors from a grain ID string.
 
     :param grain: Grain instance.
