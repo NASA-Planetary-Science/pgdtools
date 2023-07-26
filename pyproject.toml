@@ -35,6 +35,12 @@ dev = [
     "requests"
 ]
 
+docs = [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "sphinxcontrib-mermaid"
+]
+
 pds = [
     "bibtexparser"
 ]

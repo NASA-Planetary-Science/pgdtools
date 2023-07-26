@@ -26,7 +26,7 @@ from pgdtools.pgdtools import PresolarGrains
 # GLOBAL VARIABLES THAT DEFINE OUTPUT BEHAVIOR
 
 EXPORT_PATH = Path(
-    f"tmp/export_olaf_{datetime.now()}".replace(" ", "_")
+    f"export_olaf_{datetime.now()}".replace(" ", "_")
     .replace(":", "-")
     .replace(".", "-")
 )

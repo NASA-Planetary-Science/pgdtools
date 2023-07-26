@@ -32,8 +32,8 @@ from pgdtools.data import BIBFILE
 
 
 # where to save the temporary files to
-PGD_LIBRARY_OLAF = Path("tmp/pgd_library_olaf.txt")
-KEY_DOI_FILE = Path("tmp/key_doi_file.csv")
+PGD_LIBRARY_OLAF = Path("pgd_library_olaf.txt")
+KEY_DOI_FILE = Path("key_doi_file.csv")
 
 
 def get_bibfile():
@@ -60,6 +60,9 @@ def process_bib_file(
 
     :param savename: Name of the output file for the database to move to OLAF.
     :param id_doi_file: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
+
+    ToDo: This function should only export new entries and not all references!
+        Compare the database with already done entries in `pgd_library_id_doi_olafkey.csv`.
     """
     # get the bib file
     db = get_bibfile()
