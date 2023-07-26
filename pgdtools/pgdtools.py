@@ -40,9 +40,26 @@ class PresolarGrains:
                 raise TypeError("Parent class must be of type PresolarGrains.")
 
             self.parent = parent
-            self.id = id
+            self._id = id
 
-            self._entry = self.parent.db.loc[self.id]
+            self._entry = self.parent.db.loc[self._id]
+
+        @property
+        def entry(self) -> Union[pd.Series, pd.DataFrame]:
+            """Return the whole data set of this entry.
+
+            If only one entry is in dataframe, a pandas series is returned.
+            """
+            if self._entry.shape[0] == 1:  # A Series
+                ret_val = self._entry.iloc[0]
+            else:
+                ret_val = self._entry
+            return ret_val
+
+        @property
+        def id(self):
+            """Return the PGD ID of the grain."""
+            return utils.return_list_simplifier(self._id)
 
         @property
         def pgd_type(self) -> Union[Tuple[str, str], Tuple[pd.Series, pd.Series]]:
@@ -81,6 +98,11 @@ class PresolarGrains:
         def reference(self) -> Union[str, pd.Series]:
             """Return the reference of the grain."""
             return utils.return_list_simplifier(self._entry["Reference"])
+
+        @property
+        def source(self) -> str:
+            """Return the source of the grain."""
+            return str(utils.return_list_simplifier(self._entry["Source"]))
 
         def correlation(self, iso1: str, iso2: str) -> Union[float, pd.Series]:
             """Return the correlation between two isotopes.

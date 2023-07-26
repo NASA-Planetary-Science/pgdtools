@@ -31,15 +31,8 @@ import bibtexparser.customization as bibcust
 BIBFILE = Path("../data/pgd_references.bib")
 
 
-def process_bib_file(
-    savename: Path = Path("pgd_library_olaf.txt"),
-    id_doi_file: Path = Path("tmp_keyfile.csv"),
-):
-    """Process the bib file and save out an OLAF compatible txt file.
-
-    :param savename: Name of the output file for the database to move to OLAF.
-    :param doifile: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
-    """
+def get_bibfile():
+    """Get and return the bib file."""
 
     def customizations(record):
         record = bibcust.convert_to_unicode(record)
@@ -50,6 +43,22 @@ def process_bib_file(
         parser = BibTexParser()
         parser.customization = customizations
         db = bibtexparser.load(bibtex_file, parser=parser)
+
+    return db
+
+
+def process_bib_file(
+    savename: Path = Path("pgd_library_olaf.txt"),
+    id_doi_file: Path = Path("tmp_keyfile.csv"),
+):
+    """Process the bib file and save out an OLAF compatible txt file.
+
+    :param savename: Name of the output file for the database to move to OLAF.
+    :param doifile: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
+    """
+
+    # get the bib file
+    db = get_bibfile()
 
     with open(savename, "w") as fout:
         for it, entry in enumerate(db.entries):

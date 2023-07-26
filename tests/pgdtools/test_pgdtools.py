@@ -80,3 +80,11 @@ def test_pg_grain_reference_multi_ids(pgd):
     )
     grains = pgd.grain[ids]
     np.testing.assert_equal(grains.reference.values, refs_expected)
+
+
+def test_pg_grain_source_single_id(pgd):
+    """Test source of a grain for one given grain."""
+    id = "SiC-1992-VIR-000026"
+    src_exp = "Murchison"
+    grain = pgd.grain[id]
+    assert grain.source == src_exp
