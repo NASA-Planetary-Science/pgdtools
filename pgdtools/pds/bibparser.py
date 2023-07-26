@@ -106,8 +106,8 @@ def clean_str(inp: str):
     """Clean up the string.
 
     Replace multiple dashes with single dash.
-    Replace '\textmu ' with 'µ'
-    Remove '\emph', '\textsuperscript' and '\textsubscript' from the string.
+    Replace '\\textmu ' with 'µ'
+    Remove '\\emph', '\\textsuperscript' and '\\textsubscript' from the string.
 
     :param inp: Input string
 

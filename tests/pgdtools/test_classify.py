@@ -80,7 +80,6 @@ GRAIN_EXAMPLES = [
 ]
 
 
-@pytest.mark.smoke
 @pytest.mark.parametrize("grain", GRAIN_EXAMPLES)
 def test_classify_grain(grain):
     """Test classification of grain examples."""

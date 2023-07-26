@@ -6,9 +6,8 @@ from typing import Dict, Tuple
 import pandas as pd
 import pytest
 
-
-# from test_database.conftest import *
-# from test_database import test_integrity as ti
+from test_database.conftest import *
+from test_database import test_integrity as ti
 
 
 def prepare_databases(
