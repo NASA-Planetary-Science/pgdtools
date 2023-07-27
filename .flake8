@@ -7,7 +7,7 @@ ignore = E203,E501,W503,B905
 max-line-length = 88
 
 # import order
-application-import-names = pgdtools,test_database,tests
+application-import-names = pgdtools,tests
 import-order-style = google
 
 # bandit: exclude test cases

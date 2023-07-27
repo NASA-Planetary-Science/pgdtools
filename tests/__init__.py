@@ -1,1 +1,1 @@
-"""Tests for pgdtools and test_database modules."""
+"""Tests for pgdtools module."""
