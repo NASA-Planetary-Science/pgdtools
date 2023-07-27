@@ -1,6 +1,0 @@
-https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv
-https://zenodo.org/record/8187479/files/PGD_SiC_2021-01-10.csv
-https://zenodo.org/record/8187471/files/PGD_SiC_2020-12-24.csv
-https://zenodo.org/record/8187446/files/PGD_SiC_2020-08-18.csv
-https://zenodo.org/record/8187406/files/PGD_SiC_2020-01-03.csv
-https://zenodo.org/record/8187220/files/PGD_SiC_2019-12-20.csv

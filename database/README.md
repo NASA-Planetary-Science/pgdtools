@@ -1,16 +1,23 @@
 # Database
 
-This folder files with links to all Zenodo releases of the databases.
-Each `txt` file is named after the phase of presolar grain it contains data for.
-For example, the file `sic.txt` contains links to the silicon carbide (SiC) databases.
-Each line in the `txt` file contains a link to a zenodo release of the database.
-The first line is the most recent release, and the last line is the oldest release.
+This folder serves a database file with links to all Zenodo releases of the databases.
+The links are stored in the `db.json` file.
+Each entry in the `db.json` file has the following structure:
+
+```json
+{
+    "db_short_name": {
+      "name": "Name of the database",
+      "versions": ["link-to_version1.csv", "link-to_version2.csv", ...]
+    }
+}
+```
 
 The following databases are currently available:
 
-- Presolar SiC grains (`sic.txt`)
+- Presolar SiC grains (`"sic"`)
 
-The files in here is read in by the `pgdtools` whenever the database is updated.
+This json file is read in by the `pgdtools` whenever the database is updated.
 
 ## Zenodo links
 
