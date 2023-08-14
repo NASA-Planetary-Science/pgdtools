@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-DB_FILE_URL = "https://raw.githubusercontent.com/NASA-Planetary-Science/pgdtools/main/database/db.json"
+DB_FILE_URL = "https://raw.githubusercontent.com/NASA-Planetary-Science/pgdtools/main/database/db.json"  # noqa: B950
 
 BIBFILE = Path(__file__).parent.joinpath("pgd_references.bib").absolute()
 OLAFKEYFILE = (
