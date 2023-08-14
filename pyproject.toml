@@ -35,12 +35,12 @@ dev = [
     "requests"
 ]
 
+db_maintainer = [
+    "bibtexparser"
+]
+
 docs = [
     "sphinx",
     "sphinx_rtd_theme",
     "sphinxcontrib-mermaid"
-]
-
-pds = [
-    "bibtexparser"
 ]

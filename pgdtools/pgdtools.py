@@ -224,8 +224,10 @@ class PresolarGrains:
         if comparator not in comp_dict.keys():
             raise ValueError(f"Comparator {comparator} is not valid.")
 
-        # evaluate
-        self.db = self.db[eval(f"self.db[hdr] {comp_dict[comparator]} {value}")]
+        # evaluate -- todo: insecure, but garbage anyway
+        self.db = self.db[
+            eval(f"self.db[hdr] {comp_dict[comparator]} {value}")  # noqa: S307
+        ]
 
     def filter_type(self, grain_type):
         """Filter grain database by grain type.
