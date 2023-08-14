@@ -35,6 +35,11 @@ from pgdtools.data import BIBFILE
 PGD_LIBRARY_OLAF = Path("pgd_library_olaf.txt")
 KEY_DOI_FILE = Path("key_doi_file.csv")
 
+# path to existing, repository-based `pgd_library_id-doi_olafkey.csv` file
+OLAFKEYFILE = Path(__file__).parent.parent.joinpath(
+    "data/pgd_library_id_doi_olafkey.csv"
+)
+
 
 def get_bibfile():
     """Get and return the bib file."""
@@ -55,11 +60,13 @@ def get_bibfile():
 def process_bib_file(
     savename: Path = PGD_LIBRARY_OLAF,
     id_doi_file: Path = KEY_DOI_FILE,
+    only_new: bool = True,
 ):
     """Process the bib file and save out an OLAF compatible txt file.
 
     :param savename: Name of the output file for the database to move to OLAF.
     :param id_doi_file: Name of the csv PGD ID, doi output file (for adding OLAF ref keys).
+    :param only_new: Only export new entries (default: True).
 
     ToDo: This function should only export new entries and not all references!
         Compare the database with already done entries in `pgd_library_id_doi_olafkey.csv`.
@@ -67,46 +74,54 @@ def process_bib_file(
     # get the bib file
     db = get_bibfile()
 
+    # read in existing key file and store existing ids to a set
+    existing_ids = set()
+    with open(OLAFKEYFILE) as fin:
+        for line in fin:
+            existing_ids.add(line.split(",")[0])
+
     with open(savename, "w") as fout:
         for entry in db.entries:
-            authors = format_authors(entry["author"])
-            fout.write(authors[0][0])
-            fout.write("\n\n")
-            fout.write(f"{len(authors)}")
-            fout.write("\n\n")
-            if len(authors) > 1:
-                fout.write(authors[1][0])
+            if entry["ID"] not in existing_ids or not only_new:
+                authors = format_authors(entry["author"])
+                fout.write(authors[0][0])
                 fout.write("\n\n")
-            fout.write(entry["year"])
-            fout.write("\n\n")
-
-            if entry["ENTRYTYPE"] == "article":
-                ref_text = format_article(entry)
-            elif entry["ENTRYTYPE"] == "inproceedings":
-                ref_text = format_inproceedings(entry)
-            elif entry["ENTRYTYPE"] == "phdthesis":
-                ref_text = format_phdthesis(entry)
-
-            fout.write(ref_text)
-            fout.write("\n\n")
-            try:
-                fout.write(entry["doi"])
+                fout.write(f"{len(authors)}")
                 fout.write("\n\n")
-            except KeyError:
-                pass
-            fout.write("--------------------------------")
-            fout.write("\n\n")
+                if len(authors) > 1:
+                    fout.write(authors[1][0])
+                    fout.write("\n\n")
+                fout.write(entry["year"])
+                fout.write("\n\n")
+
+                if entry["ENTRYTYPE"] == "article":
+                    ref_text = format_article(entry)
+                elif entry["ENTRYTYPE"] == "inproceedings":
+                    ref_text = format_inproceedings(entry)
+                elif entry["ENTRYTYPE"] == "phdthesis":
+                    ref_text = format_phdthesis(entry)
+
+                fout.write(ref_text)
+                fout.write("\n\n")
+                try:
+                    fout.write(entry["doi"])
+                    fout.write("\n\n")
+                except KeyError:
+                    pass
+                fout.write("--------------------------------")
+                fout.write("\n\n")
 
     with open(id_doi_file, "w") as fout:
         for entry in db.entries:
-            fout.write(entry["ID"])
-            fout.write(",")
-            try:
-                fout.write(entry["doi"])
-                fout.write(",")  # need to add keys by hand
-            except KeyError:
-                fout.write(",")  # no doi available
-            fout.write("\n")
+            if entry["ID"] not in existing_ids or not only_new:
+                fout.write(entry["ID"])
+                fout.write(",")
+                try:
+                    fout.write(entry["doi"])
+                    fout.write(",")  # need to add keys by hand
+                except KeyError:
+                    fout.write(",")  # no doi available
+                fout.write("\n")
 
 
 def clean_str(inp: str):

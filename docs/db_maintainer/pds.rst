@@ -76,16 +76,24 @@ This will create two files in your current working directory:
   - ``key_doi_file.csv``: A file that contains the new keys and DOIs
   - ``pgd_library_olaf.txt``: A text file with information for subsequent manual copying of references into OLAF
 
+By default, these files will only contain new references
+in comparison to the existing ``pgd_library_id_doi_olafkey.csv`` file.
+If you want to re-create the complete database,
+you can use the following command:
+
+.. code-block:: python
+
+    from pgdtools import pds
+    pds.bibparser.process_bib_file(only_new=False)
+
 ........................
 Update the OLAF key file
 ........................
 
-Grains that were added since the last database update should have citation entries
-at the bottom of the file ``key_doi_file.csv``.
-Compare this file to the file named ``pgd_library_id_doi_olafkey.csv``,
-which is in the folder ``pgdtools/data``.
 You now need to copy all lines with new PGD IDs from the ``key_doi_file.csv``
 into the ``pgd_library_id_doi_olafkey.csv`` file.
+If you used ``only_new=True`` in the previous step (default),
+all lines should be new lines.
 Note that these new lines end with a comma and have no OLAF-key yet incorporated.
 Leave this file open.
 
