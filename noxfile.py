@@ -14,7 +14,7 @@ python_main = "3.11"
 @nox.session(python=python_main)
 def docs(session):
     """Build the documentation."""
-    session.install("sphinx", "sphinx_rtd_theme", ".[db_maintainer]")
+    session.install("sphinx", "sphinx_rtd_theme", ".[docs]")
     session.chdir("docs")
     session.run(
         "sphinx-build", "-b", "html", ".", "_build/html/"
@@ -25,7 +25,7 @@ def docs(session):
 def lint(session):
     """Lint project using ``flake8``."""
     args = session.posargs or locations
-    session.install(".[dev, db_maintainer]")
+    session.install(".[dev]")
     session.run("flake8", *args)
 
 
@@ -39,7 +39,7 @@ def tests(session):
 @nox.session(python=python_main)
 def safety(session):
     """Safety check for all dependencies."""
-    session.install(".[dev, db_maintainer]", "safety")
+    session.install(".[dev, db_maintainer, docs]", "safety")
     session.run(
         "safety",
         "check",
