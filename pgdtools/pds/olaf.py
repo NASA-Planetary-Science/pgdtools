@@ -38,18 +38,19 @@ LIMIT_TO_GRAINS = None
 
 # dictionary that defines the columns of the output file for PDS
 # list entries are [type, unit, description]
+PROBABILITY_TEXT_START = "Probability of the grain being consistent with type"
 COLUMNS_DESC = {
     "PGD Type": ["string", "", "Presolar grain database type"],
     "PGD Subtype": ["string", "", "Presolar grain database subtype"],
     "Type": ["string", "", "Author associated presolar grain type"],
-    "p(M)": ["float", "", "Probability of the grain being of type M"],
-    "p(X)": ["float", "", "Probability of the grain being of type X"],
-    "p(Y)": ["float", "", "Probability of the grain being of type Y"],
-    "p(Z)": ["float", "", "Probability of the grain being of type Z"],
-    "p(AB)": ["float", "", "Probability of the grain being of type AB"],
-    "p(C)": ["float", "", "Probability of the grain being of type C"],
-    "p(D)": ["float", "", "Probability of the grain being of type D"],
-    "p(N)": ["float", "", "Probability of the grain being of type N"],
+    "p(M)": ["float", "", f"{PROBABILITY_TEXT_START} M"],
+    "p(X)": ["float", "", f"{PROBABILITY_TEXT_START} X"],
+    "p(Y)": ["float", "", f"{PROBABILITY_TEXT_START} Y"],
+    "p(Z)": ["float", "", f"{PROBABILITY_TEXT_START} Z"],
+    "p(AB)": ["float", "", f"{PROBABILITY_TEXT_START} AB"],
+    "p(C)": ["float", "", f"{PROBABILITY_TEXT_START} C"],
+    "p(D)": ["float", "", f"{PROBABILITY_TEXT_START} D"],
+    "p(N)": ["float", "", f"{PROBABILITY_TEXT_START} N"],
     "Grain Label": ["string", "", "Author assigned grain label"],
     "Data Published": ["string", "", "How and in which form data were published"],
     "Size a": ["float", "micrometer", "Grain size along longest dimension"],
