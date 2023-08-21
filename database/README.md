@@ -1,31 +1,62 @@
-# Database
+# Database and information
 
 This folder serves a database file with links to all Zenodo releases of the databases.
-The links are stored in the `db.json` file.
+These json files are read in by the `pgdtools` whenever the database is updated.
+
+## Database versions and change log
+
+The links and descriptions are stored in the `db.json` file.
 Each entry in the `db.json` file has the following structure:
 
 ```json
 {
-    "db_short_name": {
-      "name": "Name of the database",
-      "versions": ["link-to_version1.csv", "link-to_version2.csv", ...]
+    "Sample Database": {
+      "db_name": "Name of the database",
+      "versions": [
+        {
+          "change": "Description of what has changed in this version compared to the old ones",
+          "date": "Date of the database release in YYYY-MM-DD format",
+          "grains": "Number of grains in the database",
+          "known_issue": "Known issues with this version of the database",
+          "release_type": "Where this database has been released",
+          "url": "URL of the csv database",
+        }
+      ]
     }
 }
 ```
+
+The outer layer gives a database name (see below), e.g., `"sic"`.
+The inner layer has first a `"db_name"`,
+giving the database name in a human-readable format, e.g., `"Silicon Carbide"`.
+The `"versions"` list contains all versions of the database,
+where each version has multiple entries as described in the example `json` file above.
 
 The following databases are currently available:
 
 - Presolar SiC grains (`"sic"`)
 
-This json file is read in by the `pgdtools` whenever the database is updated.
+## Techniques
 
-## Zenodo links
+The `techniques.json` file contains a list of all techniques that are currently in the presolar grain database.
+Each entry has the following structure:
 
-The following links point to the Zenodo releases of the databases:
+```json
+{
+  "technqiue_name": {
+    "institution": "Institution where the technique was used",
+    "techique": "Name of the technique",
+    "instrument": "Name of the instrument",
+    "reference": "Reference to the publication where the instrument was described"
+  }
+}
+```
 
-- [Silicon Carbide](https://zenodo.org/record/8187488)
+Note that the `"technique_name"` is simply the name of the technique as given in the Excel file.
 
-## Changelog
+## References
 
-In order to obtain the changelog of the databse,
-please refer to `.xlsx` files on Zenodo.
+There are two files with references:
+
+- `references.json` contains all references that are used in the database, identical to the Excel file.
+- `references.bib` contains all references in BibTeX format.

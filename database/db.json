@@ -1,13 +1,49 @@
 {
     "sic": {
-        "name": "Silicon Carbide",
+        "db_name": "Silicon Carbide",
         "versions": [
-            "https://zenodo.org/record/8187220/files/PGD_SiC_2019-12-20.csv",
-            "https://zenodo.org/record/8187406/files/PGD_SiC_2020-01-03.csv",
-            "https://zenodo.org/record/8187446/files/PGD_SiC_2020-08-18.csv",
-            "https://zenodo.org/record/8187471/files/PGD_SiC_2020-12-24.csv",
-            "https://zenodo.org/record/8187479/files/PGD_SiC_2021-01-10.csv",
-            "https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv"
+            {
+                "change": "New start of the Presolar Grain Database after a complete rebuild.\n",
+                "date": "2019-12-20",
+                "grains": 16000,
+                "known_issue": "New grain type assignment still needs to be worked on. Much more data to add.\n",
+                "url": "https://zenodo.org/record/8187220/files/PGD_SiC_2019-12-20.csv"
+            },
+            {
+                "change": "1. Data with delta values < -1000 removed.\n2. Some grain type assignments corrected.\n3. Some grain labels corrected according to nomenclature in respective publication.\n4. Missing techniques added.\n5. Sheet \"Techniques\" added.\n",
+                "date": "2020-01-03",
+                "grains": 16000,
+                "known_issue": "New grain type assignment still needs to be worked on. Much more data to add.\n",
+                "url": "https://zenodo.org/record/8187406/files/PGD_SiC_2020-01-03.csv"
+            },
+            {
+                "change": "1. Changed number format to show all digits.\n2. C and Si data (uncertainties) from Liu et al. (2014) ApJ 786:66 corrected. Reported as 2 sigma but are 1 sigma instead.\n3. Added new columns for strontium data normalized to 87Sr.\n4. Data from following references added:\nLiu et al. (2015) ApJ 803:12\nLiu et al. (2016) ApJ 820:140\nLiu et al. (2017) ApJL 842:L1\nLiu et al. (2017) ApJL 844:L12\nLiu et al. (2017) MAPS 12:2550\nHoppe et al. (2018) GCA 221:182\nLiu et al. (2018) SciA 4:eaao1054\nLiu et al. (2018) ApJ 855:144\nNguyen et al. (2018) GCA 221:162\nHoppe et al. (2019) ApJ 887:8\nLiu et al. (2019) ApJ 881:28\n",
+                "date": "2020-08-18",
+                "grains": 19759,
+                "known_issue": "New grain type assignment still needs to be worked on. Much more data to add.\n",
+                "url": "https://zenodo.org/record/8187446/files/PGD_SiC_2020-08-18.csv"
+            },
+            {
+                "change": "1. Corrected typo in reference (volume number 52 instead of 12) for SiC-2017-LIU-2 data.\n2. Grain type asignment for 10 grains from Nguyen et al. (2018) GCA 221:162 changed from M to AB.\n3. Data from the following references added:\nKodolányi et al. (2018) GCA 221:127\nTrappitsch et al. (2018) GCA 221:87\n",
+                "date": "2020-12-24",
+                "grains": 19864,
+                "known_issue": "New grain type assignment still needs to be worked on. Much more data to add.\n",
+                "url": "https://zenodo.org/record/8187471/files/PGD_SiC_2020-12-24.csv"
+            },
+            {
+                "change": "1. Grain type asignment changed to AB for grains M and Z grains with 12C/13C < 12.3.\n2. Some minor adjustments in grain type assignments.\n3. Grain subtypes introduced.\n4. Data from the following references added:\nFloss & Stadermann (2009) ApJ 697:1242\nNguyen et al. (2010) ApJ 719:166\nLeitner et al. (2012) ApJ 745:38\nHaenecour et al. (2018) GCA 221:379\nNittler et al. (2018) GCA 226:107\n",
+                "date": "2021-01-10",
+                "grains": 19976,
+                "known_issue": "New grain type and subtype asignments still need to be worked on, especially for separation between M, Y, and Z.\n",
+                "url": "https://zenodo.org/record/8187479/files/PGD_SiC_2021-01-10.csv"
+            },
+            {
+                "change": "1. New PGD Type asignments including new Type D.\n2. Now probabilities for being consistent with a given grain type are provided.\n3. Size is now split up into Size a and Size b with only numerical entries.\n4. Zero uncertainties in err[12C/13C] replaced by best estimate.\n5. Some notes added.\n6. Corrected typo in abbreviated reference (Hoppe et al. (2019) ApJ 887:8).\n7. Data from the following references added:\nNIttler et al. (2020) MAPS 55:1160\nLiu et al. (2021) ApJL 920:L26\nNIttler et al. (2021) MAPS 56:260\nBarosch et al. (2022) ApJL 935:L3\nBarosch et al. (2022) GCA 335:169\nLiu et al. (2022) EPJA 58:216\nHoppe et al. (2023) ApJL 943:L22\n",
+                "date": "2023-07-22",
+                "grains": 20230,
+                "known_issue": "",
+                "url": "https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv"
+            }
         ]
     }
 }
