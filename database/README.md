@@ -14,12 +14,13 @@ Each entry in the `db.json` file has the following structure:
       "db_name": "Name of the database",
       "versions": [
         {
-          "change": "Description of what has changed in this version compared to the old ones",
-          "date": "Date of the database release in YYYY-MM-DD format",
-          "grains": "Number of grains in the database",
-          "known_issue": "Known issues with this version of the database",
-          "release_type": "Where this database has been released",
-          "url": "URL of the csv database",
+          "Change": "Description of what has changed in this version compared to the old ones",
+          "Date": "Date of the database release in YYYY-MM-DD format",
+          "DOI": "DOI of the database release",
+          "Grains": "Number of grains in the database",
+          "Known issues": "Known issues with this version of the database",
+          "Released on": "Where this database has been released",
+          "URL": "URL of the csv database",
         }
       ]
     }

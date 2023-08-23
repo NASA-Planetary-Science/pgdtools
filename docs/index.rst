@@ -44,6 +44,7 @@ Contents
     :caption: Database Maintainer
 
     maintainer/overview
+    maintainer/db_addition
 
 .. toctree::
     :maxdepth: 2

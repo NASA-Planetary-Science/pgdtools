@@ -68,6 +68,9 @@ The following shows an example of how to do this:
     excel_file = Path("PGD_SiC_2023-07-22.xlsx")  # assuming the file is in the current directory
     mt.create_references_json(excel_file)
 
+
+Note that we assume that the information is in a tab called "References".
+If not, please specify the tab name using the ``tab_name`` argument.
 This will create a ``json`` file in the current directory called ``references.json``.
 You can now directly add this file to the GitHub repo
 in the ``database`` folder.
@@ -90,6 +93,45 @@ The following shows an example of how to do this:
     excel_file = Path("PGD_SiC_2023-07-22.xlsx")  # assuming the file is in the current directory
     mt.create_techniques_json(excel_file)
 
+Note that we assume that the information is in a tab called "Techniques".
+If not, please specify the tab name using the ``tab_name`` argument.
 This will create a ``json`` file in the current directory called ``techniques.json``.
 You can now directly add this file to the GitHub repo
 in the ``database`` folder.
+
+-----------------
+Database ``json``
+-----------------
+
+The file ``db.json`` contains all the information about the databases.
+This file is used by ``pgdtools`` to know which databases are available
+and where to get them from.
+A new release must be added to this file.
+This can be done automatically with the maintainer tools.
+You will need the excel file (as above) and the DOI of the release.
+
+.. code-block:: python
+
+    from pathlib import Path
+
+    import pgdtools.maintainer as mt
+
+    excel_file = Path("PGD_SiC_2023-07-22.xlsx")  # assuming the file is in the current directory
+    db_json = Path("db.json")  # assuming the file is in the current directory
+
+    doi = "10.5281/zenodo.1234567"  # replace with the DOI of the release
+    mt.create_db_json(excel_file, doi, db_json=db_json)
+
+If the current database is not yet in the ``db.json`` file,
+it will be appended.
+Otherwise a warning will be raised and the ``db.json`` file will not be modified.
+
+If you run ``pgdtools`` from a cloned GitHub branch,
+the ``db_json`` keyword can be omitted.
+In this case, the ``db.json`` file in the repository will be updated.
+
+The URL to the csv file and database name to add to the ``db.json`` file
+are automatically extracted from the DOI and the Excel file.
+It is assumed that the csv file has the same file name as the Excel file,
+but with a different suffix.
+If this is not the case, you can use the ``url`` and ``db_name`` keywords.
