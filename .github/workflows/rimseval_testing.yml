@@ -28,7 +28,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install nox
-        pip install .[dev,db_maintainer]
+        pip install .[dev,maintainer]
     - name: Run nox
       run: nox --no-error-on-missing-interpreters
     - name: Generate coverage report
