@@ -14,7 +14,12 @@ import pandas as pd
 
 
 def append_to_db_json(
-    excel_file: Path, doi: str, db_json: Path = None, url: str = None, db_name=None
+    excel_file: Path,
+    doi: str,
+    db_json: Path = None,
+    url: str = None,
+    db_name=None,
+    sheet_name: str = "VersionHistory",
 ) -> None:
     """Take the information from a given Excel database and adds it to ``db.json``.
 
@@ -32,6 +37,7 @@ def append_to_db_json(
         but with the extension `csv`.
     :param db_name: Name of the database. If not given, it is extracted from the
         filename.
+    :param sheet_name: Name of the tab to use (default: VersionHistory).
 
     :raises NotImplementedError: (1) If the database is not a SiC database.
         (2) If the database is not released on Zenodo.
@@ -69,7 +75,7 @@ def append_to_db_json(
         raise NotImplementedError("Only Zenodo releases are currently supported.")
 
     # read the VersionHistory sheet for info where the correct date is displayed
-    df = pd.read_excel(excel_file, sheet_name="VersionHistory")
+    df = pd.read_excel(excel_file, sheet_name=sheet_name)
     df = df.fillna("")
     grains = ""
     change = ""
@@ -81,6 +87,7 @@ def append_to_db_json(
             known_issues = row["Known issues"]
             break
 
+    # todo: maybe ask the user what to do in this case?
     # warn user if no date was found
     if grains == "" and change == "" and known_issues == "":
         warnings.warn(
@@ -89,7 +96,6 @@ def append_to_db_json(
             stacklevel=2,
         )
 
-    # check if the entry already exists, if so, give warning and exit
     for entry in db[db_key]["versions"]:
         if doi in entry["DOI"]:
             warnings.warn(f"DOI {doi} already exists in db.json.", stacklevel=2)
@@ -113,44 +119,16 @@ def append_to_db_json(
         json.dump(db, fout, indent=4)
 
 
-def create_techniques_json(excel_file: Path, tab_name: str = "Techniques") -> None:
-    """Create `techniques.json` from the Excel file.
-
-    :param excel_file: Path to the Excel file.
-    :param tab_name: Name of the tab to use (default: Techniques).
-    """
-    # read in the Excel file
-    df = pd.read_excel(excel_file, sheet_name=tab_name)
-
-    df = df.fillna("")
-
-    # create the dictionary
-    techniques = {}
-    for _, row in df.iterrows():
-        if (tmp_id := row["PGD Technique"]) is not np.nan:
-            techniques[tmp_id] = {
-                "Institution": row["Institution"],
-                "Technique": row["Technique"],
-                "Instrument": row["Instrument"],
-                "Reference": row["Reference"],
-                "DOI": row["DOI"],
-            }
-
-    # save out the json file
-    with open("techniques.json", "w") as fout:
-        json.dump(techniques, fout, indent=4)
-
-
-def create_references_json(excel_file: Path, tab_name: str = "References") -> None:
+def create_references_json(excel_file: Path, sheet_name: str = "References") -> None:
     """Create `references.json` from the Excel file.
 
     References that are not assigned a `PGD ID` (and are thus empty) are ignored.
 
     :param excel_file: Path to the Excel file.
-    :param tab_name: Name of the tab to use (default: References).
+    :param sheet_name: Name of the tab to use (default: References).
     """
     # read in the Excel file
-    df = pd.read_excel(excel_file, sheet_name=tab_name)
+    df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
     # cols to replace NaN with empty string in
     nan_replace_cols = ["Reference - short", "Reference - full", "DOI", "Comments"]
@@ -174,8 +152,29 @@ def create_references_json(excel_file: Path, tab_name: str = "References") -> No
         json.dump(references, fout, indent=4)
 
 
-if __name__ == "__main__":
-    append_to_db_json(
-        Path(__file__).parent.parent.parent.joinpath("tmp/PGD_SiC_2023-07-22.xlsx"),
-        doi="10.5281/zenodo.8187488",
-    )
+def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> None:
+    """Create `techniques.json` from the Excel file.
+
+    :param excel_file: Path to the Excel file.
+    :param sheet_name: Name of the tab to use (default: Techniques).
+    """
+    # read in the Excel file
+    df = pd.read_excel(excel_file, sheet_name=sheet_name)
+
+    df = df.fillna("")
+
+    # create the dictionary
+    techniques = {}
+    for _, row in df.iterrows():
+        if (tmp_id := row["PGD Technique"]) is not np.nan:
+            techniques[tmp_id] = {
+                "Institution": row["Institution"],
+                "Technique": row["Technique"],
+                "Instrument": row["Instrument"],
+                "Reference": row["Reference"],
+                "DOI": row["DOI"],
+            }
+
+    # save out the json file
+    with open("techniques.json", "w") as fout:
+        json.dump(techniques, fout, indent=4)
