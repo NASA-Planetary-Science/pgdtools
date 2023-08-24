@@ -43,7 +43,8 @@ Contents
     :maxdepth: 2
     :caption: Database Maintainer
 
-    db_maintainer/pds
+    maintainer/overview
+    maintainer/db_addition
 
 .. toctree::
     :maxdepth: 2

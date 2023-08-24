@@ -35,8 +35,9 @@ dev = [
     "requests"
 ]
 
-db_maintainer = [
-    "bibtexparser"
+maintainer = [
+    "bibtexparser",
+    "openpyxl"
 ]
 
 docs = [

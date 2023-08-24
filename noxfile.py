@@ -32,14 +32,14 @@ def lint(session):
 @nox.session(python=python_suite)
 def tests(session):
     """Test the project using ``pytest``."""
-    session.install(".[dev, db_maintainer]")
+    session.install(".[dev, maintainer]")
     session.run("pytest")
 
 
 @nox.session(python=python_main)
 def safety(session):
     """Safety check for all dependencies."""
-    session.install(".[dev, db_maintainer, docs]", "safety")
+    session.install(".[dev, maintainer, docs]", "safety")
     session.run(
         "safety",
         "check",
@@ -51,5 +51,5 @@ def safety(session):
 def xdoctest(session):
     """Test docstring examples with xdoctest."""
     args = session.posargs or ["all"]
-    session.install("xdoctest[all]", ".[db_maintainer]")
+    session.install("xdoctest[all]", ".[maintainer]")
     session.run("python", "-m", "xdoctest", package, *args)
