@@ -7,7 +7,7 @@ No programming skills are required, however, you should be able to edit files on
 While the database release itself is not hosted on GitHub,
 adding a database requires us to update all the required metadata.
 These metadata live in the
-`GitHub repo database folder<https://github.com/NASA-Planetary-Science/pgdtools/tree/main/database>`_,
+`GitHub repo database folder <https://github.com/NASA-Planetary-Science/pgdtools/tree/main/database>`_,
 where a `README` file also explains the nomenclature of the files.
 Please consult this file for more information.
 
