@@ -8,10 +8,11 @@ import pytest
 
 @pytest.fixture
 def chtmpdir(tmpdir) -> Path:
-    """Change to the temporary directory and return to the original directory after the
-    test.
+    """Change to temp dir and return to original dir after the test.
 
-    :param tmpdir: Temporary directory.
+    :param tmpdir: Temporary directory fixture.
+
+    :yield: Path to the temporary directory.
     """
     curr_dir = Path.cwd()
     os.chdir(tmpdir)
@@ -31,9 +32,6 @@ def db_json(request, tmpdir) -> Path:
 
 @pytest.fixture
 def excel_file(request) -> Path:
-    """Provide the path to the database Excel file from 2023-07-22.
-
-    :return: Path to the folder
-    """
+    """Provide the path to the database Excel file from 2023-07-22."""
     curr = Path(request.fspath).parents[0]
     return Path(curr).joinpath("data_files/PGD_SiC_2023-07-22.xlsx").absolute()
