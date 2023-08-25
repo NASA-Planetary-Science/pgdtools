@@ -23,7 +23,7 @@ def chtmpdir(tmpdir) -> Path:
 @pytest.fixture
 def db_json(request, tmpdir) -> Path:
     """Take the existing `db.json`, put it in tmp path, and return the path."""
-    curr = Path(request.fspath).parents[0]
+    curr = Path(request.fspath).parents[1]
     db_json = Path(curr).joinpath("data_files/db.json")
     tmp_db_json = Path(tmpdir).joinpath("db.json")
     tmp_db_json.write_text(db_json.read_text())
@@ -33,5 +33,5 @@ def db_json(request, tmpdir) -> Path:
 @pytest.fixture
 def excel_file(request) -> Path:
     """Provide the path to the database Excel file from 2023-07-22."""
-    curr = Path(request.fspath).parents[0]
+    curr = Path(request.fspath).parents[1]
     return Path(curr).joinpath("data_files/PGD_SiC_2023-07-22.xlsx").absolute()
