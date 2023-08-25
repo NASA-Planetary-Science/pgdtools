@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["flit_scm"]
+build-backend = "flit_scm:buildapi"
 
 [tool.flit.metadata]
 module = "pgdtools"
@@ -13,7 +13,8 @@ requires = [
     "matplotlib",
     "pandas",
     "numpy",
-    "scipy"
+    "scipy",
+    "setuptools-scm"
 ]
 description-file = "README.md"
 
@@ -45,3 +46,6 @@ docs = [
     "sphinx_rtd_theme",
     "sphinxcontrib-mermaid"
 ]
+
+[tool.setuptools_scm]
+write_to = "pgdtools/_version.py"

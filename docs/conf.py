@@ -2,6 +2,8 @@
 
 import sys
 
+from setuptools_scm import get_version
+
 sys.path.append("../")
 
 # -- Project information -----------------------------------------------------
@@ -9,7 +11,7 @@ sys.path.append("../")
 project = "PGDTools"
 author = "Reto Trappitsch"
 copyright = f"2020-2023, {author}"
-version = "0.0.1"
+version = get_version(root="..", relative_to=__file__)
 release = version
 
 
