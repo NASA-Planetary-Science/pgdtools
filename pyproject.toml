@@ -15,7 +15,6 @@ requires = [
     "numpy",
     "requests",
     "scipy",
-    "setuptools-scm"
 ]
 description-file = "README.md"
 
@@ -47,6 +46,9 @@ docs = [
     "sphinx_rtd_theme",
     "sphinxcontrib-mermaid"
 ]
+
+[tool.flit.sdist]
+exclude = [".gitignore", ".coverage", ".readthedocs.yaml"]
 
 [tool.setuptools_scm]
 write_to = "pgdtools/_version.py"

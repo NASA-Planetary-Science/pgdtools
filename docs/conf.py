@@ -2,16 +2,15 @@
 
 import sys
 
-from setuptools_scm import get_version
-
 sys.path.append("../")
+
+from pgdtools._version import __version__ as version  # noqa E402
 
 # -- Project information -----------------------------------------------------
 
 project = "PGDTools"
 author = "Reto Trappitsch"
 copyright = f"2020-2023, {author}"
-version = get_version(root="..", relative_to=__file__)
 release = version
 
 
