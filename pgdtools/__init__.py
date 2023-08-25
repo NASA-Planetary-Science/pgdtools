@@ -1,6 +1,7 @@
 """Package to interact with the presolar grain database."""
 
-# import the standard modules
+from setuptools_scm import get_version
+
 from . import data, db, maintainer
 from .classify import classify_grain
 from .pgdtools import PresolarGrains
@@ -11,7 +12,7 @@ __all__ = ["classify_grain", "data", "db", "maintainer", "PresolarGrains"]
 print("Really early dev version... user beware!")
 
 # Package information
-__version__ = "0.0.1"
+__version__ = get_version(root="..", relative_to=__file__)
 
 __title__ = "pgdtools"
 __description__ = "Read and interact with the presolar grain database with python."

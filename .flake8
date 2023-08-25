@@ -1,6 +1,8 @@
 [flake8]
 select = B,B9,BLK,C,D,DAR,E,F,I,S,W
 
+exclude = pgdtools/_version.py
+
 # black configuration
 # ignore zip strict mode (requires py310+) - B905
 ignore = E203,E501,W503,B905
