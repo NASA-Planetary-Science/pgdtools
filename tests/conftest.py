@@ -7,6 +7,13 @@ import pytest
 from pgdtools import PresolarGrains
 
 
+@pytest.fixture
+def data_files_dir(request):
+    """Provide the path to the data_files directory."""
+    curr = Path(request.fspath).parents[1]
+    return Path(curr).joinpath("data_files/").absolute()
+
+
 @pytest.fixture(scope="session")
 def pgd():
     """Fixture for the PGD database."""
@@ -30,7 +37,7 @@ def tmpdir_home(tmpdir, mocker) -> Path:
     )
     mocker.patch(
         "pgdtools.db.LOCAL_DB_JSON",
-        tmp_home.joinpath("pgdtools/config/db.json"),
+        tmp_home.joinpath("config/db.json"),
     )
     mocker.patch(
         "pgdtools.db.LOCAL_REF_JSON",

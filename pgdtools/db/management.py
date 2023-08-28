@@ -8,24 +8,34 @@ from pgdtools import data
 from pgdtools import db
 
 
-def update(get_all: bool = False, clean: bool = False, **kwargs) -> None:
+def update(get_all: bool = False, clean: bool = False, get_config: bool = True) -> None:
     """Get the latest database(s) from the internet.
 
     This upgrades the local installation of `pgdtools` and gets the latest database(s)
     from the internet. If `clean` is True, all existing databases are first purged.
     By default, only the latest version of the database is downloaded. If `get_all` is
     True, all versions of the database are downloaded and stored locally.
-
-    Note for developers: When testing, pass the addidional argument `is_test=True` to
-        skip any downloads.
+    The update will set the current database to the latest version after it is
+    downloaded.
 
     :param get_all: If True, get all versions of the database and store them locally.
     :param clean: If True, remove all existing databases before downloading.
-    :param kwargs: Additional keyword arguments for developers (see note above).
+    :param get_config: If True, get the latest configuration files from GitHub.
     """
-    is_test = kwargs.get("is_test", False)
+    if clean:
+        _clean_local_db()
 
-    _get_online_config() if not is_test else None
+    if get_config:
+        _get_online_config()
+
+    print("Configuration files updated.")
+
+    urls = db.DataBases().urls(all=get_all)
+
+    for url in urls:
+        fname = Path(url).name
+        _download_file(url, db.LOCAL_PATH.joinpath(f"csv/{fname}"))
+        print(f"Database {fname} downloaded.")
 
 
 def _clean_local_db() -> None:

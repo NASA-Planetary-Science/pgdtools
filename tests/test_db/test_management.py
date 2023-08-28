@@ -5,7 +5,36 @@ from pathlib import Path
 import pytest
 import requests_mock
 
-from pgdtools.db import management as mgmt
+from pgdtools import db
+from pgdtools.db import DataBases, management as mgmt
+
+
+def test_update(mock_update):
+    """Ensure update calls the correct functions and downloads the files."""
+    _, _, mock_update = mock_update
+    get_all = False
+
+    mgmt.update(get_all=get_all)
+
+    urls = DataBases().urls(all=get_all)
+
+    assert mock_update.call_count == len(urls)
+    for url in urls:
+        local_file = db.LOCAL_PATH.joinpath(f"csv/{Path(url).name}")
+        mock_update.assert_any_call(url, local_file)
+
+
+@pytest.mark.parametrize("clean", [True, False])
+@pytest.mark.parametrize("get_config", [True, False])
+def test_update_clean_config(mock_update, clean, get_config):
+    """Ensure update calls the correct functions when selecting clean and configs."""
+    mock_get, mock_clean, mock_update = mock_update
+
+    mgmt.update(clean=clean, get_config=get_config)
+
+    mock_get.assert_called_once() if get_config else mock_get.assert_not_called()
+    mock_clean.assert_called_once() if clean else mock_clean.assert_not_called()
+
 
 # PRIVATE FUNCTIONS
 
