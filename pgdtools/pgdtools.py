@@ -1,16 +1,12 @@
 """Tools to read and work with the presolar grain database."""
 
-from pathlib import Path
 from typing import List, Tuple, Union
 
 from iniabu import ini
 import numpy as np
 import pandas as pd
 
-from pgdtools import utilities as utils
-
-
-MODULE_PATH = Path(__file__).parent
+from pgdtools import db, utilities as utils
 
 
 class PresolarGrains:
@@ -18,19 +14,24 @@ class PresolarGrains:
 
     This class is the main class to work with the presolar grain database.
 
+    Attention: Only SiC grains are currently supported!
+
     Example:
         Todo
     """
 
-    def __init__(self, fname: str = "PGD_SiC_2023-07-22.csv"):
+    def __init__(self):
         """Initialize the presolar grain class.
 
-        Load the database into self.db and self._db as a backup
-
-        :param fname: file name of csv file for database, default to most recent csv
-            file in data folder. File must be in the data folder.
+        Load the default database into self.db and self._db as a backup.
         """
-        filepath = MODULE_PATH.joinpath(f"data/{fname}")
+        try:
+            filepath = db.current()["sic"]
+        except FileNotFoundError:
+            print("No default database found, downloading latest versions...")
+            db.update()
+            filepath = db.current()["sic"]
+
         self.db = pd.read_csv(filepath, index_col=0)
         self._db = self.db.copy(deep=True)
 

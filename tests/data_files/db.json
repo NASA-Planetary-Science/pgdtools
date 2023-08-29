@@ -46,6 +46,38 @@
                 "Known issues": "New grain type and subtype asignments still need to be worked on, especially for separation between M, Y, and Z.\n",
                 "Released on": "Zenodo",
                 "URL": "https://zenodo.org/record/8187479/files/PGD_SiC_2021-01-10.csv"
+            },
+            {
+                "Change": "1. New PGD Type asignments including new Type D.\n2. Now probabilities for being consistent with a given grain type are provided.\n3. Size is now split up into Size a and Size b with only numerical entries.\n4. Zero uncertainties in err[12C/13C] replaced by best estimate.\n5. Some notes added.\n6. Corrected typo in abbreviated reference (Hoppe et al. (2019) ApJ 887:8).\n7. Data from the following references added:\nNIttler et al. (2020) MAPS 55:1160\nLiu et al. (2021) ApJL 920:L26\nNIttler et al. (2021) MAPS 56:260\nBarosch et al. (2022) ApJL 935:L3\nBarosch et al. (2022) GCA 335:169\nLiu et al. (2022) EPJA 58:216\nHoppe et al. (2023) ApJL 943:L22\n",
+                "Date": "2023-07-22",
+                "DOI": "10.5281/zenodo.8187488",
+                "Grains": 20230,
+                "Known issues": "",
+                "Released on": "Zenodo",
+                "URL": "https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv"
+            }
+        ]
+    },
+    "graphites": {
+        "db_name": "Graphite",
+        "versions":[
+            {
+                "Change": "Some newer graphite database.",
+                "Date": "2021-01-01",
+                "DOI": "10.5281/astromat.123457",
+                "Grains": 12346,
+                "Known issues": "No issues.",
+                "Released on": "Astromat",
+                "URL": "https://astromat.org/record/123457/files/PGD_Graphite_2021-01-01.csv"
+            },
+            {
+                "Change": "Some graphite database.",
+                "Date": "2020-01-01",
+                "DOI": "10.5281/astromat.123456",
+                "Grains": 12345,
+                "Known issues": "Some known issues.",
+                "Released on": "Astromat",
+                "URL": "https://astromat.org/record/123456/files/PGD_Graphite_2020-01-01.csv"
             }
         ]
     }

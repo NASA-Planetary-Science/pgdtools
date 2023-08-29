@@ -1,11 +1,18 @@
 """Package to interact with the presolar grain database."""
 
-from . import data, maintainer
+from . import data, db, maintainer
 from ._version import __version__
 from .classify import classify_grain
 from .pgdtools import PresolarGrains
 
-__all__ = ["PresolarGrains", "classify_grain", "data", "maintainer", "__version__"]
+__all__ = [
+    "PresolarGrains",
+    "classify_grain",
+    "data",
+    "db",
+    "maintainer",
+    "__version__",
+]
 
 print("Really early dev version... user beware!")
 

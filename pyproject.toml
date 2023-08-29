@@ -13,6 +13,7 @@ requires = [
     "matplotlib",
     "pandas",
     "numpy",
+    "requests",
     "scipy",
 ]
 description-file = "README.md"
@@ -32,7 +33,7 @@ dev = [
     "pytest-cov",
     "pytest-mock",
     "pytest-sugar",
-    "requests"
+    "requests-mock"
 ]
 
 maintainer = [
