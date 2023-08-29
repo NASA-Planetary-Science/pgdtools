@@ -20,7 +20,13 @@ PGDTools
 Welcome!
 --------
 
-bla...
+The goal of this package is to provide a set of tools to
+easily access and interface with the presolar grain database.
+This package allows users to manage which database(s) they want to use
+and provides a set of tools to filter and access the data itself.
+Furthermore, maintainer tools are provided as well
+in order for database maintainers to keep the package up to date.
+
 
 --------
 Contents
@@ -34,6 +40,9 @@ Contents
 .. toctree::
     :maxdepth: 2
     :caption: Package users
+
+    users/install
+    users/db
 
 .. toctree::
     :maxdepth: 2
