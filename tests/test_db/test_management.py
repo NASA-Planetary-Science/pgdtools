@@ -9,6 +9,49 @@ from pgdtools import db
 from pgdtools.db import DataBases, management as mgmt
 
 
+def test_current_no_file():
+    """Raise FileNotFoundError if current.json file does not exist."""
+    with pytest.raises(FileNotFoundError):
+        mgmt.current()
+
+
+def test_current_bad_file(tmpdir_home):
+    """Raise IOError if `current.json` file cannot be read."""
+    fl = tmpdir_home.joinpath("current.json")
+    fl.write_text("test{")
+    with pytest.raises(IOError):
+        mgmt.current()
+
+
+def test_current(current_file):
+    """Read the current json file."""
+    _, curr_exp = current_file
+    curr = mgmt.current()
+    assert curr == curr_exp
+
+
+def test_set_current(current_file, conf_files, mocker):
+    """Set the current database."""
+    mock_download = mocker.patch.object(mgmt, "_download_file")
+    tmpdir_home, _ = current_file
+
+    doi = "10.5281/zenodo.8187406"
+    db = "sic"
+    url_exp = "https://zenodo.org/record/8187406/files/PGD_SiC_2020-01-03.csv"
+    name_exp = tmpdir_home.joinpath(f"csv/{Path(url_exp).name}")
+
+    mgmt.set_current(db, "DOI", doi)
+
+    assert mgmt.current()[db] == name_exp
+    assert mock_download.call_count == 1
+
+
+def test_set_current_key_error(current_file, conf_files):
+    """Set the current database."""
+    with pytest.raises(ValueError):
+        mgmt.set_current("sic", "DOI", "10.5281/zenodo.1234567")
+
+
 def test_update(mock_update):
     """Ensure update calls the correct functions and downloads the files."""
     _, _, mock_update = mock_update
@@ -22,6 +65,8 @@ def test_update(mock_update):
     for url in urls:
         local_file = db.LOCAL_PATH.joinpath(f"csv/{Path(url).name}")
         mock_update.assert_any_call(url, local_file)
+
+    assert db.LOCAL_PATH.joinpath("current.json").is_file()
 
 
 @pytest.mark.parametrize("clean", [True, False])
@@ -63,7 +108,7 @@ def test_get_online_config(mocker):
         assert Path(call[0]) != Path(call[1])
 
 
-def test_download_file(mocker, tmpdir_home):
+def test_download_file(tmpdir_home):
     """Test downloading of a file from `url` to `local_file` while mocking requests."""
     url = "https://test.com/test.csv"
     local_file = tmpdir_home.joinpath("test.csv")

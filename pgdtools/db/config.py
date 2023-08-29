@@ -2,7 +2,7 @@
 
 from datetime import datetime
 import json
-from typing import List
+from typing import Any, List
 
 from pgdtools import db
 
@@ -75,6 +75,25 @@ class DataBases:
         def versions(self) -> List[dict]:
             """Return all versions of the database."""
             return self._db["versions"]
+
+        def entry_by_keyword(self, keyword: str, value: Any) -> dict:
+            """Get a given version entry by a keyword and value pair.
+
+            Various `versions` exist in a given database. Selecting a unique keyword and
+            value, a dictionary of that `version` entry is returned. Note that if
+            a keyword, value pair is not unique (e.g., the keyword `grains` can have
+            the same value in multiple entries), the first occurrence is returned.
+            If the value does not exist, an empty dictionary is returned.
+
+            :param keyword: Dictionary keyword to search for.
+            :param value: Value of the keyword to search for.
+
+            :return: Dictionary of the entry.
+            """
+            for version in self.versions:
+                if version[keyword] == value:
+                    return version
+            return {}
 
     @property
     def dbs(self) -> List[str]:

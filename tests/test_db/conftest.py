@@ -1,5 +1,6 @@
 """Configuration tests for db management tests."""
 
+import json
 from pathlib import Path
 from typing import Tuple
 
@@ -17,6 +18,18 @@ def conf_files(tmpdir_home, data_files_dir) -> Path:
             data_files_dir.joinpath(fl).read_text()
         )
     return tmpdir_home
+
+
+@pytest.fixture
+def current_file(tmpdir_home) -> Tuple[Path, dict]:
+    """Create a fake `current.json` file and write into the right location."""
+    curr_to_write = {"sic": "test.csv", "graphites": "test-graphites.csv"}
+    curr_ret = {k: Path(v) for k, v in curr_to_write.items()}
+
+    with open(tmpdir_home.joinpath("current.json"), "w") as fout:
+        json.dump(curr_to_write, fout)
+
+    return tmpdir_home, curr_ret
 
 
 @pytest.fixture
