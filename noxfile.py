@@ -52,4 +52,5 @@ def xdoctest(session):
     """Test docstring examples with xdoctest."""
     args = session.posargs or ["all"]
     session.install("xdoctest[all]", ".[maintainer]")
+    session.run("python", "-c", "'from pgdtools import db; db.update()'")
     session.run("python", "-m", "xdoctest", package, *args)
