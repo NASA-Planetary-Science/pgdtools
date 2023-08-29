@@ -116,9 +116,11 @@ def update(get_all: bool = False, clean: bool = False, get_config: bool = True) 
 
     latest_version_dict = {}
     for db_name in data_bases.dbs:
-        latest_version_dict[db_name] = Path(
-            data_bases.database(db_name).version_latest["URL"]
-        ).name
+        latest_version_dict[db_name] = str(
+            db.LOCAL_PATH.joinpath(
+                f"csv/{Path(data_bases.database(db_name).version_latest['URL']).name}"
+            ).absolute()
+        )
 
     with open(db.LOCAL_CURRENT, "w") as fout:
         json.dump(latest_version_dict, fout, indent=4)

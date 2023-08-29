@@ -67,6 +67,7 @@ def test_update(mock_update):
         mock_update.assert_any_call(url, local_file)
 
     assert db.LOCAL_PATH.joinpath("current.json").is_file()
+    assert db.current()["sic"] == db.current()["sic"].absolute()
 
 
 @pytest.mark.parametrize("clean", [True, False])

@@ -3,8 +3,22 @@
 import numpy as np
 import pytest
 
+from pgdtools import PresolarGrains
 
-# TESTS FOR PRESOLAR GRAINS CLASS #
+
+def test_pg_init(mocker):
+    """Test initialization of the presolar grain database without a config file."""
+    mock_pd = mocker.patch("pandas.read_csv")
+    mock_update = mocker.patch("pgdtools.db.update", return_value=None)
+    mock_current = mocker.patch("pgdtools.db.current")
+
+    mock_current.side_effect = [FileNotFoundError, {"sic": "test.csv"}]
+
+    _ = PresolarGrains()
+
+    mock_pd.assert_called_once()
+    mock_update.assert_called_once()
+    assert mock_current.call_count == 2
 
 
 @pytest.mark.parametrize(

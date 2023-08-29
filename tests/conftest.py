@@ -10,16 +10,31 @@ from pgdtools import PresolarGrains
 @pytest.fixture
 def data_files_dir(request):
     """Provide the path to the data_files directory."""
-    curr = Path(request.fspath).parents[1]
+    curr = Path(__file__).parent
     return Path(curr).joinpath("data_files/").absolute()
 
 
-@pytest.fixture(scope="session")
-def pgd():
+@pytest.fixture
+def pgd(pgd_setup):
     """Fixture for the PGD database."""
     pgd = PresolarGrains()
     yield pgd
     pgd.reset()
+
+
+@pytest.fixture
+def pgd_setup(tmpdir_home, data_files_dir):
+    """Copy and create the required files for reading the PGD."""
+    sic_db_name = "PGD_SiC_2023-07-22.csv"
+
+    db_json = tmpdir_home.joinpath("config/db.json")
+    db_json.write_text(data_files_dir.joinpath("db.json").read_text())
+
+    sic_db = tmpdir_home.joinpath(f"csv/{sic_db_name}")
+    sic_db.write_bytes(data_files_dir.joinpath(sic_db_name).read_bytes())
+
+    current_file = tmpdir_home.joinpath("current.json")
+    current_file.write_text(f'{{"sic": "{str(sic_db.absolute())}"}}')  # noqa: B907
 
 
 @pytest.fixture(autouse=True)
