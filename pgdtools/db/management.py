@@ -2,7 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict
 
 import requests
 
@@ -12,7 +12,7 @@ from pgdtools import db
 CURRENT_FNAME = "current.json"
 
 
-def current() -> dict[str, Path]:
+def current() -> Dict[str, Path]:
     """Get the current database version.
 
     Read the `current.json` file in the home folder and return a dictionary with all
