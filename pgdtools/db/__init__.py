@@ -6,6 +6,9 @@ from .config import DataBases
 from .management import current, set_current, update
 
 LOCAL_PATH = setup_local.setup_path()  # where to store data
+
+LOCAL_CURRENT = LOCAL_PATH.joinpath("current.json")  # current configuration
+
 LOCAL_BIB = LOCAL_PATH.joinpath(f"config/{BIBFILE.split('/')[-1]}")
 LOCAL_DB_JSON = LOCAL_PATH.joinpath(f"config/{DB_JSON.split('/')[-1]}")
 LOCAL_REF_JSON = LOCAL_PATH.joinpath(f"config/{REFERENCES_JSON.split('/')[-1]}")

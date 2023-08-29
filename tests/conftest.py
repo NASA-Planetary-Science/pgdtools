@@ -31,6 +31,12 @@ def tmpdir_home(tmpdir, mocker) -> Path:
 
     mocker.patch("pgdtools.db.LOCAL_PATH", tmp_home)
     mocker.patch("pgdtools.db.LOCAL_PATH", tmp_home)
+
+    mocker.patch(
+        "pgdtools.db.LOCAL_CURRENT",
+        tmp_home.joinpath("current.json"),
+    )
+
     mocker.patch(
         "pgdtools.db.LOCAL_BIB",
         tmp_home.joinpath("config/pgd_references.bib"),

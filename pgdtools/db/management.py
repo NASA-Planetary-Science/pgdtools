@@ -9,8 +9,6 @@ import requests
 from pgdtools import data
 from pgdtools import db
 
-CURRENT_FNAME = "current.json"
-
 
 def current() -> Dict[str, Path]:
     """Get the current database version.
@@ -23,19 +21,17 @@ def current() -> Dict[str, Path]:
     :raises FileNotFoundError: If the `current.json` file is not found.
     :raises IOError: If the `current.json` file cannot be read.
     """
-    fname = db.LOCAL_PATH.joinpath(CURRENT_FNAME)
-
     file_io_error = (
         "The current database file could not be found. Please make sure that "
         "a database has been downloaded and and selected. You can select a new "
         "database for usage using `pgdtools.db.set_current()`."
     )
 
-    if not fname.is_file():
+    if not db.LOCAL_CURRENT.is_file():
         raise FileNotFoundError(file_io_error)
 
     try:
-        curr = json.load(open(fname, "r"))
+        curr = json.load(open(db.LOCAL_CURRENT, "r"))
     except json.JSONDecodeError as err:
         raise IOError(file_io_error) from err
 
@@ -83,7 +79,7 @@ def set_current(db_name: str, keyword: str, value: Any) -> None:
     curr_to_write = {k: str(v.absolute()) for k, v in curr.items()}
 
     # write the current database to file
-    with open(db.LOCAL_PATH.joinpath(CURRENT_FNAME), "w") as fout:
+    with open(db.LOCAL_CURRENT, "w") as fout:
         json.dump(curr_to_write, fout, indent=4)
 
 
@@ -124,7 +120,7 @@ def update(get_all: bool = False, clean: bool = False, get_config: bool = True) 
             data_bases.database(db_name).version_latest["URL"]
         ).name
 
-    with open(db.LOCAL_PATH.joinpath(CURRENT_FNAME), "w") as fout:
+    with open(db.LOCAL_CURRENT, "w") as fout:
         json.dump(latest_version_dict, fout, indent=4)
 
 
