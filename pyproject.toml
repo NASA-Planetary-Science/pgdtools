@@ -2,13 +2,12 @@
 requires = ["flit_scm"]
 build-backend = "flit_scm:buildapi"
 
-[tool.flit.metadata]
-module = "pgdtools"
-author = "Reto Trappitsch"
-author-email = "reto@galactic-forensics.space"
-home-page = "https://github.com/galactic-forensics/pgdtools"
-classifiers = ["License :: OSI Approved :: MIT License"]
-requires = [
+[project]
+name = "pgdtools"
+authors = [
+    {name="Reto Trappitsch", email="reto@galactic-forensics.space"}
+]
+dependencies = [
     "iniabu>=1.1.2",
     "matplotlib",
     "pandas",
@@ -16,9 +15,16 @@ requires = [
     "requests",
     "scipy",
 ]
-description-file = "README.md"
+readme = "README.md"
+requires-python=">=3.8,<3.12"
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
 
-[tool.flit.metadata.requires-extra]
+[project.urls]
+Source = "https://github.com/galactic-forensics/pgdtools"
+Documentation = "https://pgdtools.readthedocs.io"
+
+[project.optional-dependencies]
 dev = [
     "darglint>=1.5.1",
     "flake8>=4,<5",
