@@ -133,9 +133,7 @@ class PresolarGrains:
                 corr = 0
             return corr
 
-        def value(
-            self, iso1: str, iso2: str
-        ) -> Union[
+        def value(self, iso1: str, iso2: str) -> Union[
             Tuple[float, Union[float, Tuple[float, float]], bool],
             Tuple[pd.Series, Union[pd.Series, Tuple[pd.Series, pd.Series]], bool],
         ]:
