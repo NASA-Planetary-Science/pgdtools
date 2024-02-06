@@ -45,7 +45,9 @@ def append_to_db_json(
     """
     # read the standard db.json file
     if db_json is None:
-        db_json = Path(__file__).parent.parent.parent.joinpath("database/db.json")
+        db_json = Path(__file__).parent.parent.parent.parent.joinpath(
+            "database/db.json"
+        )
 
     if not db_json.is_file():
         raise FileNotFoundError(f"db.json not found at {db_json}.")
