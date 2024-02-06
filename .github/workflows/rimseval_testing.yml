@@ -40,10 +40,9 @@ jobs:
     - name: Run Pytest with coverage
       if: ${{ matrix.python-version == env.MAIN_PYTHON_VERSION }}
       run: |
-        cd controller
         rye run test_cov
     - name: Upload coverage reports to Codecov
-      if: ${{ matrix.python-version == env.MAIN_PYTHON_VERSION && github.repository_owner == 'galactic-forensics' }}
+      if: ${{ matrix.python-version == env.MAIN_PYTHON_VERSION && github.repository_owner == 'NASA-Planetary-Science' }}
       uses: codecov/codecov-action@v3
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
