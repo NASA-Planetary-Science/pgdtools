@@ -1,7 +1,6 @@
 """Package to interact with the presolar grain database."""
 
 from . import data, db, maintainer
-from ._version import __version__
 from .classify import classify_grain
 from .pgdtools import PresolarGrains
 
@@ -11,7 +10,6 @@ __all__ = [
     "data",
     "db",
     "maintainer",
-    "__version__",
 ]
 
 print("Really early dev version... user beware!")
@@ -26,4 +24,4 @@ __author__ = "Reto Trappitsch"
 __email__ = "reto@galactic-forensics.space"
 
 __license__ = "MIT"
-__copyright__ = "Copyright (c) 2020-2023, Reto Trappitsch"
+__copyright__ = "Copyright (c) 2020-2024, Reto Trappitsch"
