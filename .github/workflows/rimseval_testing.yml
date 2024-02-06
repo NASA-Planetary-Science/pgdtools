@@ -15,7 +15,6 @@ env:
 jobs:
   # Build and test
   build:
-    if: github.repository_owner == 'NASA-Planetary-Science'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,7 +31,7 @@ jobs:
     - name: Sync Rye
       run: |
         rye pin ${{ matrix.python-version }}
-        rye sync
+        rye sync --all-features
     - name: Run Tests for python interface
       run: rye run test
     - name: Run Lint on one python
