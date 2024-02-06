@@ -121,7 +121,7 @@ def aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]
 
 
 def carbon_probabilities(
-    msr: Tuple[float, Union[float, Tuple[float, float]]] = None
+    msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
 ) -> Dict[str, float]:
     """Calculate probabilities for carbon isotopic data.
 
@@ -214,7 +214,7 @@ def find_subtype(
 
 
 def nitrogen_probabilities(
-    msr: Tuple[float, Union[float, Tuple[float, float]]] = None
+    msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
 ) -> Dict[str, float]:
     """Calculate probabilities for nitrogen isotopic data.
 
@@ -426,7 +426,7 @@ def probability_value(
 
 
 def _replace_errors(
-    msr: Union[float, Tuple[float, Union[float, Tuple[float, float]]], None]
+    msr: Union[float, Tuple[float, Union[float, Tuple[float, float]]], None],
 ) -> Union[Tuple[float, Union[float, Tuple[float, float]]], None]:
     """If no errors are given (or given as ``np.nan`` or ``None``), replace them.
 

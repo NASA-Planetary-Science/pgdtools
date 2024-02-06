@@ -133,7 +133,9 @@ class PresolarGrains:
                 corr = 0
             return corr
 
-        def value(self, iso1: str, iso2: str) -> Union[
+        def value(
+            self, iso1: str, iso2: str
+        ) -> Union[
             Tuple[float, Union[float, Tuple[float, float]], bool],
             Tuple[pd.Series, Union[pd.Series, Tuple[pd.Series, pd.Series]], bool],
         ]:
@@ -148,9 +150,10 @@ class PresolarGrains:
             """
             hdr, err, is_delta = self.parent.header_ratio(iso1, iso2)
             if isinstance(err, Tuple):
-                errors = utils.return_list_simplifier(
-                    self._entry[err[0]]
-                ), utils.return_list_simplifier(self._entry[err[1]])
+                errors = (
+                    utils.return_list_simplifier(self._entry[err[0]]),
+                    utils.return_list_simplifier(self._entry[err[1]]),
+                )
             else:
                 errors = utils.return_list_simplifier(self._entry[err])
             return utils.return_list_simplifier(self._entry[hdr]), errors, is_delta
