@@ -6,58 +6,121 @@
 #   features: []
 #   all-features: true
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 alabaster==0.7.16
+    # via sphinx
 attrs==23.2.0
-babel==2.14.0
+    # via hypothesis
+babel==2.15.0
+    # via sphinx
 bibtexparser==1.4.1
+    # via pgdtools
 certifi==2024.2.2
+    # via requests
 charset-normalizer==3.3.2
-contourpy==1.1.1
-coverage==7.4.1
+    # via requests
+contourpy==1.2.1
+    # via matplotlib
+coverage==7.5.3
+    # via pytest-cov
 cycler==0.12.1
+    # via matplotlib
 docutils==0.20.1
+    # via sphinx
+    # via sphinx-rtd-theme
 et-xmlfile==1.1.0
-fonttools==4.47.2
-hypothesis==6.98.2
-idna==3.6
+    # via openpyxl
+fonttools==4.52.4
+    # via matplotlib
+hypothesis==6.103.0
+idna==3.7
+    # via requests
 imagesize==1.4.1
+    # via sphinx
 iniabu==1.1.2
+    # via pgdtools
 iniconfig==2.0.0
-jinja2==3.1.3
+    # via pytest
+jinja2==3.1.4
+    # via sphinx
 kiwisolver==1.4.5
+    # via matplotlib
 markupsafe==2.1.5
-matplotlib==3.7.4
+    # via jinja2
+matplotlib==3.9.0
+    # via pgdtools
 numpy==1.26.4
-openpyxl==3.1.2
-packaging==23.2
-pandas==2.2.0
-pillow==10.2.0
-pluggy==1.4.0
-pygments==2.17.2
-pyparsing==3.1.1
-pytest==8.0.0
-pytest-cov==4.1.0
-pytest-mock==3.12.0
-python-dateutil==2.8.2
+    # via contourpy
+    # via iniabu
+    # via matplotlib
+    # via pandas
+    # via pgdtools
+    # via scipy
+openpyxl==3.1.3
+    # via pgdtools
+packaging==24.0
+    # via matplotlib
+    # via pytest
+    # via sphinx
+pandas==2.2.2
+    # via pgdtools
+pillow==10.3.0
+    # via matplotlib
+pluggy==1.5.0
+    # via pytest
+pygments==2.18.0
+    # via sphinx
+pyparsing==3.1.2
+    # via bibtexparser
+    # via matplotlib
+pytest==8.2.1
+    # via pytest-cov
+    # via pytest-mock
+pytest-cov==5.0.0
+pytest-mock==3.14.0
+python-dateutil==2.9.0.post0
+    # via matplotlib
+    # via pandas
 pytz==2024.1
-requests==2.31.0
-requests-mock==1.11.0
-ruff==0.2.1
-scipy==1.12.0
+    # via pandas
+requests==2.32.3
+    # via pgdtools
+    # via requests-mock
+    # via sphinx
+requests-mock==1.12.1
+scipy==1.13.1
+    # via pgdtools
 six==1.16.0
+    # via python-dateutil
 snowballstemmer==2.2.0
+    # via sphinx
 sortedcontainers==2.4.0
-sphinx==7.2.6
+    # via hypothesis
+sphinx==7.3.7
+    # via pgdtools
+    # via sphinx-rtd-theme
+    # via sphinxcontrib-jquery
 sphinx-rtd-theme==2.0.0
+    # via pgdtools
 sphinxcontrib-applehelp==1.0.8
+    # via sphinx
 sphinxcontrib-devhelp==1.0.6
+    # via sphinx
 sphinxcontrib-htmlhelp==2.0.5
+    # via sphinx
 sphinxcontrib-jquery==4.1
+    # via sphinx-rtd-theme
 sphinxcontrib-jsmath==1.0.1
+    # via sphinx
 sphinxcontrib-mermaid==0.9.2
+    # via pgdtools
 sphinxcontrib-qthelp==1.0.7
+    # via sphinx
 sphinxcontrib-serializinghtml==1.1.10
-tzdata==2023.4
-urllib3==2.2.0
+    # via sphinx
+tzdata==2024.1
+    # via pandas
+urllib3==2.2.1
+    # via requests
