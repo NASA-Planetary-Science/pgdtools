@@ -120,7 +120,7 @@ You will need the excel file (as above) and the DOI of the release.
     db_json = Path("db.json")  # assuming the file is in the current directory
 
     doi = "10.5281/zenodo.1234567"  # replace with the DOI of the release
-    mt.create_db_json(excel_file, doi, db_json=db_json)
+    mt.append_to_db_json(excel_file, doi, db_json=db_json)
 
 If the current database is not yet in the ``db.json`` file,
 it will be appended.

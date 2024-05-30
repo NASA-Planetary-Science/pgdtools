@@ -18,6 +18,7 @@ def append_to_db_json(
     doi: str,
     db_json: Path = None,
     url: str = None,
+    zenodo_record: str = None,
     db_name=None,
     sheet_name: str = "VersionHistory",
 ) -> None:
@@ -35,6 +36,9 @@ def append_to_db_json(
     :param url: URL of the database. If not given, the default release location URL
         is constructed by assuming that the filename is identical to Excel filename
         but with the extension `csv`.
+    :param zenodo_record: Zenodo record number. This is required if the DOI is not
+        a Zenodo DOI. Hover over the download link for the zenodo_record to get the
+        record number.
     :param db_name: Name of the database. If not given, it is extracted from the
         filename.
     :param sheet_name: Name of the tab to use (default: VersionHistory).
@@ -73,8 +77,18 @@ def append_to_db_json(
                 f"https://zenodo.org/record/{doi.split('.')[-1]}/files/"
                 f"{excel_file.with_suffix('.csv').name}"
             )
+    elif zenodo_record is not None and "IEDA" in doi:  # Astromat/Zenodo cross release
+        released_on = "Astromat"
+        if url is None:
+            url = (
+                f"https://zenodo.org/record/{zenodo_record}/files/"
+                f"{excel_file.with_suffix('.csv').name}"
+            )
     else:
-        raise NotImplementedError("Only Zenodo releases are currently supported.")
+        raise NotImplementedError(
+            "Only Zenodo releases and Astromat (IEDA) releases that are "
+            "cross-released on Zenodo are currently supported."
+        )
 
     # read the VersionHistory sheet for info where the correct date is displayed
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
@@ -85,7 +99,7 @@ def append_to_db_json(
     for _, row in df.iterrows():
         if row["Date"] == date:
             grains = int(row["Grains"])
-            change = row["Change"]
+            change = row["Changes"]
             known_issues = row["Known issues"]
             break
 
