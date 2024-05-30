@@ -25,7 +25,7 @@ def pgd(pgd_setup):
 @pytest.fixture
 def pgd_setup(tmpdir_home, data_files_dir):
     """Copy and create the required files for reading the PGD."""
-    sic_db_name = "PGD_SiC_2023-07-22.csv"
+    sic_db_name = "PGD_SiC_2023-10-30.csv"
 
     db_json = tmpdir_home.joinpath("config/db.json")
     db_json.write_text(data_files_dir.joinpath("db.json").read_text())

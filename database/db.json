@@ -30,7 +30,7 @@
                 "URL": "https://zenodo.org/record/8187446/files/PGD_SiC_2020-08-18.csv"
             },
             {
-                "Change": "1. Corrected typo in reference (volume number 52 instead of 12) for SiC-2017-LIU-2 data.\n2. Grain type asignment for 10 Grains from Nguyen et al. (2018) GCA 221:162 Changed from M to AB.\n3. Data from the following references added:\nKodolányi et al. (2018) GCA 221:127\nTrappitsch et al. (2018) GCA 221:87\n",
+                "Change": "1. Corrected typo in reference (volume number 52 instead of 12) for SiC-2017-LIU-2 data.\n2. Grain type asignment for 10 Grains from Nguyen et al. (2018) GCA 221:162 Changed from M to AB.\n3. Data from the following references added:\nKodol\u00e1nyi et al. (2018) GCA 221:127\nTrappitsch et al. (2018) GCA 221:87\n",
                 "Date": "2020-12-24",
                 "DOI": "10.5281/zenodo.8187471",
                 "Grains": 19864,
@@ -55,6 +55,24 @@
                 "Known issues": "",
                 "Released on": "Zenodo",
                 "URL": "https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv"
+            },
+            {
+                "Change": "1. Corrected some typos in \"VersionHistory\".\n2. Corrected some typos in references.\n3. Added DOI numbers in \"Techniques\".\n4. Sheet \"ReadMe\" added, explaining the columns in the main data sheet.\n5. Corrected some cases where Size a was listed as being smaller than Size b.\n6. Added/corrected some notes.",
+                "Date": "2023-10-30",
+                "DOI": "10.60520/IEDA/113069",
+                "Grains": 20230,
+                "Known issues": "",
+                "Released on": "Astromat",
+                "URL": "https://zenodo.org/record/10144724/files/PGD_SiC_2023-10-30.csv"
+            },
+            {
+                "Change": "Data from the following references were added:\nNguyen et al. (2023) SciAdv 9:eadh1003\nLiu et al. (2024) ApJL 961:L22",
+                "Date": "2024-05-14",
+                "DOI": "10.60520/IEDA/113249",
+                "Grains": 20316,
+                "Known issues": "",
+                "Released on": "Astromat",
+                "URL": "https://zenodo.org/record/11199606/files/PGD_SiC_2024-05-14.csv"
             }
         ]
     }

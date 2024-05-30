@@ -16,6 +16,14 @@ def test_append_to_db_json(excel_file, db_json):
     assert doi in db_json.read_text()
 
 
+def test_append_to_db_json_astromat(excel_file, db_json):
+    """Append the information to the db.json file and ensure that doi is now in file."""
+    doi = "10.5281/IEDA.1234567"
+    zenodo_record = "3p141592654"
+    mt.append_to_db_json(excel_file, doi, db_json=db_json, zenodo_record=zenodo_record)
+    assert zenodo_record in db_json.read_text()
+
+
 def test_append_to_db_json_repo_db(excel_file, mocker):
     """Assert that if no `db_json` is given, the default one is used."""
     # mock the open routine so that we won't write to the actual file
