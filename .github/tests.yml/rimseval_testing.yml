@@ -27,13 +27,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install the latest version of rye
-      uses: eifinger/setup-rye@v1
+      uses: eifinger/setup-rye@v3
     - name: Sync Rye
       run: |
         rye pin ${{ matrix.python-version }}
         rye sync --all-features
     - name: Run Tests for python interface
-      run: rye run test
+      run: rye test
     - name: Run Lint on one python
       if: ${{ matrix.python-version == env.MAIN_PYTHON_VERSION }}
       run: rye lint
