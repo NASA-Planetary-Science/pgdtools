@@ -1,5 +1,4 @@
-# .readthedocs.yaml
-# Read the Docs configuration file
+# Read the Docs configuration file for MkDocs projects
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 # Required
@@ -9,25 +8,12 @@ version: 2
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.11"
-    nodejs: "16"
-  jobs:
-    post_install:
-      - npm install -g @mermaid-js/mermaid-cli
+    python: "3.12"
 
-# Build documentation in the docs/ directory with Sphinx
-sphinx:
-   builder: html
-   configuration: docs/conf.py
-   fail_on_warning: false
+mkdocs:
+  configuration: mkdocs.yml
 
-# If using Sphinx, optionally build your docs in additional formats such as PDF
-formats:
-   - epub
-   - pdf
-
-# install package via pip
+# Optionally declare the Python requirements required to build your docs
 python:
-   install:
-     - method: pip
-       path: .[docs]
+  install:
+  - requirements: docs/requirements.txt
