@@ -34,4 +34,4 @@ def db_json(request, tmpdir) -> Path:
 def excel_file(request) -> Path:
     """Provide the path to the database Excel file from 2023-07-22."""
     curr = Path(request.fspath).parents[1]
-    return Path(curr).joinpath("data_files/PGD_SiC_2023-07-22.xlsx").absolute()
+    return Path(curr).joinpath("data_files/PGD_SiC_2023-10-30.xlsx").absolute()
