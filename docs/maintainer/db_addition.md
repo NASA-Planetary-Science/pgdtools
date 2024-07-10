@@ -40,7 +40,7 @@ Using `Better BibTeX`, export the database into a BibTeX `.bib` file.
 This file must then be saved in this repo as:
 
 ```
-database/references.bib
+database/pgd_references.bib
 ```
 
 ### References `json` file
