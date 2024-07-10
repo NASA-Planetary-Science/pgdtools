@@ -177,13 +177,13 @@ def find_subtype(
             try:
                 sigma_c_plus = c12_c13[1][0]
                 sigma_c_minus = c12_c13[1][1]
-            except TypeError:
+            except (TypeError, IndexError):
                 sigma_c_plus = c12_c13[1]
                 sigma_c_minus = c12_c13[1]
             try:
                 sigma_n_plus = n14_n15[1][0]
                 sigma_n_minus = n14_n15[1][1]
-            except TypeError:
+            except (TypeError, IndexError):
                 sigma_n_plus = n14_n15[1]
                 sigma_n_minus = n14_n15[1]
             if (
@@ -419,7 +419,7 @@ def probability_value(
             sigma = sigma_plus
         else:
             sigma = sigma_minus
-    except TypeError:  # we don't have plus, minus errors
+    except (TypeError, IndexError):
         sigma = sigmas
     chi = (comp - mu) / sigma
     return probability_chi(chi)
