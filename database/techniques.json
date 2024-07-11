@@ -103,5 +103,12 @@
         "Instrument": "CAMECA NanoSIMS 50",
         "Reference": "Stadermann F. J., Walker R. M., and Zinner E. (1999) Sub-micron isotopic measurements with the CAMECA NanoSIMS (abstract). Lunar Planet. Sci. 30, #1407.",
         "DOI": ""
+    },
+    "JAMSTEC NanoSIMS": {
+        "Institution": "Japan Agency for Marine-Earth Science Technology",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50L",
+        "Reference": "",
+        "DOI": ""
     }
 }

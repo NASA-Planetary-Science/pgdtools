@@ -138,9 +138,7 @@ def append_reference_json(
     ref_json: Path = None,
     quiet: bool = False,
 ) -> None:
-    """Create `references.json` from the Excel file.
-
-    # todo: add references from graphite xlsx file
+    """Create/append to `references.json` from the Excel file.
 
     References that are not assigned a `PGD ID` (and are thus empty) are ignored.
 
@@ -178,54 +176,46 @@ def append_reference_json(
                 "Comments": row["Comments"],
             }
 
-    # check which keys already exist and ask user what to do
-    keys_exist = []
-    for key in new_refs:
-        if key in refs:
-            keys_exist.append(key)
-
-    if keys_exist:
-        if quiet:
-            warnings.warn(f"Key {key} already exists in references.json. Overwriting.")
-            for key in new_refs:
-                refs[key] = new_refs[key]
-        else:
-            print("The following keys already exist in the references.json file:")
-            print(keys_exist)
-            print("Do you want to overwrite them? (y/n)")
-            answer = input()
-            if answer.lower() == "y":
-                for key in new_refs:
-                    refs[key] = new_refs[key]
-            else:
-                print("Not overwriting keys.")
-    else:
-        refs.update(new_refs)
+    refs = _compare_and_append_dictionaries(refs, new_refs, quiet=quiet)
 
     # save out the json file
     with open(ref_json, "w") as fout:
         json.dump(refs, fout, indent=4)
 
 
-def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> None:
-    """Create `techniques.json` from the Excel file.
-
-    # todo: turn this into `add techniques json` to add to existing file. otherwise we overwrite stuff when working with different excel files.
-    # todo: extend / modify docs
+def append_techniques_json(
+    excel_file: Path,
+    sheet_name: str = "Techniques",
+    tech_json: Path = None,
+    quiet: bool = False,
+) -> None:
+    """Create/append to `techniques.json` from the Excel file.
 
     :param excel_file: Path to the Excel file.
     :param sheet_name: Name of the tab to use (default: Techniques).
+    :param tech_json: Path to the `techniques.json` file. If not given, the default
+        location in the repository is used.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
     """
+    tech_json = (
+        _get_database_file("techniques.json") if tech_json is None else tech_json
+    )
+
+    if not tech_json.is_file():  # create the file
+        techniques = {}
+    else:
+        techniques = json.load(open(tech_json, "r"))
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
     df = df.fillna("")
 
     # create the dictionary
-    techniques = {}
+    techniques_new = {}
     for _, row in df.iterrows():
         if (tmp_id := row["PGD Technique"]) is not np.nan:
-            techniques[tmp_id] = {
+            techniques_new[tmp_id] = {
                 "Institution": row["Institution"],
                 "Technique": row["Technique"],
                 "Instrument": row["Instrument"],
@@ -233,9 +223,57 @@ def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> 
                 "DOI": row["DOI"],
             }
 
+    techniques = _compare_and_append_dictionaries(
+        techniques, techniques_new, quiet=quiet
+    )
+
     # save out the json file
-    with open("techniques.json", "w") as fout:
+    with open(tech_json, "w") as fout:
         json.dump(techniques, fout, indent=4)
+
+
+def _compare_and_append_dictionaries(
+    dict_ex: dict, dict_new: dict, quiet: bool = True
+) -> dict:
+    """Compare two dictionaries and append the new one to the existing one.
+
+    Overwriting of keys is done automatically if `quiet=True`. If not, then the user
+    is asked if keys shall be overwritten.
+
+    :param dict_ex: Existing dictionary.
+    :param dict_new: New dictionary.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
+    """
+    keys_exist = []
+    for key in dict_new:
+        if key in dict_ex:
+            keys_exist.append(key)
+
+    if keys_exist:
+        if quiet:
+            warnings.warn(
+                f"Keys {keys_exist} already exists in references.json. Overwriting."
+            )
+            for key in dict_new:
+                dict_ex[key] = dict_new[key]
+        else:
+            print("The following keys already exist in the references.json file:")
+            print(keys_exist)
+            print("Do you want to overwrite them? (y/n)")
+            answer = input()
+            if answer.lower() == "y":
+                for key in dict_new:
+                    dict_ex[key] = dict_new[key]
+            else:
+                print("Not overwriting keys.")
+                for key in dict_new:
+                    if key not in keys_exist:
+                        dict_ex[key] = dict_new[key]
+    else:
+        dict_ex.update(dict_new)
+
+    return dict_ex
 
 
 def _get_database_file(fname: Union[Path, str]) -> Path:
