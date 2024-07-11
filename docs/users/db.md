@@ -9,6 +9,13 @@ Note that all databases,
 i.e., for all different grain types ("sic", ...)
 can be managed with this tool.
 
+## Currently impelmented databases
+
+The following grain types are currently implemented:
+
+- `"sic"`: Silicon carbide
+- `"gra"`: Graphite
+
 ## Background
 
 In order to be able to update the database without updating the package,

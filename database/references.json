@@ -677,5 +677,131 @@
         "Reference - full": "Liu N., Alexander C. M. O'D., Meyer B. S., Nittler L. R., Wang J., and Stroud R. M. (2024) Explosive nucleosynthesis in core-collapse Type II supernovae: Insights from new C, N, Si, and Al\u2013Mg isotopic compositions of presolar grains. Astrophys. J. Lett. 961, L22 (14pp).",
         "DOI": "10.3847/2041-8213/ad18c7",
         "Comments": ""
+    },
+    "Gra-1995-HOP-0": {
+        "Number of grains": 646,
+        "Reference - short": "Hoppe et al. (1995) GCA 59:4029",
+        "Reference - full": "Hoppe P., Amari S., Zinner E., and Lewis R. S. (1995) Isotopic compositions of C, N, O, Mg, and Si, trace element abundances, and morphologies of single circumstellar graphite grains in four density fractions from the Murchison meteorite. Geochim. Cosmochim. Acta 59, 4029\u20134056.",
+        "DOI": "10.1016/0016-7037(95)00280-D",
+        "Comments": "Data for KFA1 and KFB1 and KFC1 grains are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1996-AMA-0": {
+        "Number of grains": 5,
+        "Reference - short": "Amari et al. (1996) ApJL 470:L101",
+        "Reference - full": "Amari S., Zinner E., and Lewis R. S. (1996) 41Ca in presolar graphite of supernova origin. Astrophys. J. Lett. 470, L101\u2013L104.",
+        "DOI": "10.1086/310306",
+        "Comments": "Data are also in Travaglio et al. (1999) ApJ 510:325 & Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1996-NIT-0": {
+        "Number of grains": 4,
+        "Reference - short": "Nittler et al. (1996) ApJL 462:L31",
+        "Reference - full": "Nittler L. R., Amari S., Zinner E., Woosley S. E., and Lewis R. S. (1996) Extinct 44Ti in presolar graphite and SiC: Proof of a supernova origin. Astrophys. J. Lett. 462, L31\u2013L34.",
+        "DOI": "10.1088/1538-4357/462/1/L31",
+        "Comments": "Data are also in Travaglio et al. (1999) ApJ 510:325 & Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1998-NIC-0": {
+        "Number of grains": 32,
+        "Reference - short": "Nicolussi et al. (1998) ApJ 504:492",
+        "Reference - full": "Nicolussi G. K., Pellin M. J., Lewis R. S., Davis A. M., Clayton R. N., and Amari S. (1998) Zirconium and molybdenum in individual circumstellar graphite grains: New isotopic data on the nucleosynthesis of heavy elements. Astrophys. J. 504, 492\u2013499.",
+        "DOI": "10.1086/306072",
+        "Comments": ""
+    },
+    "Gra-1999-TRA-0": {
+        "Number of grains": 81,
+        "Reference - short": "Travaglio et al. (1999) ApJ 510:325",
+        "Reference - full": "Travaglio C., Gallino R., Amari S., Zinner E., Woosley S., and Lewis R. S. (1999) Low-density graphite grains and mixing in type II supernovae. Astrophys. J. 510, 325\u2013354.",
+        "DOI": "10.1086/306551",
+        "Comments": "Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2003-CRO-0": {
+        "Number of grains": 3,
+        "Reference - short": "Croat et al. (2003) GCA 67:4705",
+        "Reference - full": "Croat T. K., Bernatowicz T., Amari S., Messenger S., and Stadermann F. J. (2003) Structural, chemical, and isotopic microanalytical investigations of graphite from supernovae. Geochim. Cosmochim. Acta 67, 4705\u20134725.",
+        "DOI": "10.1016/S0016-7037(03)00463-0",
+        "Comments": "Data for some grains are already in Travaglio et al. (1999) ApJ 510:325. Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2008-JAD-0": {
+        "Number of grains": 7,
+        "Reference - short": "Jadhav et al. (2008) ApJ 682:1479",
+        "Reference - full": "Jadhav M., Amari S., Marhas K. K., Zinner E., Maruoka T., and Gallino R. (2008) New stellar sources for high-density, presolar graphite grains. Astrophys. J. 682, 1479\u20131485.",
+        "DOI": "10.1086/589139",
+        "Comments": "Data are also in Jadhav et al. (2013) GCA 113:193."
+    },
+    "Gra-2009-HEC-0": {
+        "Number of grains": 46,
+        "Reference - short": "Heck et al. (2009) ApJ 701:1415",
+        "Reference - full": "Heck P. R., Amari S., Hoppe P., Baur H., Lewis R. S., and Wieler R. (2009) Ne isotopes in individual presolar graphite grains from the Murchison meteorite together with He, C, O, Mg-Al isotopic analyses as tracers of their origins. Astrophys. J. 701, 1415\u20131425.",
+        "DOI": "10.1088/0004-637X/701/2/1415",
+        "Comments": "C & O Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2012-GRO-0": {
+        "Number of grains": 14,
+        "Reference - short": "Groopman et al. (2012) ApJL 754:L8",
+        "Reference - full": "Groopman E., Bernatowicz T., and Zinner E. (2012) C, N, and O isotopic heterogeneities in low-density supernova graphite grains from Orgueil. Astrophys. J. Lett. 754, L8 (6pp).",
+        "DOI": "10.1088/2041-8205/754/1/L8",
+        "Comments": ""
+    },
+    "Gra-2012-MEI-0": {
+        "Number of grains": 14,
+        "Reference - short": "Meier et al. (2012) GCA 76:147",
+        "Reference - full": "Meier M. M. M., Heck P. R., Amari S., Baur H., and Wieler R. (2012) Graphite grains in supernova ejecta \u2013 Insights from a noble gas study of 91 individual KFC1 presolar graphite grains from the Murchison meteorite. Geochim. Cosmochim. Acta 76, 147\u2013160.",
+        "DOI": "10.1016/j.gca.2011.10.027",
+        "Comments": "Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2013-JAD-0": {
+        "Number of grains": 337,
+        "Reference - short": "Jadhav et al. (2013) GCA 113:193",
+        "Reference - full": "Jadhav M., Zinner E., Amari S., Maruoka T., Marhas K. K., and Gallino R. (2013) Multi-element isotopic analyses of presolar graphite grains from Orgueil. Geochim. Cosmochim. Acta 113, 193\u2013224.",
+        "DOI": "10.1016/j.gca.2013.01.018",
+        "Comments": "Data for some grains are already in Jadhav et al. (2008) ApJ 682:1479."
+    },
+    "Gra-2014-AMA-0": {
+        "Number of grains": 909,
+        "Reference - short": "Amari et al. (2014) GCA 59:479",
+        "Reference - full": "Amari S., Zinner E., and Gallino R. (2014) Presolar graphite from the Murchison meteorite: An isotopic study. Geochim. Cosmochim. Acta 133, 479\u2013522.",
+        "DOI": "10.1016/j.gca.2014.01.006",
+        "Comments": "Data for many grains already in Hoppe et al. (1995) GCA 59:4029; Amari et al. (1996) ApJL 470:L101; Nittler et al. (1996) ApJL 462:L31; Travaglio et al. (1999) ApJ 510:325; Croat et al. (2003) GCA 67:4705; Heck et al. (2009) ApJ 701:1415; Meier et al. (2012) GCA 76:147"
+    },
+    "Gra-2016-HAE-0": {
+        "Number of grains": 2,
+        "Reference - short": "Haenecour et al. (2016) ApJ 825:88",
+        "Reference - full": "Haenecour P., Floss C., Jos\u00e9 J., Amari S., Lodders K., Jadhav M., Wang A., and Gyngard F. (2016) Coordinated analysis of two graphite grains from the CO3.0 LAP 031117 meteorite: First identification of a CO nova graphite and a presolar iron sulfide subgrain. Astrophys. J. 825, 88 (9pp)",
+        "DOI": "10.3847/0004-637X/825/2/88",
+        "Comments": ""
+    },
+    "Gra-2018-HEC-0": {
+        "Number of grains": 7,
+        "Reference - short": "Heck et al. (2018) MAPS 53:2327",
+        "Reference - full": "Heck P. R., Jadhav M., Meier M. M. M., Maruoka T., Amari S., Zinner E. K., Busemann H., Maden C., Gyngard F., Baur H., and Wieler R. (2018) Neon isotopes in individual presolar low-density graphite grains from the Orgueil meteorite. Meteorit. Planet. Sci. 53, 2327\u20132342.",
+        "DOI": "10.1111/maps.13129",
+        "Comments": ""
+    },
+    "Gra-2022-BAR-0": {
+        "Number of grains": 2,
+        "Reference - short": "Barosch et al. (2022) ApJL 935:L3",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Alexander C. M. O'D., De Gregorio B. T., Engrand C., Kebukawa Y., Nagashima K., Stroud R. M., Yabuta H., Abe Y., Al\u00e9on J., Amari S., Amelin Y., Bajo K.-I., Bejach L., Bizzarro M., Bonal L., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Cody G. D., Dartois E., Dauphas N., Davis A. M., Dazzi A., Deniset-Besseau A., Di Rocco T., Duprat J., Fujiya W., Fukai R., Gautam I., Haba M. K., Hashiguchi M., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Ito M., Itoh S., Kamide K., Kawasaki N., Kilcoyne A. L. D., Kita N. T., Kitajima K., Kleine T., Komatani S., Komatsu M., Krot A. N., Liu M.-C., Martins Z., Masuda Y., Mathurin J., McKeegan K. D., Montagnac G., Morita M., Mostefaoui S., Motomura K., Moynier F., Nakai I., Nguyen A. N., Ohigashi T., Okumura T., Onose M., Pack A., Park C., Piani L., Qin L., Quirico E., Remusat L., Russell S. S., Sakamoto N., Sandford S. A., Sch\u00f6nb\u00e4chler M., Shigenaka M., Suga H., Tafla L., Takahashi Y., Takeichi Y., Tamenori Y., Tang H., Terada K., Terada Y., Usui T., Verdier-Paoletti M., Wada S., Wadhwa M., Wakabayashi D., Walker R. J., Yamashita K., Yamashita S., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Abe M., Miyazaki A., Nakato A., Nakazawa S., Nishimura M., Okada T., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S.-I., Yada T., Yogata K., Yoshikawa M., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Tachibana S., and Yurimoto H. (2022) Presolar stardust in asteroid Ryugu. Astrophys. J. Lett. 935, L3 (12pp).",
+        "DOI": "10.3847/2041-8213/ac83bd",
+        "Comments": ""
+    },
+    "Gra-2022-BAR-1": {
+        "Number of grains": 1,
+        "Reference - short": "Barosch et al. (2022) GCA 335:169",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Dobrica E., Brearley A., Hezel D. C., and Alexander C. M. O'D. (2022) Presolar O- and C-anomalous grains in unequilibrated ordinary chondrite matrices. Geochim. Cosmochim. Acta 335, 169\u2013182.",
+        "DOI": "10.1016/j.gca.2022.08.027",
+        "Comments": ""
+    },
+    "Gra-2022-ITO-0": {
+        "Number of grains": 1,
+        "Reference - short": "Ito et al. (2022) NatAs 6:1163",
+        "Reference - full": "Ito M., Tomioka N., Uesugi M., Yamaguchi A., Shirai N., Ohigashi T., Liu M.-C., Greenwood R. C., Kimura M., Imae N., Uesugi K., Nakato A., Yogata K., Yuzawa H., Kodama Y., Tsuchiyama A., Yasutake M., Findlay R., Franchi I. A., Malley J. A., McCain K. A., Matsuda N., McKeegan K. D., Hirahara K., Takeuchi A., Sekimoto S., Sakurai I., Okada I., Karouji Y., Arakawa M., Fujii A., Fujimoto M., Hayakawa M., Hirata N., Hirata N., Honda R., Honda C., Hosoda S., Iijima Y., Ikeda H., Ishiguro M., Ishihara Y., Iwata T., Kawahara K., Kikuchi S., Kitazato K., Matsumoto K., Matsuoka M., Michikami T., Mimasu Y., Miura A., Mori O., Morota T., Nakazawa S., Namiki N., Noda H., Noguchi R., Ogawa N., Ogawa K., Okada T., Okamoto C., Ono G., Ozaki M., Saiki T., Sakatani N., Sawada H., Senshu H., Shimaki Y., Shirai K., Sugita S., Takei Y., Takeuchi H., Tanaka S., Tatsumi E., Terui F., Tsukizaki R., Wada K., Yamada M., Yamada T., Yamamoto Y., Yano H., Yokota Y., Yoshihara K., Yoshikawa M., Yoshikawa K., Fukai R., Furuya S., Hatakeda K., Hayashi T., Hitomi Y., Kumagai K., Miyazaki A., Nishimura M., Soejima H., Iwamae A., Yamamoto D., Yoshitake M., Yada T., Abe M., Usui T., Watanabe S., and Tsuda Y. (2022) A pristine record of outer Solar System materials from asteroid Ryugu's returned sample. Nature Astronomy 6, 1163\u20131171.",
+        "DOI": "10.1038/s41550-022-01745-5",
+        "Comments": ""
+    },
+    "Gra-2023-NGU-0": {
+        "Number of grains": 11,
+        "Reference - short": "Nguyen et al. (2023) SciAdv 9:eadh1003",
+        "Reference - full": "Nguyen A. N., Mane P., Keller L. P., Piani L., Abe Y., Al\u00e9on J., Alexander C. M. O., Amari S., Amelin Y., Bajo K., Bizzarro M., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Dauphas N., Davis A. M., Di Rocco T., Fujiya W., Fukai R., Gautam I., Haba M. K., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Itoh S., Kawasaki N., Kita N. T., Kitajima K., Kleine T., Komatani S., Krot A. N., Liu M.-C., Masuda Y., McKeegan K. D., Morita M., Motomura K., Moynier F., Nakai I., Nagashima K., Nesvorn\u00fd D., Nittler L., Onose M., Pack A., Park C., Qin L., Russell S. S., Sakamoto N., Sch\u00f6nb\u00e4chler M., Tafla L., Tang H., Terada K., Terada Y., Usui T., Wada S., Wadhwa M., Walker R. J., Yamashita K., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Yabuta H., Abe M., Miyazaki A., Nakato A., Nishimura M., Okada T., Yada T., Yogata K., Nakazawa S., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S., Yoshikawa M., Tachibana S., and Yurimoto H. (2023) Abundant presolar grains and primordial organics preserved in carbon-rich exogenous clasts in asteroid Ryugu. Sci. Adv. 9, eadh1003 (11pp).",
+        "DOI": "10.1126/sciadv.adh1003",
+        "Comments": ""
     }
 }

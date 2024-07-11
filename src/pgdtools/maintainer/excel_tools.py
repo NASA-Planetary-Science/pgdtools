@@ -7,6 +7,7 @@ used with `pgdtools`.
 from datetime import datetime
 import json
 from pathlib import Path
+from typing import Union
 import warnings
 
 import numpy as np
@@ -27,7 +28,9 @@ def append_to_db_json(
     Information is read from the `VersionHistory` tab. From here the `Date`,
     `Grains`, `Change`, and `Known issues` are read.
 
-    Currently, only releases on Zenodo are supported for SiC grains are supported.
+    Currently, only releases on Zenodo are supported for SiC and Graphite grains.
+    If the DOI does not contain the word `zenodo`, it refers likely to another archive
+    (Astromat - IEDA) and the `zenodo_record` number is required.
 
     :param excel_file: Path to the Excel file.
     :param doi: DOI of the database.
@@ -43,15 +46,11 @@ def append_to_db_json(
         filename.
     :param sheet_name: Name of the tab to use (default: VersionHistory).
 
-    :raises NotImplementedError: (1) If the database is not a SiC database.
+    :raises NotImplementedError: (1) If the database is not a SiC or graphite database.
         (2) If the database is not released on Zenodo.
     :raises FileNotFoundError: If the `db.json` file is not found.
     """
-    # read the standard db.json file
-    if db_json is None:
-        db_json = Path(__file__).parent.parent.parent.parent.joinpath(
-            "database/db.json"
-        )
+    db_json = _get_database_file("db.json") if db_json is None else db_json
 
     if not db_json.is_file():
         raise FileNotFoundError(f"db.json not found at {db_json}.")
@@ -62,8 +61,12 @@ def append_to_db_json(
     if db_name is None:
         if "sic" in excel_file.name.lower():
             db_key = "sic"
+        elif "gra" in excel_file.name.lower():
+            db_key = "gra"
         else:
-            raise NotImplementedError("Only SiC databases are currently supported.")
+            raise NotImplementedError(
+                "Only SiC,and graphite databases are currently supported."
+            )
 
     # get the date from filename (between last "_" and suffix) and convert to datetime
     date = excel_file.name.split("_")[-1].split(".")[0]
@@ -135,14 +138,30 @@ def append_to_db_json(
         json.dump(db, fout, indent=4)
 
 
-def create_references_json(excel_file: Path, sheet_name: str = "References") -> None:
-    """Create `references.json` from the Excel file.
+def append_reference_json(
+    excel_file: Path,
+    sheet_name: str = "References",
+    ref_json: Path = None,
+    quiet: bool = False,
+) -> None:
+    """Create/append to `references.json` from the Excel file.
 
     References that are not assigned a `PGD ID` (and are thus empty) are ignored.
 
     :param excel_file: Path to the Excel file.
     :param sheet_name: Name of the tab to use (default: References).
+    :param ref_json: Path to the `references.json` file. If not given, the default
+        location in the repository is used.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
     """
+    ref_json = _get_database_file("references.json") if ref_json is None else ref_json
+
+    if not ref_json.is_file():  # create the file
+        refs = {}
+    else:
+        refs = json.load(open(ref_json, "r"))
+
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -152,10 +171,10 @@ def create_references_json(excel_file: Path, sheet_name: str = "References") -> 
         df[col] = df[col].fillna("")
 
     # create the dictionary
-    references = {}
+    new_refs = {}
     for _, row in df.iterrows():
         if (tmp_id := row["PGD ID"]) is not np.nan:
-            references[tmp_id] = {
+            new_refs[tmp_id] = {
                 "Number of grains": int(row["Number of grains"]),
                 "Reference - short": row["Reference - short"],
                 "Reference - full": row["Reference - full"],
@@ -163,27 +182,46 @@ def create_references_json(excel_file: Path, sheet_name: str = "References") -> 
                 "Comments": row["Comments"],
             }
 
+    refs = _compare_and_append_dictionaries(refs, new_refs, quiet=quiet)
+
     # save out the json file
-    with open("references.json", "w") as fout:
-        json.dump(references, fout, indent=4)
+    with open(ref_json, "w") as fout:
+        json.dump(refs, fout, indent=4)
 
 
-def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> None:
-    """Create `techniques.json` from the Excel file.
+def append_techniques_json(
+    excel_file: Path,
+    sheet_name: str = "Techniques",
+    tech_json: Path = None,
+    quiet: bool = False,
+) -> None:
+    """Create/append to `techniques.json` from the Excel file.
 
     :param excel_file: Path to the Excel file.
     :param sheet_name: Name of the tab to use (default: Techniques).
+    :param tech_json: Path to the `techniques.json` file. If not given, the default
+        location in the repository is used.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
     """
+    tech_json = (
+        _get_database_file("techniques.json") if tech_json is None else tech_json
+    )
+
+    if not tech_json.is_file():  # create the file
+        techniques = {}
+    else:
+        techniques = json.load(open(tech_json, "r"))
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
     df = df.fillna("")
 
     # create the dictionary
-    techniques = {}
+    techniques_new = {}
     for _, row in df.iterrows():
         if (tmp_id := row["PGD Technique"]) is not np.nan:
-            techniques[tmp_id] = {
+            techniques_new[tmp_id] = {
                 "Institution": row["Institution"],
                 "Technique": row["Technique"],
                 "Instrument": row["Instrument"],
@@ -191,6 +229,59 @@ def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> 
                 "DOI": row["DOI"],
             }
 
+    techniques = _compare_and_append_dictionaries(
+        techniques, techniques_new, quiet=quiet
+    )
+
     # save out the json file
-    with open("techniques.json", "w") as fout:
+    with open(tech_json, "w") as fout:
         json.dump(techniques, fout, indent=4)
+
+
+def _compare_and_append_dictionaries(
+    dict_ex: dict, dict_new: dict, quiet: bool = True
+) -> dict:
+    """Compare two dictionaries and append the new one to the existing one.
+
+    Overwriting of keys is done automatically if `quiet=True`. If not, then the user
+    is asked if keys shall be overwritten.
+
+    :param dict_ex: Existing dictionary.
+    :param dict_new: New dictionary.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
+    """
+    keys_exist = []
+    for key in dict_new:
+        if key in dict_ex:
+            keys_exist.append(key)
+
+    if keys_exist:
+        if quiet:
+            warnings.warn(
+                f"Keys {keys_exist} already exists in references.json. Overwriting."
+            )
+            for key in dict_new:
+                dict_ex[key] = dict_new[key]
+        else:
+            print("The following keys already exist in the references.json file:")
+            print(keys_exist)
+            print("Do you want to overwrite them? (y/n)")
+            answer = input()
+            if answer.lower() == "y":
+                for key in dict_new:
+                    dict_ex[key] = dict_new[key]
+            else:
+                print("Not overwriting keys.")
+                for key in dict_new:
+                    if key not in keys_exist:
+                        dict_ex[key] = dict_new[key]
+    else:
+        dict_ex.update(dict_new)
+
+    return dict_ex
+
+
+def _get_database_file(fname: Union[Path, str]) -> Path:
+    """Get the path for a file in the database folder."""
+    return Path(__file__).parents[3].joinpath(f"database/{fname}")

@@ -40,7 +40,7 @@ Using `Better BibTeX`, export the database into a BibTeX `.bib` file.
 This file must then be saved in this repo as:
 
 ```
-database/references.bib
+database/pgd_references.bib
 ```
 
 ### References `json` file
@@ -56,22 +56,26 @@ from pathlib import Path
 
 import pgdtools.maintainer as mt
 
-excel_file = Path("PGD_SiC_2023-07-22.xlsx")  # assuming the file is in the current directory
-mt.create_references_json(excel_file)
+excel_file = Path("PGD_SiC_2023-07-22.xlsx", quiet=True)  # assuming the file is in the current directory
+mt.append_reference_json(excel_file)
 ```
 
 
 Note that we assume that the information is in a tab called "References".
 If not, please specify the tab name using the `tab_name` argument.
-This will create a `json` file in the current directory called `references.json`.
-You can now directly add this file to the GitHub repo
-in the `database` folder.
+This will add the references to the `references.json` file in the `database` directory of the repository.
+Keys that already exist will be overwritten with the new information.
+If you do not want to overwrite existing keys,
+select `quiet=False` (which is also the default value).
+Then you will be asked if you want to overwrite existing keys.
+If you select `n` (no), no keys will be overwritten.
 
 ## Techniques file
 
 To prepare the `techniques.json` file for upload to the GitHub repo,
 a routine in `pgdtools` can be used.
-You can create this automatically using the latest version of the Excel database and the maintainer tools.
+You can create/update the technique file automatically
+using the latest version of the Excel database and the maintainer tools.
 The following shows an example of how to do this:
 
 ```python
@@ -80,14 +84,16 @@ from pathlib import Path
 import pgdtools.maintainer as mt
 
 excel_file = Path("PGD_SiC_2023-07-22.xlsx")
-mt.create_techniques_json(excel_file)
+mt.append_techniques_json(excel_file, quiet=True)
 ```
 
 Note that we assume that the information is in a tab called "Techniques".
 If not, please specify the tab name using the `tab_name` argument.
-This will create a `json` file in the current directory called `techniques.json`.
-You can now directly add this file to the GitHub repo
-in the `database` folder.
+This will create/update the `techniques.json` file in the database directory of the repository.
+If you do not want to overwrite existing keys,
+select `quiet=False` (which is also the default value).
+Then you will be asked if you want to overwrite existing keys.
+If you select `n` (no), no keys will be overwritten.
 
 ## Database `json`
 
