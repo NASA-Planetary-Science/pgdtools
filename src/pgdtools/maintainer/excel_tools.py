@@ -7,6 +7,7 @@ used with `pgdtools`.
 from datetime import datetime
 import json
 from pathlib import Path
+from typing import Union
 import warnings
 
 import numpy as np
@@ -47,11 +48,7 @@ def append_to_db_json(
         (2) If the database is not released on Zenodo.
     :raises FileNotFoundError: If the `db.json` file is not found.
     """
-    # read the standard db.json file
-    if db_json is None:
-        db_json = Path(__file__).parent.parent.parent.parent.joinpath(
-            "database/db.json"
-        )
+    db_json = _get_database_file("db.json") if db_json is None else db_json
 
     if not db_json.is_file():
         raise FileNotFoundError(f"db.json not found at {db_json}.")
@@ -135,14 +132,32 @@ def append_to_db_json(
         json.dump(db, fout, indent=4)
 
 
-def create_references_json(excel_file: Path, sheet_name: str = "References") -> None:
+def append_reference_json(
+    excel_file: Path,
+    sheet_name: str = "References",
+    ref_json: Path = None,
+    quiet: bool = False,
+) -> None:
     """Create `references.json` from the Excel file.
+
+    # todo: add references from graphite xlsx file
 
     References that are not assigned a `PGD ID` (and are thus empty) are ignored.
 
     :param excel_file: Path to the Excel file.
     :param sheet_name: Name of the tab to use (default: References).
+    :param ref_json: Path to the `references.json` file. If not given, the default
+        location in the repository is used.
+    :param quiet: If True, just overwrite existing keys. If False, warn if a key
+        already exists and ask user if it should be overwritten or not.
     """
+    ref_json = _get_database_file("references.json") if ref_json is None else ref_json
+
+    if not ref_json.is_file():  # create the file
+        refs = {}
+    else:
+        refs = json.load(open(ref_json, "r"))
+
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -152,10 +167,10 @@ def create_references_json(excel_file: Path, sheet_name: str = "References") -> 
         df[col] = df[col].fillna("")
 
     # create the dictionary
-    references = {}
+    new_refs = {}
     for _, row in df.iterrows():
         if (tmp_id := row["PGD ID"]) is not np.nan:
-            references[tmp_id] = {
+            new_refs[tmp_id] = {
                 "Number of grains": int(row["Number of grains"]),
                 "Reference - short": row["Reference - short"],
                 "Reference - full": row["Reference - full"],
@@ -163,13 +178,40 @@ def create_references_json(excel_file: Path, sheet_name: str = "References") -> 
                 "Comments": row["Comments"],
             }
 
+    # check which keys already exist and ask user what to do
+    keys_exist = []
+    for key in new_refs:
+        if key in refs:
+            keys_exist.append(key)
+
+    if keys_exist:
+        if quiet:
+            warnings.warn(f"Key {key} already exists in references.json. Overwriting.")
+            for key in new_refs:
+                refs[key] = new_refs[key]
+        else:
+            print("The following keys already exist in the references.json file:")
+            print(keys_exist)
+            print("Do you want to overwrite them? (y/n)")
+            answer = input()
+            if answer.lower() == "y":
+                for key in new_refs:
+                    refs[key] = new_refs[key]
+            else:
+                print("Not overwriting keys.")
+    else:
+        refs.update(new_refs)
+
     # save out the json file
-    with open("references.json", "w") as fout:
-        json.dump(references, fout, indent=4)
+    with open(ref_json, "w") as fout:
+        json.dump(refs, fout, indent=4)
 
 
 def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> None:
     """Create `techniques.json` from the Excel file.
+
+    # todo: turn this into `add techniques json` to add to existing file. otherwise we overwrite stuff when working with different excel files.
+    # todo: extend / modify docs
 
     :param excel_file: Path to the Excel file.
     :param sheet_name: Name of the tab to use (default: Techniques).
@@ -194,3 +236,8 @@ def create_techniques_json(excel_file: Path, sheet_name: str = "Techniques") -> 
     # save out the json file
     with open("techniques.json", "w") as fout:
         json.dump(techniques, fout, indent=4)
+
+
+def _get_database_file(fname: Union[Path, str]) -> Path:
+    """Get the path for a file in the database folder."""
+    return Path(__file__).parents[3].joinpath(f"database/{fname}")

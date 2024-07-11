@@ -88,7 +88,68 @@ def test_create_techniques_json(excel_file, chtmpdir):
     assert chtmpdir.joinpath("techniques.json").exists()
 
 
-def test_create_reference_json(excel_file, chtmpdir):
-    """Create the reference JSON file and ensure it exists."""
-    mt.create_references_json(excel_file)
-    assert chtmpdir.joinpath("references.json").exists()
+def test_append_reference_json_create_append_quiet(excel_file, chtmpdir):
+    """Create the reference file, delete a key, append it again in quiet mode."""
+    fout = chtmpdir.joinpath("my_references.json")
+    mt.append_reference_json(excel_file, ref_json=fout)
+    assert fout.exists()
+
+    # pop one key
+    with open(fout, "r") as f:
+        refs = json.load(f)
+    key = list(refs.keys())[0]
+    refs.pop(key)
+    with open(fout, "w") as f:
+        json.dump(refs, f, indent=4)
+
+    with pytest.warns(UserWarning):
+        mt.append_reference_json(excel_file, ref_json=fout, quiet=True)
+
+    # ensure key exists again
+    with open(fout, "r") as f:
+        refs = json.load(f)
+    assert key in refs.keys()
+
+    assert fout.exists()
+
+
+@pytest.mark.parametrize("user_input", [True, False])
+def test_append_reference_json_create_do_not_append(
+    excel_file, chtmpdir, mocker, user_input
+):
+    """Create the reference JSON file delete a key, do not append if user says no."""
+    if user_input:
+        mocker.patch("builtins.input", return_value="y")
+    else:
+        mocker.patch("builtins.input", return_value="n")
+
+    fout = chtmpdir.joinpath("my_references.json")
+    mt.append_reference_json(excel_file, ref_json=fout)
+    assert fout.exists()
+
+    # pop one key
+    with open(fout, "r") as f:
+        refs = json.load(f)
+    key = list(refs.keys())[0]
+    refs.pop(key)
+    with open(fout, "w") as f:
+        json.dump(refs, f, indent=4)
+
+    mt.append_reference_json(excel_file, ref_json=fout)
+
+    # ensure key exists again
+    with open(fout, "r") as f:
+        refs = json.load(f)
+    if user_input:
+        assert key in refs.keys()
+    else:
+        assert key not in refs.keys()
+
+    assert fout.exists()
+
+
+@pytest.mark.parametrize("fname", ["db.json", "references.json", "techniques.json"])
+def test_get_database_file(fname):
+    """Get a file from a database folder, ensure it exists."""
+    file_check = mt.excel_tools._get_database_file(fname)
+    assert file_check.exists()
