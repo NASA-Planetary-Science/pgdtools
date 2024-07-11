@@ -28,7 +28,9 @@ def append_to_db_json(
     Information is read from the `VersionHistory` tab. From here the `Date`,
     `Grains`, `Change`, and `Known issues` are read.
 
-    Currently, only releases on Zenodo are supported for SiC grains are supported.
+    Currently, only releases on Zenodo are supported for SiC and Graphite grains.
+    If the DOI does not contain the word `zenodo`, it refers likely to another archive
+    (Astromat - IEDA) and the `zenodo_record` number is required.
 
     :param excel_file: Path to the Excel file.
     :param doi: DOI of the database.
@@ -44,7 +46,7 @@ def append_to_db_json(
         filename.
     :param sheet_name: Name of the tab to use (default: VersionHistory).
 
-    :raises NotImplementedError: (1) If the database is not a SiC database.
+    :raises NotImplementedError: (1) If the database is not a SiC or graphite database.
         (2) If the database is not released on Zenodo.
     :raises FileNotFoundError: If the `db.json` file is not found.
     """
@@ -59,8 +61,12 @@ def append_to_db_json(
     if db_name is None:
         if "sic" in excel_file.name.lower():
             db_key = "sic"
+        elif "gra" in excel_file.name.lower():
+            db_key = "gra"
         else:
-            raise NotImplementedError("Only SiC databases are currently supported.")
+            raise NotImplementedError(
+                "Only SiC,and graphite databases are currently supported."
+            )
 
     # get the date from filename (between last "_" and suffix) and convert to datetime
     date = excel_file.name.split("_")[-1].split(".")[0]

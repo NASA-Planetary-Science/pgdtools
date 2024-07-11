@@ -75,5 +75,19 @@
                 "URL": "https://zenodo.org/record/11199606/files/PGD_SiC_2024-05-14.csv"
             }
         ]
+    },
+    "gra": {
+        "db_name": "Graphite",
+        "versions": [
+            {
+                "Change": "New start of the Presolar Grain Database for graphite after a complete rebuilt.",
+                "Date": "2024-05-13",
+                "DOI": "10.5281/zenodo.11188116",
+                "Grains": 2122,
+                "Known issues": "There is more data to be added.",
+                "Released on": "Zenodo",
+                "URL": "https://zenodo.org/record/11188116/files/PGD_Gra_2024-05-13.csv"
+            }
+        ]
     }
 }
