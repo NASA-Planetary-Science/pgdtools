@@ -18,7 +18,7 @@ def test_databases_conf_not_found():
 def test_databases_dbs(conf_files):
     """Assert that the database reader returns all databases when asked."""
     db = DataBases()
-    assert db.dbs == ["sic", "graphites"]
+    assert db.dbs == ["sic", "gra"]
 
 
 def test_databases_urls_all(conf_files):

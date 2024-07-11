@@ -58,7 +58,7 @@
             }
         ]
     },
-    "graphites": {
+    "gra": {
         "db_name": "Graphite",
         "versions":[
             {

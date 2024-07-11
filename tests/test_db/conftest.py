@@ -23,7 +23,7 @@ def conf_files(tmpdir_home, data_files_dir) -> Path:
 @pytest.fixture
 def current_file(tmpdir_home) -> Tuple[Path, dict]:
     """Create a fake `current.json` file and write into the right location."""
-    curr_to_write = {"sic": "test.csv", "graphites": "test-graphites.csv"}
+    curr_to_write = {"sic": "test.csv", "gra": "test-graphites.csv"}
     curr_ret = {k: Path(v) for k, v in curr_to_write.items()}
 
     with open(tmpdir_home.joinpath("current.json"), "w") as fout:
