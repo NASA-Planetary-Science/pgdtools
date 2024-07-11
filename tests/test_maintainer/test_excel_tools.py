@@ -9,10 +9,15 @@ import pytest
 import pgdtools.maintainer as mt
 
 
-def test_append_to_db_json(excel_file, db_json):
+@pytest.mark.parametrize("grain_type", ["sic", "gra"])
+def test_append_to_db_json(excel_file, excel_file_gra, db_json, grain_type):
     """Append the information to the db.json file and ensure that doi is now in file."""
+    if grain_type == "sic":
+        ex_file = excel_file
+    elif grain_type == "gra":
+        ex_file = excel_file_gra
     doi = "10.5281/zenodo.1234567"
-    mt.append_to_db_json(excel_file, doi, db_json=db_json)
+    mt.append_to_db_json(ex_file, doi, db_json=db_json)
     assert doi in db_json.read_text()
 
 

@@ -35,3 +35,10 @@ def excel_file(request) -> Path:
     """Provide the path to the database Excel file from 2023-07-22."""
     curr = Path(request.fspath).parents[1]
     return Path(curr).joinpath("data_files/PGD_SiC_2023-10-30.xlsx").absolute()
+
+
+@pytest.fixture
+def excel_file_gra(request) -> Path:
+    """Provide the path to the database Excel file for graphites."""
+    curr = Path(request.fspath).parents[1]
+    return Path(curr).joinpath("data_files/PGD_Gra_2024-05-13.xlsx").absolute()
