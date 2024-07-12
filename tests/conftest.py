@@ -23,6 +23,13 @@ def pgd(pgd_setup):
 
 
 @pytest.fixture
+def pgd_head(pgd):
+    """Return the first 100 rows of the PGD."""
+    pgd.db = pgd.db.head(100)
+    return pgd
+
+
+@pytest.fixture
 def pgd_setup(tmpdir_home, data_files_dir):
     """Copy and create the required files for reading the PGD."""
     sic_db_name = "PGD_SiC_2023-10-30.csv"
@@ -30,6 +37,12 @@ def pgd_setup(tmpdir_home, data_files_dir):
 
     db_json = tmpdir_home.joinpath("config/db.json")
     db_json.write_text(data_files_dir.joinpath("db.json").read_text())
+
+    ref_json = tmpdir_home.joinpath("config/references.json")
+    ref_json.write_text(data_files_dir.joinpath("references.json").read_text())
+
+    tech_json = tmpdir_home.joinpath("config/techniques.json")
+    tech_json.write_text(data_files_dir.joinpath("techniques.json").read_text())
 
     sic_db = tmpdir_home.joinpath(f"csv/{sic_db_name}")
     sic_db.write_bytes(data_files_dir.joinpath(sic_db_name).read_bytes())

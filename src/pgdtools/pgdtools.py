@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pgdtools import db
-from pgdtools.sub_tools import Grain
+from pgdtools.sub_tools import Grain, References
 
 
 class PresolarGrains:
@@ -75,18 +75,23 @@ class PresolarGrains:
             raise ValueError(f"Grain IDs {grain_ids_not_found} not found in database.")
         return Grain(self, grain_id)
 
-    # PROPERTIES #
-
     @property
-    def reference(self) -> pd.DataFrame:
-        """Return a pandas dataframe with grain references of all entries.
+    def reference(self):
+        """Return the reference class initialized with current database.
 
-        fixme: garbage
+        Various routines are implemented, e.g., to return references for each
+        grain as a table, or to return references as a set, which can be useful to ensure
+        the original authors are cited when you use the database. For a quick overview,
+        you can also simply print the reference representation of the grains.
 
-        :return: Dataframe with grain references.
+        :return: Reference class
+
+        Example:
+        todo
         """
-        hdr = ["Reference"]
-        return self.db[hdr]
+        return References(self)
+
+    # PROPERTIES #
 
     # METHODS #
 
