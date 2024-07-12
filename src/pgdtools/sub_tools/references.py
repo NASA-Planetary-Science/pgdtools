@@ -12,8 +12,8 @@ from pgdtools import db
 class References:
     """This class handles references for specific data sets."""
 
-    def __init__(self, parent: "pgdtools.PresolarGrains"):
-        """Initialize the Refernece class.
+    def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
+        """Initialize the Reference class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
 
@@ -27,7 +27,7 @@ class References:
         self._reference_json = None
         self._get_reference_json()
 
-    def __str__(self):
+    def __repr__(self) -> str:
         """Return a string representation of the class.
 
         In order to keep it pretty, this will return the following:
@@ -46,6 +46,26 @@ class References:
                 ret_val += "\n"
 
         return ret_val
+
+    def __eq__(self, other) -> bool:
+        """Check if the references are equal.
+
+        Note: This will only check if the set of references are equal and has nothing
+        to do with the number of grains that are associated with each reference.
+        """
+        return self.dict == other.dict
+
+    def __len__(self) -> int:
+        """Return the number of individual references in the class."""
+        return len(self.dict)
+
+    def __iter__(self) -> iter:
+        """Iterate over the key, value pairs."""
+        return iter(self.dict.items())
+
+    def __getitem__(self, item) -> dict:
+        """Return the reference for the given item."""
+        return self.dict[item]
 
     @property
     def dict(self) -> dict:

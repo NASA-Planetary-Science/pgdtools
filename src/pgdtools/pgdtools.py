@@ -24,6 +24,16 @@ class PresolarGrains:
         Todo
     """
 
+    class DataBase(Enum):
+        """Enum to represent the different databases.
+
+        The name of each enum is something that should make sense to the user,
+        the value the 3 letter abbreviation that each PGD Grain Name starts with.
+        """
+
+        SiC = "SiC"
+        Gra = "Gra"
+
     def __init__(self):
         """Initialize the presolar grain class.
 
@@ -48,20 +58,28 @@ class PresolarGrains:
         self.db = pd.concat(dfs)
         self._db = self.db.copy(deep=True)
 
-    class DataBase(Enum):
-        """Enum to represent the different databases.
+    def __repr__(self):
+        """Return a string representation of the class."""
+        return str(self.db)
 
-        The name of each enum is something that should make sense to the user,
-        the value the 3 letter abbreviation that each PGD Grain Name starts with.
-        """
+    def __eq__(self, other):
+        """Check if the databases are equal."""
+        return self.db.equals(other.db)
 
-        SiC = "SiC"
-        Gra = "Gra"
+    def __len__(self):
+        """Return the number of grains in the current, filtered database."""
+        return len(self.db)
+
+    def __iter__(self):
+        """Iterate over (index, row) for all entries the filtered database."""
+        return self.db.iterrows()
 
     # SUB TOOL ACCESS #
 
     def grain(self, grain_id: Union[str, List[str]]):
         """Return a single grain object for a specific ID.
+
+        # fixme: garbage: this whole things needs to disappear. instead, introduce filter for grain_id
 
         :param grain_id: PGD ID of the grain or a list of IDs
 
@@ -74,6 +92,15 @@ class PresolarGrains:
         if grain_ids_not_found:
             raise ValueError(f"Grain IDs {grain_ids_not_found} not found in database.")
         return Grain(self, grain_id)
+
+    def info(self):
+        raise NotImplementedError("Info class not implemented yet.")
+
+    def filter(self):
+        raise NotImplementedError("Filter class not implemented yet.")
+
+    def get(self):
+        raise NotImplementedError("Get class not implemented yet.")
 
     @property
     def reference(self):
@@ -90,6 +117,10 @@ class PresolarGrains:
         todo
         """
         return References(self)
+
+    @property
+    def technique(self):
+        raise NotImplementedError("Technique class not implemented yet.")
 
     # PROPERTIES #
 
@@ -164,6 +195,8 @@ class PresolarGrains:
     def header_correlation(self, iso1: str, iso2: str) -> Union[str, None]:
         """Return the header of the correlation between two isotopes, if available.
 
+        fixme: garbage
+
         Returns ``None`` if no correlation is available.
 
         :param iso1: First isotope.
@@ -182,6 +215,8 @@ class PresolarGrains:
         self, iso1: str, iso2: str
     ) -> Union[Tuple[str, Union[str, Tuple[str, str], bool]], None]:
         """Check if isotope ratio is available and return it plus additional info.
+
+        fixme garbage
 
         :param iso1: Nominator isotope, in format "Si-30"
         :param iso2: Denominator isotope, in format "Si-28"
@@ -316,6 +351,8 @@ class PresolarGrains:
 
 def create_db_iso(iso: str) -> str:
     """Create isotope name in database style.
+
+    fixme: Garbage, needs to fly
 
     :param iso: Isotope name, class style, e.g., "Si-28"
     :type iso: str

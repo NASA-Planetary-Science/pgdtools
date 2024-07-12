@@ -5,10 +5,50 @@ import pytest
 from pgdtools.sub_tools import References
 
 
-def test_type_error():
+# DUNDER METHODS #
+
+
+def test_init_type_error():
     """Raise type error if parent is not of type PresolarGrains."""
     with pytest.raises(TypeError):
         _ = References("test")
+
+
+def test_repr(pgd_head):
+    """Check string representation of class prints IDs."""
+    ref = pgd_head.reference
+    assert isinstance(str(ref), str)
+    for key in ref.dict:
+        assert key in str(ref)
+
+
+def test_eq(pgd, pgd_head):
+    """Check for equality between two reference sets."""
+    pgd.db = pgd.db.head(100)
+    assert pgd_head.reference == pgd.reference
+
+
+def test_len(pgd_head):
+    """Get number of unique references."""
+    assert len(pgd_head.reference) == len(pgd_head.reference.dict)
+
+
+def test_iter(pgd_head):
+    """Iterate over the key, value pairs."""
+    ref = pgd_head.reference
+    for key, value in ref:
+        assert key in ref.dict.keys()
+        assert value in ref.dict.values()
+
+
+def test_getitem(pgd_head):
+    """Get a reference item based on the key."""
+    ref = pgd_head.reference
+    for key in ref.dict:
+        assert ref[key] == ref.dict[key]
+
+
+# METHODS #
 
 
 def test_dict(pgd_head):
@@ -24,14 +64,6 @@ def test_doi(pgd_head):
     """Return a set of DOIs for the references."""
     ref = pgd_head.reference
     assert isinstance(ref.doi, set)
-
-
-def test_str(pgd_head):
-    """Check string representation of class prints IDs."""
-    ref = pgd_head.reference
-    assert isinstance(str(ref), str)
-    for key in ref.dict:
-        assert key in str(ref)
 
 
 def test_table_full(pgd_head):
