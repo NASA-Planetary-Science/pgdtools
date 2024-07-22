@@ -2,5 +2,6 @@
 
 from .grain import Grain
 from .references import References
+from .techniques import Techniques
 
-__all__ = ["Grain", "References"]
+__all__ = ["Grain", "References", "Techniques"]

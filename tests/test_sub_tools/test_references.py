@@ -63,7 +63,9 @@ def test_dict(pgd_head):
 def test_doi(pgd_head):
     """Return a set of DOIs for the references."""
     ref = pgd_head.reference
+    doi_direct = pgd_head.reference.doi
     assert isinstance(ref.doi, set)
+    assert ref.doi == doi_direct
 
 
 def test_table_full(pgd_head):

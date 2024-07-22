@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pgdtools import db
-from pgdtools.sub_tools import Grain, References
+from pgdtools.sub_tools import Grain, References, Techniques
 
 
 class PresolarGrains:
@@ -107,9 +107,10 @@ class PresolarGrains:
         """Return the reference class initialized with current database.
 
         Various routines are implemented, e.g., to return references for each
-        grain as a table, or to return references as a set, which can be useful to ensure
-        the original authors are cited when you use the database. For a quick overview,
-        you can also simply print the reference representation of the grains.
+        grain as a table, or to return references as a set,
+        which can be useful to ensure the original authors are cited
+        when you use the database. For a quick overview, you can also simply
+        print the reference representation of the grains.
 
         :return: Reference class
 
@@ -120,7 +121,20 @@ class PresolarGrains:
 
     @property
     def technique(self):
-        raise NotImplementedError("Technique class not implemented yet.")
+        """Return the technique class initialized with the current database
+
+        Various routines are implemented, e.g., to return technques for each
+        grain as a table, or to return techniques as a set,
+        which can be useful to ensure the original authors are cited
+        when you use the database. For a quick overview, you can also simply
+        print the technique representation of the grains.
+
+        :return: Technique class
+
+        Example:
+        todo
+        """
+        return Techniques(self)
 
     # PROPERTIES #
 

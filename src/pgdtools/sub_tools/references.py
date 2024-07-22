@@ -52,20 +52,35 @@ class References:
 
         Note: This will only check if the set of references are equal and has nothing
         to do with the number of grains that are associated with each reference.
+
+        :param other: Other reference set to compare against.
+
+        :return: True if the references are equal, otherwise False.
         """
         return self.dict == other.dict
 
     def __len__(self) -> int:
-        """Return the number of individual references in the class."""
+        """Return the number of individual references in the class.
+
+        :return: Number of references.
+        """
         return len(self.dict)
 
     def __iter__(self) -> iter:
-        """Iterate over the key, value pairs."""
+        """Iterate over the key, value pairs.
+
+        :return: Iterator for the reference keys and values.
+        """
         return iter(self.dict.items())
 
-    def __getitem__(self, item) -> dict:
-        """Return the reference for the given item."""
-        return self.dict[item]
+    def __getitem__(self, key) -> dict:
+        """Return the reference for the given item.
+
+        :param key: Reference key.
+
+        :return: Reference details.
+        """
+        return self.dict[key]
 
     @property
     def dict(self) -> dict:
@@ -133,7 +148,7 @@ class References:
         return set(self._create_ref_keys_list)
 
     def _get_reference_json(self):
-        """Return the reference JSON file."""
+        """Load and store the reference JSON file."""
         with open(db.LOCAL_REF_JSON, "r") as file:
             self._reference_json = json.load(file)
 
