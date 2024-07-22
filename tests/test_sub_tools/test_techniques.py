@@ -1,4 +1,4 @@
-"""Test the references sub tool."""
+"""Test the techniques sub tool."""
 
 import pytest
 

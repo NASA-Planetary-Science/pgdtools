@@ -9,8 +9,9 @@ from iniabu import ini
 import numpy as np
 import pandas as pd
 
+import pgdtools.sub_tools.headers
 from pgdtools import db
-from pgdtools.sub_tools import Grain, References, Techniques
+from pgdtools.sub_tools import Filters, References, Techniques
 
 
 class PresolarGrains:
@@ -58,6 +59,8 @@ class PresolarGrains:
         self.db = pd.concat(dfs)
         self._db = self.db.copy(deep=True)
 
+        self._header = pgdtools.sub_tools.headers.Headers(self)  # stay private
+
     def __repr__(self):
         """Return a string representation of the class."""
         return str(self.db)
@@ -76,28 +79,27 @@ class PresolarGrains:
 
     # SUB TOOL ACCESS #
 
-    def grain(self, grain_id: Union[str, List[str]]):
-        """Return a single grain object for a specific ID.
-
-        # fixme: garbage: this whole things needs to disappear. instead, introduce filter for grain_id
-
-        :param grain_id: PGD ID of the grain or a list of IDs
-
-        :raises ValueError: ID not found in database.
-        """
-        if isinstance(grain_id, str):
-            grain_id = [grain_id]
-
-        grain_ids_not_found = [gid for gid in grain_id if gid not in self.db.index]
-        if grain_ids_not_found:
-            raise ValueError(f"Grain IDs {grain_ids_not_found} not found in database.")
-        return Grain(self, grain_id)
-
+    @property
     def info(self):
         raise NotImplementedError("Info class not implemented yet.")
 
+    @property
     def filter(self):
-        raise NotImplementedError("Filter class not implemented yet.")
+        """Filter the database for specific grains.
+
+        Various filters are implements, the examples below show some of the
+        possibilities. Please consult the documentation for a full list of options.
+
+        Generally, all filter default to select the grains that are in the filter.
+        If you want to exclude grains, you can set the `exclude` parameter to `True`.
+        This will invert the selection.
+
+        :return: Filter class
+
+        Example:
+        todo
+        """
+        return Filters(self)
 
     def get(self):
         raise NotImplementedError("Get class not implemented yet.")
@@ -191,20 +193,6 @@ class PresolarGrains:
         self.db = self.db[
             eval(f"self.db[hdr] {comp_dict[comparator]} {value}")  # noqa: S307
         ]
-
-    def filter_type(self, grain_type):
-        """Filter grain database by grain type.
-
-        fixme: garbage
-
-
-        :param grain_type: Grain type.
-        :type grain_type: str, List[str]
-        """
-        if isinstance(grain_type, str):
-            grain_type = [grain_type]
-
-        self.db = self.db[self.db["PGD Type"].isin(grain_type)]
 
     def header_correlation(self, iso1: str, iso2: str) -> Union[str, None]:
         """Return the header of the correlation between two isotopes, if available.
@@ -377,11 +365,3 @@ def create_db_iso(iso: str) -> str:
     iso_ini = ini.iso[iso]
     iso_split = iso_ini.name.split("-")
     return iso_split[1] + iso_split[0]
-
-
-if __name__ == "__main__":
-    a = PresolarGrains()
-    a.filter_type("M")
-    # a.filter_value(10.0, "Si-29", "Si-28", comparator="<=", err=True)
-    # a.filter_value(10.0, "Si-30", "Si-28", comparator="<=", err=True)
-    # print(a.return_ratios(("Si-30", "Si-28"), ("Si-29", "Si-28")))

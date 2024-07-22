@@ -1,7 +1,7 @@
 """Sub-tools for all the Presolar Grain tools."""
 
-from .grain import Grain
+from .filters import Filters
 from .references import References
 from .techniques import Techniques
 
-__all__ = ["Grain", "References", "Techniques"]
+__all__ = ["Filters", "References", "Techniques"]

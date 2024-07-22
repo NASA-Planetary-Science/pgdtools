@@ -1,10 +1,8 @@
-"""Functional tests for the PGD tools."""
+"""Test the utilities sub tool."""
 
 import pytest
 
-import pgdtools.sub_tools.headers
-import pgdtools.sub_tools.utilities as utl
-
+from pgdtools.sub_tools import utilities as utl
 
 # ISOTOPE CLASS #
 
@@ -28,12 +26,3 @@ def test_iso_value_error():
     """Raise a value error if the input is not a string."""
     with pytest.raises(ValueError):
         _ = utl.Isotope(123)
-
-
-# SEARCH HEADER CLASS #
-
-
-def test_search_header_type_error(pgd):
-    """Raise a type error if the parent is not of type PresolarGrains."""
-    with pytest.raises(TypeError):
-        _ = pgdtools.sub_tools.headers.Headers("test")
