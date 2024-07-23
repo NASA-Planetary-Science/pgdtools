@@ -1,7 +1,9 @@
 """Test the filters sub tool."""
 
+import pandas as pd
 import pytest
 
+from pgdtools.sub_tools import filters as flt
 from pgdtools.sub_tools import Filters
 
 
@@ -69,8 +71,70 @@ def test_pgd_subtype(pgd, st):
     assert len(pgd) == 0
 
 
+def test_pgd_subtype_nan_there(pgd_head):
+    """Check that NaN values are not dropped if `exclude` is set to `True`."""
+    pgd_head.filter.pgd_subtype("XYZAB", exclude=True)
+    assert len(pgd_head) == 100
+
+
+def test_ratio(pgd_head):
+    """Filter the data set based on a given isotope ratio."""
+    ratio = ("C12", "C13")
+    value = 98.0
+    pgd_head.filter.ratio(ratio, "<", value)
+    arr1 = pgd_head.db.copy(deep=True)
+    assert len(arr1) < 100  # we got a good value
+
+    # reset pgd_head
+    pgd_head.reset()
+    pgd_head.db = pgd_head.db.head(100)
+
+    pgd_head.filter.ratio(ratio, ">=", value, exclude=True)
+    arr2 = pgd_head.db
+    pd.testing.assert_frame_equal(arr1, arr2)
+
+
+def test_ratio_cmp_error(pgd_head):
+    """Raise a value error if an invalid comparator was presented."""
+    with pytest.raises(ValueError):
+        pgd_head.filter.ratio(("C12", "C13"), "INV", 1.0)
+
+
+@pytest.mark.parametrize("rat", [(2, 3, 4), "string", "st"])
+def test_ratio_invalid_rat(pgd_head, rat):
+    """Raise a value error if an invalid isotope ratio was presented."""
+    with pytest.raises(ValueError):
+        pgd_head.filter.ratio(rat, "<", 1.0)
+
+
+def test_ratio_invalid_iso_name(pgd_head):
+    """Raise a value error if an invalid isotope name was presented."""
+    with pytest.raises(ValueError):
+        pgd_head.filter.ratio(("C", "13"), "<", 1.0)
+
+
+def test_ratio_isos_na(pgd_head):
+    """Raise a value error if the isotope ratio is not found."""
+    with pytest.raises(ValueError):
+        pgd_head.filter.ratio(("C532", "C789"), "<", 1.0)
+
+
 def test_reset(pgd_head):
     """Reset the pgd_head database."""
     initial_length = len(pgd_head)
     pgd_head.filter.reset()
     assert len(pgd_head) > initial_length
+
+
+@pytest.mark.parametrize("cmp", ["<", "<=", ">", ">=", "==", "!="])
+def test_check_comparator_default(cmp):
+    """Check if the default comparator is correctly set."""
+    assert flt._check_comparator(cmp) == cmp
+
+
+@pytest.mark.parametrize(
+    "cmps", [["=<", "<="], ["=>", ">="], ["=", "=="], ["<>", "!="], ["INV", None]]
+)
+def test_check_comparator_corr(cmps):
+    """Check if the correct comparators are returned."""
+    assert flt._check_comparator(cmps[0]) == cmps[1]

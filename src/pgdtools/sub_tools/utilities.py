@@ -4,10 +4,13 @@
 class Isotope:
     """Class to parse isotope strings and return the element and atomic number."""
 
-    def __init__(self, isotope: str) -> None:
+    def __init__(self, isotope: str, allow_element=False) -> None:
         """Initialize the Isotope class.
 
         :param isotope: Isotope string to parse.
+        :param allow_element: Allow the input to be only an element symbol. This will
+            set the atomic number to 0 and string representation will be just the
+            elemental symbol.
 
         :raises ValueError: Input value is not a string.
         """
@@ -15,15 +18,13 @@ class Isotope:
             raise ValueError("Input value must be a string.")
 
         self._iso_in = isotope
+
         self._parse_isotope()
 
-    def _parse_isotope(self) -> None:
-        """Parse the isotope string and return the element and atomic number.
+        a_invalid = self.a == 0 and not allow_element
 
-        :return: Element and atomic number.
-        """
-        self._ele = "".join([i for i in self._iso_in if i.isalpha()]).capitalize()
-        self._a = int("".join([i for i in self._iso_in if i.isdigit()]))
+        if self.ele == "" or a_invalid:
+            raise ValueError("Input must contain an element symbol and atomic number.")
 
     def __repr__(self) -> str:
         """Return a string representation of the class.
@@ -33,6 +34,8 @@ class Isotope:
 
         :return: String representation of the class.
         """
+        if self.a == 0:
+            return self.ele
         return f"{self.a}{self.ele}"
 
     @property
@@ -50,3 +53,14 @@ class Isotope:
         :return: Element symbol.
         """
         return self._ele
+
+    def _parse_isotope(self) -> None:
+        """Parse the isotope string and return the element and atomic number.
+
+        :return: Element and atomic number.
+        """
+        self._ele = "".join([i for i in self._iso_in if i.isalpha()]).capitalize()
+        try:
+            self._a = int("".join([i for i in self._iso_in if i.isdigit()]))
+        except ValueError:
+            self._a = 0

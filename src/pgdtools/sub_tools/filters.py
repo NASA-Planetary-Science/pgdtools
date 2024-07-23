@@ -1,6 +1,6 @@
 """Sub tool to add filtering capabilities."""
 
-from typing import List, Union
+from typing import List, Union, Tuple
 
 import pgdtools
 
@@ -47,10 +47,71 @@ class Filters:
     def pgd_subtype(self, st: Union[str, List[str]], exclude: bool = False) -> None:
         """Filter for a given PGD subtype or subtypes.
 
+        Note: Empty values are not dropped if `exclude` is set to `True`.
+
         :param st: PGD subtype or subtypes to filter the data set on.
         :param exclude: Exclude the given subtypes from the data set.
         """
         self._filter_column("PGD Subtype", st, exclude)
+
+    def ratio(
+        self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
+    ) -> None:
+        """Filter the data set based on a given isotope ratio.
+
+        Here, a given isotope ratio is filtered based on a comparator and a value.
+        Some error checking is done on the comparator to ensure that it is valid.
+
+        Note: rows with NaN values for the given comparator will be dropped
+        from the dataset before filtering. This behavior is independent of the value
+        of `exclude`.
+
+        :param rat: Isotope ratio to filter the data set on. Tuple of two strings.
+            Each string represents an isotope. Example: ("29Si", "28Si").
+        :param cmp: Comparison operator to use. Available operators are:
+            "<", "<=", ">", ">=", "==", "!=".
+        :param value: Value to compare the isotope ratio against.
+        :param exclude: Exclude the given isotope ratio value range from the data set.
+
+        :raises ValueError: Invalid comparator or
+            isotope ratio names are not valid, not of length 2, or the chosen
+            isotope ratio is not available in the database.
+        """
+        cmp = _check_comparator(cmp)
+        if cmp is None:
+            raise ValueError(
+                "Invalid comparator. Please use one of: <, <=, >, >=, ==, !="
+            )
+
+        if not isinstance(rat, tuple):
+            rat = tuple(rat)
+
+        if len(rat) != 2:
+            raise ValueError("Isotope ratio names must be a tuple of length 2.")
+
+        try:
+            iso_rat = self.parent._header(rat[0], rat[1]).ratio
+        except ValueError as err:
+            raise ValueError(
+                "Isotope names {rat[0]} and/or {rat[1]} are invalid."
+            ) from err
+
+        if iso_rat is None:
+            raise ValueError(
+                f"Isotope ratio {rat[0]}/{rat[1]} not available in the database."
+            )
+
+        # drop rows with NaN values for the given isotope ratio
+        self.parent.db.dropna(subset=[iso_rat[0]], inplace=True)
+
+        if exclude:
+            self.parent.db = self.parent.db[
+                ~self.parent.db[iso_rat[0]].apply(lambda x: eval(f"x {cmp} {value}"))
+            ]
+        else:
+            self.parent.db = self.parent.db[
+                self.parent.db[iso_rat[0]].apply(lambda x: eval(f"x {cmp} {value}"))
+            ]
 
     def reset(self) -> None:
         """Reset all the filters and re-instate the original database.
@@ -75,3 +136,24 @@ class Filters:
             self.parent.db = self.parent.db[~self.parent.db[column].isin(value)]
         else:
             self.parent.db = self.parent.db[self.parent.db[column].isin(value)]
+
+
+def _check_comparator(cmp: str) -> Union[str, None]:
+    """Check comparator for validity and correct if necessary and possible.
+
+    :param cmp: Comparator to check.
+
+    :return: Corrected comparator if possible, otherwise None.
+    """
+    if cmp in ("<", "<=", ">", ">=", "==", "!="):
+        return cmp
+    elif cmp == "=":
+        return "=="
+    elif cmp == "<>":
+        return "!="
+    elif cmp == "=>":
+        return ">="
+    elif cmp == "=<":
+        return "<="
+    else:
+        return None

@@ -59,8 +59,6 @@ class PresolarGrains:
         self.db = pd.concat(dfs)
         self._db = self.db.copy(deep=True)
 
-        self._header = pgdtools.sub_tools.headers.Headers(self)  # stay private
-
     def __repr__(self):
         """Return a string representation of the class."""
         return str(self.db)
@@ -137,6 +135,16 @@ class PresolarGrains:
         todo
         """
         return Techniques(self)
+
+    def _header(self, iso1: str, iso2: str) -> "pgdtools.sub_tools.headers.Headers":
+        """Access the headers class for a given isotope ratio.
+
+        :param iso1: Nominator isotope.
+        :param iso2: Denominator isotope.
+
+        :return: Headers class
+        """
+        return pgdtools.sub_tools.headers.Headers(self, iso1, iso2)
 
     # PROPERTIES #
 

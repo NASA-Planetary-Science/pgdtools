@@ -1,6 +1,6 @@
 """Sub tool to search the header for information."""
 
-from typing import Tuple, Union
+from typing import List, Tuple, Union
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl
@@ -9,10 +9,12 @@ import pgdtools.sub_tools.utilities as utl
 class Headers:
     """Class to search all header information for a isotope ratio."""
 
-    def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
+    def __init__(self, parent: "pgdtools.PresolarGrains", iso1: str, iso2: str) -> None:
         """Initialize the SearchHeader class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
+        :param iso1: Isotope 1 (nominator).
+        :param iso2: Isotope 2 (denominator).
 
         :raises TypeError: Parent class is not of type ``PresolarGrains``.
         """
@@ -20,16 +22,29 @@ class Headers:
             raise TypeError("Parent class must be of type PresolarGrains.")
 
         self.parent = parent
+        self.iso1 = utl.Isotope(iso1)
+        self.iso2 = utl.Isotope(iso2)
 
-    def ratio(self, iso1: str, iso2: str) -> Union[None, Tuple[str, bool]]:
+    @property
+    def correlation(self) -> Union[None, str]:
+        """Search the header for a given isotope correlation.
+
+        If the correlation is not found in the header, return `None`.
+
+        :return: Header information for the given isotope correlation.
+        """
+        search_str = f"rho[{self.iso1}-{self.iso2}]"
+        return search_str if search_str in self.parent.db.columns else None
+
+    @property
+    def ratio(self) -> Union[None, Tuple[str, bool]]:
         """Search the header for a given isotope ratio.
 
-        :param iso1: Isotope 1 to search for.
-        :param iso2: Isotope 2 to search for.
+        If the header is not found, None is returned.
 
         :return: Header information for the given isotope ratio: Name and bool if delta.
         """
-        iso_rat = self._iso_ratio(iso1, iso2)
+        iso_rat = self._iso_ratio
         hdrs = [hdr for hdr in self.parent.db.columns if iso_rat in hdr]
         hdr = None
         for hdr in hdrs:
@@ -42,14 +57,36 @@ class Headers:
             delta = True if hdr.lower().startswith("d") else False
             return hdr, delta
 
-    def _iso_ratio(self, iso1: str, iso2: str) -> str:
+    @property
+    def uncertainty(self) -> List[Union[str, None]]:
+        """Search the header for uncertainty of a given isotope ratio.
+
+        If the errors are not found, a tuple of three None values is returned.
+
+        :return: Header information for the given isotope ratio:
+            - Symmetric error (if available) or None.
+            - Asymmetric error (+) (if available) or None.
+            - Asymmetric error (-) (if available) or None.
+        """
+        iso_rat = self._iso_ratio
+        hdrs = [hdr for hdr in self.parent.db.columns if iso_rat in hdr]
+        return_hdr = [None, None, None]
+        for hdr in hdrs:
+            if "err[" in hdr:
+                return_hdr[0] = hdr
+            elif "err+[" in hdr:
+                return_hdr[1] = hdr
+            elif "err-[" in hdr:
+                return_hdr[2] = hdr
+        return return_hdr
+
+    @property
+    def _iso_ratio(self) -> str:
         """Stitch together two isotopes to a ratio string.
 
-        :param iso1: Isotope 1 to search for.
-        :param iso2: Isotope 2 to search for.
+        :param iso1: Isotope 1 (nominator).
+        :param iso2: Isotope 2 (denominator).
 
-        :return: Header information for the given isotope ratio.
+        :return: Correct formatting for finding given isotope ratio.
         """
-        iso1 = utl.Isotope(iso1)
-        iso2 = utl.Isotope(iso2)
-        return f"{iso1}/{iso2}"
+        return f"{self.iso1}/{self.iso2}"
