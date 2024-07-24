@@ -8,7 +8,7 @@ import pandas as pd
 
 import pgdtools.sub_tools.headers
 from pgdtools import db
-from pgdtools.sub_tools import Filters, References, Techniques
+from pgdtools.sub_tools import Filters, Info, References, Techniques
 
 
 class PresolarGrains:
@@ -75,8 +75,15 @@ class PresolarGrains:
     # SUB TOOL ACCESS #
 
     @property
-    def info(self):
-        raise NotImplementedError("Info class not implemented yet.")
+    def info(self) -> Info:
+        """Provide information for the currently filtered database.
+
+        :return: Information class.
+
+        Example:
+            todo
+        """
+        return Info(self)
 
     @property
     def filter(self):

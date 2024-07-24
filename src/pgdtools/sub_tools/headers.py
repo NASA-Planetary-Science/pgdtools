@@ -7,7 +7,7 @@ import pgdtools.sub_tools.utilities as utl
 
 
 class Headers:
-    """Class to search all header information for a isotope ratio."""
+    """Class to search all header information for an isotope ratio."""
 
     def __init__(self, parent: "pgdtools.PresolarGrains", iso1: str, iso2: str) -> None:
         """Initialize the SearchHeader class.
