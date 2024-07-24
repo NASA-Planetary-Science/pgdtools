@@ -37,12 +37,14 @@ class Headers:
         return search_str if search_str in self.parent.db.columns else None
 
     @property
-    def ratio(self) -> Union[None, Tuple[str, bool]]:
+    def ratio(self) -> Tuple[str, bool]:
         """Search the header for a given isotope ratio.
 
         If the header is not found, None is returned.
 
         :return: Header information for the given isotope ratio: Name and bool if delta.
+
+        :raise ValueError: Isotope ratio not found in header.
         """
         iso_rat = self._iso_ratio
         hdrs = [hdr for hdr in self.parent.db.columns if iso_rat in hdr]
@@ -52,7 +54,7 @@ class Headers:
                 break
 
         if hdr is None:
-            return None
+            raise ValueError(f"Isotope ratio {iso_rat} not found in header.")
         else:
             delta = True if hdr.lower().startswith("d") else False
             return hdr, delta
@@ -67,10 +69,13 @@ class Headers:
             - Symmetric error (if available) or None.
             - Asymmetric error (+) (if available) or None.
             - Asymmetric error (-) (if available) or None.
+
+        :raise ValueError: No uncertainties found.
         """
         iso_rat = self._iso_ratio
         hdrs = [hdr for hdr in self.parent.db.columns if iso_rat in hdr]
         return_hdr = [None, None, None]
+
         for hdr in hdrs:
             if "err[" in hdr:
                 return_hdr[0] = hdr
@@ -78,6 +83,12 @@ class Headers:
                 return_hdr[1] = hdr
             elif "err-[" in hdr:
                 return_hdr[2] = hdr
+
+        if all(v is None for v in return_hdr):
+            raise ValueError(
+                f"No uncertainties found in header for isotope ratio {iso_rat}."
+            )
+
         return return_hdr
 
     @property

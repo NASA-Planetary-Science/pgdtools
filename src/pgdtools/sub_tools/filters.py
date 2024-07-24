@@ -3,6 +3,7 @@
 from typing import List, Union, Tuple
 
 import pgdtools
+import pgdtools.sub_tools.utilities as utl
 
 
 class Filters:
@@ -105,30 +106,10 @@ class Filters:
             "<", "<=", ">", ">=", "==", "!=".
         :param value: Value to compare the isotope ratio against.
         :param exclude: Exclude the given isotope ratio value range from the data set.
-
-        :raises ValueError: Invalid comparator or
-            isotope ratio names are not valid, not of length 2, or the chosen
-            isotope ratio is not available in the database.
         """
         cmp = _check_comparator(cmp)
-
-        if not isinstance(rat, tuple):
-            rat = tuple(rat)
-
-        if len(rat) != 2:
-            raise ValueError("Isotope ratio names must be a tuple of length 2.")
-
-        try:
-            iso_rat = self.parent._header(rat[0], rat[1]).ratio
-        except ValueError as err:
-            raise ValueError(
-                "Isotope names {rat[0]} and/or {rat[1]} are invalid."
-            ) from err
-
-        if iso_rat is None:
-            raise ValueError(
-                f"Isotope ratio {rat[0]}/{rat[1]} not available in the database."
-            )
+        utl.check_iso_rat(rat)
+        iso_rat = self.parent._header(rat[0], rat[1]).ratio
 
         # drop rows with NaN values for the given isotope ratio
         self.parent.db.dropna(subset=[iso_rat[0]], inplace=True)
@@ -166,27 +147,8 @@ class Filters:
             isotope ratio is not available in the database.
         """
         cmp = _check_comparator(cmp)
-
-        if not isinstance(rat, tuple):
-            rat = tuple(rat)
-
-        if len(rat) != 2:
-            raise ValueError(
-                "Isotope names for ratio uncertainty must be a tuple of length 2."
-            )
-
-        try:
-            iso_unc = self.parent._header(rat[0], rat[1]).uncertainty
-        except ValueError as err:
-            raise ValueError(
-                "Isotope names for uncertainty {rat[0]} and/or {rat[1]} are invalid."
-            ) from err
-
-        if all(v is None for v in iso_unc):
-            raise ValueError(
-                f"Uncertainty for isotope ratio {rat[0]}/{rat[1]} "
-                f"not available in the database."
-            )
+        utl.check_iso_rat(rat)
+        iso_unc = self.parent._header(rat[0], rat[1]).uncertainty
 
         iso_unc = [v for v in iso_unc if v is not None]
 

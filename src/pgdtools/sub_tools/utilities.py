@@ -1,5 +1,7 @@
 """Utilities for all tool modules in pgdtools."""
 
+from typing import Iterable
+
 
 class Isotope:
     """Class to parse isotope strings and return the element and atomic number."""
@@ -54,6 +56,17 @@ class Isotope:
         """
         return self._ele
 
+    @property
+    def html(self) -> str:
+        """Return the element symbol in html format.
+
+        :return: Element symbol in html format.
+        """
+        if self.a != 0:
+            return f"<sup>{self.a}</sup>{self.ele}"
+        else:
+            self.ele
+
     def _parse_isotope(self) -> None:
         """Parse the isotope string and return the element and atomic number.
 
@@ -64,3 +77,15 @@ class Isotope:
             self._a = int("".join([i for i in self._iso_in if i.isdigit()]))
         except ValueError:
             self._a = 0
+
+
+def check_iso_rat(rat: Iterable[str]) -> None:
+    """Checks an isotope ratio tuple consisting of two strings for errors.
+
+    :param rat: Isotope ratio tuple consisting of two strings.
+    """
+    if len(rat) != 2:
+        raise ValueError("Isotope ratio names must be a tuple of length 2.")
+
+    for iso in rat:
+        Isotope(iso)  # raised errors will be passed through

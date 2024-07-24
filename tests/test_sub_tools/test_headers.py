@@ -24,8 +24,9 @@ def test_ratio(pgd, isos):
 
 
 def test_ratio_not_found(pgd):
-    """Return None if the header is not found."""
-    assert pgd._header("C532", "C789").ratio is None
+    """Raise ValueError if the header is not found."""
+    with pytest.raises(ValueError):
+        pgd._header("C532", "C789").ratio
 
 
 @pytest.mark.parametrize(

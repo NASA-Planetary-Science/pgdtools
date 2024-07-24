@@ -8,7 +8,7 @@ import pandas as pd
 
 import pgdtools.sub_tools.headers
 from pgdtools import db
-from pgdtools.sub_tools import Filters, Info, References, Techniques
+from pgdtools.sub_tools import Data, Filters, Format, Info, References, Techniques
 
 
 class PresolarGrains:
@@ -82,6 +82,17 @@ class PresolarGrains:
     # SUB TOOL ACCESS #
 
     @property
+    def data(self) -> Data:
+        """Get data from the currently filtered database.
+
+        :return: Data class.
+
+        Example:
+            todo
+        """
+        return Data(self)
+
+    @property
     def info(self) -> Info:
         """Provide information for the currently filtered database.
 
@@ -93,7 +104,7 @@ class PresolarGrains:
         return Info(self)
 
     @property
-    def filter(self):
+    def filter(self) -> Filters:
         """Filter the database for specific grains.
 
         Various filters are implements, the examples below show some of the
@@ -110,11 +121,16 @@ class PresolarGrains:
         """
         return Filters(self)
 
-    def get(self):
-        raise NotImplementedError("Get class not implemented yet.")
+    @property
+    def format(self) -> Format:
+        """Format class to create nicely formatted output.
+
+        :return: Format class.
+        """
+        return Format(self)
 
     @property
-    def reference(self):
+    def reference(self) -> References:
         """Return the reference class initialized with current database.
 
         Various routines are implemented, e.g., to return references for each
@@ -131,7 +147,7 @@ class PresolarGrains:
         return References(self)
 
     @property
-    def technique(self):
+    def technique(self) -> Techniques:
         """Return the technique class initialized with the current database
 
         Various routines are implemented, e.g., to return technques for each

@@ -124,7 +124,7 @@ def test_ratio(pgd_head):
     pd.testing.assert_frame_equal(arr1, arr2)
 
 
-@pytest.mark.parametrize("rat", [(2, 3, 4), "string", "st"])
+@pytest.mark.parametrize("rat", [(2, 3, 4), ("C12", "C13", "c14"), "string", "st"])
 def test_ratio_invalid_rat(pgd_head, rat):
     """Raise a value error if an invalid isotope ratio was presented."""
     with pytest.raises(ValueError):

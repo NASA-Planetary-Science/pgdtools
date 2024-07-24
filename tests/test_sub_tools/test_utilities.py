@@ -18,6 +18,7 @@ def test_iso_ele_a(iso):
 
     assert inst.ele == symb
     assert inst.a == aaa
+    assert inst.html == f"<sup>{aaa}</sup>{symb.capitalize()}"
 
     assert str(inst) == f"{aaa}{symb.capitalize()}"
 
