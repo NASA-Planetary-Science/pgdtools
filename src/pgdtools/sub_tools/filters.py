@@ -23,6 +23,39 @@ class Filters:
 
         self.parent = parent
 
+    def db(
+        self,
+        dbs: Union[
+            "pgdtools.PresolarGrains.DataBase", List["pgdtools.PresolarGrains.DataBase"]
+        ],
+        exclude: bool = False,
+    ) -> None:
+        """Filter out a specific database.
+
+        :param dbs: Database or databases to filter the data set on.
+        :param exclude: Exclude the given databases from the data set.
+
+        :raises TypeError: Database is not of type PresolarGrains.DataBase.
+        """
+        if not isinstance(dbs, List):
+            dbs = [dbs]
+
+        if not all(isinstance(db, pgdtools.PresolarGrains.DataBase) for db in dbs):
+            raise TypeError("Database must be of type PresolarGrains.DataBase.")
+
+        if exclude:
+            self.parent.db = self.parent.db[
+                ~self.parent.db.index.to_series().apply(
+                    lambda x: any(x.startswith(db.value) for db in dbs)
+                )
+            ]
+        else:
+            self.parent.db = self.parent.db[
+                self.parent.db.index.to_series().apply(
+                    lambda x: any(x.startswith(db.value) for db in dbs)
+                )
+            ]
+
     def pgd_id(self, ids: Union[str, List[str]], exclude: bool = False) -> None:
         """Filter the data set based on PGD IDs.
 
@@ -78,10 +111,6 @@ class Filters:
             isotope ratio is not available in the database.
         """
         cmp = _check_comparator(cmp)
-        if cmp is None:
-            raise ValueError(
-                "Invalid comparator. Please use one of: <, <=, >, >=, ==, !="
-            )
 
         if not isinstance(rat, tuple):
             rat = tuple(rat)
@@ -113,6 +142,76 @@ class Filters:
                 self.parent.db[iso_rat[0]].apply(lambda x: eval(f"x {cmp} {value}"))
             ]
 
+    def uncertainty(
+        self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
+    ) -> None:
+        """Filter the data set based on a given uncertainty of an isotope ratio.
+
+        Here, a given uncertainty is filtered based on a comparator and a value.
+        Some error checking is done on the comparator to ensure that it is valid.
+
+        Note: rows with NaN values for the given comparator will be dropped
+        from the dataset before filtering. This behavior is independent of the value
+        of `exclude`.
+
+        :param rat: Isotope ratio to filter the data set on. Tuple of two strings.
+            Each string represents an isotope. Example: ("29Si", "28Si").
+        :param cmp: Comparison operator to use. Available operators are:
+            "<", "<=", ">", ">=", "==", "!=".
+        :param value: Value to compare the isotope ratio against.
+        :param exclude: Exclude the given isotope ratio value range from the data set.
+
+        :raises ValueError: Invalid comparator or
+            isotope ratio names are not valid, not of length 2, or the chosen
+            isotope ratio is not available in the database.
+        """
+        cmp = _check_comparator(cmp)
+
+        if not isinstance(rat, tuple):
+            rat = tuple(rat)
+
+        if len(rat) != 2:
+            raise ValueError(
+                "Isotope names for ratio uncertainty must be a tuple of length 2."
+            )
+
+        try:
+            iso_unc = self.parent._header(rat[0], rat[1]).uncertainty
+        except ValueError as err:
+            raise ValueError(
+                "Isotope names for uncertainty {rat[0]} and/or {rat[1]} are invalid."
+            ) from err
+
+        if all(v is None for v in iso_unc):
+            raise ValueError(
+                f"Uncertainty for isotope ratio {rat[0]}/{rat[1]} "
+                f"not available in the database."
+            )
+
+        iso_unc = [v for v in iso_unc if v is not None]
+
+        # drop rows with NaN values for the given isotope ratio
+        self.parent.db.dropna(subset=iso_unc, how="all", inplace=True)
+
+        number_of_values = (~self.parent.db[iso_unc].isna()).sum(axis=1)
+
+        if exclude:
+            self.parent.db = self.parent.db[
+                ~(
+                    self.parent.db[iso_unc]
+                    .apply(lambda x: eval(f"x {cmp} {value}"))
+                    .sum(axis=1)
+                    > 0
+                )
+            ]
+        else:
+            self.parent.db = self.parent.db[
+                self.parent.db[iso_unc]
+                .apply(lambda x: eval(f"x {cmp} {value}"))
+                .sum(axis=1)
+                == number_of_values
+            ]
+
     def reset(self) -> None:
         """Reset all the filters and re-instate the original database.
 
@@ -141,9 +240,13 @@ class Filters:
 def _check_comparator(cmp: str) -> Union[str, None]:
     """Check comparator for validity and correct if necessary and possible.
 
+    If the comparator is not valid, a ValueError is raised.
+
     :param cmp: Comparator to check.
 
-    :return: Corrected comparator if possible, otherwise None.
+    :return: Corrected comparator if possible.
+
+    :raises ValueError: Invalid comparator.
     """
     if cmp in ("<", "<=", ">", ">=", "==", "!="):
         return cmp
@@ -156,4 +259,4 @@ def _check_comparator(cmp: str) -> Union[str, None]:
     elif cmp == "=<":
         return "<="
     else:
-        return None
+        raise ValueError("Invalid comparator. Please use one of: <, <=, >, >=, ==, !=")
