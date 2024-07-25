@@ -1,5 +1,6 @@
 """Functional tests for the data sub tool."""
 
+import numpy as np
 import pytest
 
 import pgdtools
@@ -49,6 +50,64 @@ def test_ratio(pgd, grain):
     assert data[0] == exp_values[0]
     assert unc_pos[0] == exp_values[1]
     assert unc_neg[0] == exp_values[2]
+
+
+@pytest.mark.parametrize(
+    "grains",
+    [
+        [
+            ["SiC-2018-NGU-001467", "SiC-2018-NGU-001468", "SiC-2018-NGU-001469"],
+            [("30Si", "28Si"), ("29Si", "28Si")],
+            [
+                np.array([2.878785, -14.65148, 9.194016]),
+                np.array([17.3810739784015, 27.2944250477073, 25.2720715909656]),
+                np.array([1.614332, 53.60126, -49.70938]),
+                np.array([36.1074016544854, 16.603475361908, 35.379145053113]),
+                np.array([0.0210329907738579, 0.0291273417717291, 0.0147633799686172]),
+            ],
+        ],
+        [
+            ["SiC-2005-NIT-000596", "SiC-2005-NIT-000597", "SiC-2005-NIT-000598"],
+            [("12C", "13C"), ("14N", "15N")],
+            [
+                np.array([48.20253, 49.68008]),
+                np.array([[1.128452, 1.07798], [0.790802, 0.766407]]),
+                np.array([737.5635, 521.47]),
+                np.array([[24.75354, 23.19659], [59.05438, 48.14899]]),
+                None,
+            ],
+        ],
+        [
+            ["SiC-2005-NIT-000634", "Gra-2014-AMA-000882"],
+            [("12C", "13C"), ("29Si", "28Si")],
+            [
+                np.array([67.38965, 115.233944372342]),
+                np.array(
+                    [[3.057106, 2.802803], [0.655507064626931, 0.655507064626931]]
+                ),
+                np.array([20.58721, -6.61727143485091]),
+                np.array([23.4202779519643, 17.0911990170259]),
+                None,
+            ],
+        ],
+    ],
+)
+def test_ratio_xy(pgd, grains):
+    """Search for two isotope ratios and their uncertianties, simplifying errors."""
+    grain_list, ratios, exp_values = grains
+    pgd.filter.pgd_id(grain_list)
+    xdat_exp, xunc_exp, ydat_exp, yunc_exp, corr_exp = exp_values
+
+    xdat, xunc, ydat, yunc, corr = pgd.data.ratio_xy(*ratios, simplify_unc=True)
+
+    np.testing.assert_equal(xdat.to_numpy(), xdat_exp)
+    np.testing.assert_equal(ydat.to_numpy(), ydat_exp)
+    np.testing.assert_equal(xunc.to_numpy(), xunc_exp)
+    np.testing.assert_equal(yunc.to_numpy(), yunc_exp)
+    if corr_exp is None:
+        assert corr is None
+    else:
+        np.testing.assert_equal(corr.to_numpy(), corr_exp)
 
 
 def test_size(pgd):
