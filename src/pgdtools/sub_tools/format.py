@@ -10,7 +10,8 @@ import pgdtools.sub_tools.utilities as utl
 class Format:
     """Formatting class.
 
-    Default formatting for strings are in html.
+    Default formatting for strings are in LaTeX notation. These can directly be used,
+    e.g., with matplotlib.
     """
 
     def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
@@ -40,9 +41,9 @@ class Format:
         iso2 = utl.Isotope(rat[1])
 
         if delta:
-            out_str = f"δ({iso1.html}/{iso2.html})"
+            out_str = f"$\\delta({iso1.latex}/{iso2.latex})\\quad(‰)$"
         else:
-            out_str = f"{iso1.html}/{iso2.html}"
+            out_str = f"${iso1.latex}/{iso2.latex}$"
         return out_str
 
     def _get_and_check_hdr_ratio(self, rat: Tuple[str, str]):

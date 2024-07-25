@@ -14,5 +14,3 @@ __all__ = [
     "pgd",
     "maintainer",
 ]
-
-print("Really early dev version... user beware!")

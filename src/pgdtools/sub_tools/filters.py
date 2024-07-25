@@ -123,6 +123,25 @@ class Filters:
                 self.parent.db[iso_rat[0]].apply(lambda x: eval(f"x {cmp} {value}"))
             ]
 
+    def reference(self, refs: Union[str, List[str]], exclude=False) -> None:
+        """Filter the data set based on (a) given reference(s).
+
+        Note that the references must be exactly what is written in the database.
+        If you want to search for references, check out the routine:
+        `pgd.reference.search("search string")`.
+
+        :param refs: Reference or references to filter the data set on.
+        :param exclude: Exclude the given references from the data set.
+        """
+        self._filter_column("Reference", refs, exclude=exclude)
+
+    def reset(self) -> None:
+        """Reset all the filters and re-instate the original database.
+
+        Alternatively, this can also be done directly from the parent class by using
+        the `reset` method.
+        """
+
     def uncertainty(
         self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
     ) -> None:
@@ -174,12 +193,6 @@ class Filters:
                 == number_of_values
             ]
 
-    def reset(self) -> None:
-        """Reset all the filters and re-instate the original database.
-
-        Alternatively, this can also be done directly from the parent class by using
-        the `reset` method.
-        """
         self.parent.reset()
 
     def _filter_column(

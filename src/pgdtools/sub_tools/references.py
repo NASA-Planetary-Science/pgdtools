@@ -147,6 +147,49 @@ class References:
         """Create the reference key as a set."""
         return set(self._create_ref_keys_list)
 
+    def search(self, search_str: str) -> List[str]:
+        """Search all references information (except for notes) for keywords.
+
+        If you want to provide multiple keywords to search for, please provide
+        them separated by a comma. For example: `"Name Firstname"` would search
+        all references for "Name Firstname", while `"Name, Firstname"` would search
+        for "Name" and "Firstname" separately. For example, a reference with information
+        "Firstname Name" would in this case only match with the latter search.
+
+        All searches are case-insensitive.
+
+        :param search_str: Search string.
+
+        :return: List of strings with all short references that match the search terms.
+        """
+        search_terms = search_str.split(",")
+        search_terms = [x.strip().lower() for x in search_terms]
+
+        fields_to_add = ["Reference - short", "Reference - full", "DOI"]
+
+        ref_search_dict = {}
+        for ref_key, ref_item in self.dict.items():
+            key = ref_item["Reference - short"]
+            value = ref_key  # the PGD ID for this reference
+            for add_key in fields_to_add:
+                value += f" {ref_item[add_key]}"
+            ref_search_dict[key] = value.lower()  # make it case-insensitive
+
+        ret_list = []
+        for key, item in ref_search_dict.items():
+            if all([x in item for x in search_terms]):
+                ret_list.append(key)
+
+        ret_list.sort()
+
+        if len(ret_list) == 0:
+            print("No references found.")
+        else:
+            print("References found:")
+            for entry in ret_list:
+                print(f"- {entry}")
+        return ret_list
+
     def _get_reference_json(self):
         """Load and store the reference JSON file."""
         with open(db.LOCAL_REF_JSON, "r") as file:

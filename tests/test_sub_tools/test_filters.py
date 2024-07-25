@@ -143,6 +143,20 @@ def test_ratio_isos_na(pgd_head):
         pgd_head.filter.ratio(("C532", "C789"), "<", 1.0)
 
 
+def test_reference(pgd_head):
+    """Filter the data based on references."""
+    ref = "Amari (1992) unpublished"  # in head data
+    pgd_head.filter.reference(ref)
+    assert len(pgd_head) > 0
+
+
+def test_reference_none_left(pgd_head):
+    """Filter references until none are left."""
+    ref = "This will never be a correct reference."
+    pgd_head.filter.reference(ref)
+    assert len(pgd_head) == 0
+
+
 def test_reset(pgd_head):
     """Reset the pgd_head database."""
     initial_length = len(pgd_head)

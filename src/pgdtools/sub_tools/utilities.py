@@ -65,7 +65,18 @@ class Isotope:
         if self.a != 0:
             return f"<sup>{self.a}</sup>{self.ele}"
         else:
-            self.ele
+            return self.ele
+
+    @property
+    def latex(self) -> str:
+        """Return the element symbol in LaTeX format.
+
+        :return: Element symbol in LaTeX format.
+        """
+        if self.a != 0:
+            return f"^{{{self.a}}}\\mathrm{{{self.ele}}}"
+        else:
+            return self.ele
 
     def _parse_isotope(self) -> None:
         """Parse the isotope string and return the element and atomic number.

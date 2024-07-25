@@ -68,6 +68,28 @@ def test_doi(pgd_head):
     assert ref.doi == doi_direct
 
 
+@pytest.mark.parametrize(
+    "ref",
+    [
+        [
+            "hECK",
+            [
+                "Heck et al. (2009) ApJ 701:1415",
+                "Meier et al. (2012) GCA 76:147",
+                "Heck et al. (2018) MAPS 53:2327",
+            ],
+        ]
+    ],
+)
+def test_reference_graphite_db(pgd, ref):
+    """Search for references."""
+    search_str, ref_exp = ref
+    ref_exp.sort()
+
+    pgd.filter.db(pgd.DataBase.Graphite)
+    assert pgd.reference.search(search_str) == ref_exp
+
+
 def test_table_full(pgd_head):
     """Get reference for a grain ID as a pandas Series"""
     assert pgd_head.reference.table_full.shape == (100, 5)

@@ -42,6 +42,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - mkdocs-jupyter
 
 
 nav:
@@ -49,6 +50,8 @@ nav:
   - User guide:
       - Installation: users/install.md
       - Database management: users/db.md
+      - Examples:
+          - SiC M GCE plot: examples/sic_m_gce.ipynb
   - Maintainer guide:
       - Overview: maintainer/overview.md
       - Add new database: maintainer/db_addition.md

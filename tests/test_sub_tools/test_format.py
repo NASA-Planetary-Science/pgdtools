@@ -15,8 +15,8 @@ def test_info_type_error():
 @pytest.mark.parametrize(
     "rat",
     [
-        [("C12", "C13"), "<sup>12</sup>C/<sup>13</sup>C"],
-        [("Si29", "Si28"), "δ(<sup>29</sup>Si/<sup>28</sup>Si)"],
+        [("C12", "C13"), r"$^{12}\mathrm{C}/^{13}\mathrm{C}$"],
+        [("Si29", "Si28"), r"$\delta(^{29}\mathrm{Si}/^{28}\mathrm{Si})\quad(‰)$"],
     ],
 )
 def test_ratio(pgd_head, rat):

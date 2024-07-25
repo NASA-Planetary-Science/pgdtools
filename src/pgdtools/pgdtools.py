@@ -14,19 +14,19 @@ from pgdtools.sub_tools import Data, Filters, Format, Info, References, Techniqu
 class PresolarGrains:
     """Presolar grain database class.
 
-    This class is the main class to work with the presolar grain database.
+        This class is the main class to work with the presolar grain database.
 
-    Attention: Only SiC grains are currently supported!
+        Attention: Only SiC grains are currently supported!
+    .
+        Example:
 
-    Example:
-
-        >>> from pgdtools import pgd
-        >>> pgd.filter.db(pgd.DataBase.SiC)
-        >>> pgd.filter.pgd_type("M")
-        >>> assert pgd.info.pgd_types == {"M"}
-        >>> pgd.reset()
-        >>> pgd.filter.ratio(("29Si", "28Si"), "<", -1000)
-        >>> assert pgd.info.number_of_grains == 0
+            >>> from pgdtools import pgd
+            >>> pgd.filter.db(pgd.DataBase.SiC)
+            >>> pgd.filter.pgd_type("M")
+            >>> assert pgd.info.pgd_types == {"M"}
+            >>> pgd.reset()
+            >>> pgd.filter.ratio(("29Si", "28Si"), "<", -1000)
+            >>> assert pgd.info.number_of_grains == 0
     """
 
     class DataBase(Enum):
