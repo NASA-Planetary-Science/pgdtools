@@ -36,6 +36,8 @@ bibtexparser==1.4.1
     # via pgdtools
 bleach==6.1.0
     # via nbconvert
+ceresfit==0.3.1
+    # via pgdtools
 certifi==2024.2.2
     # via httpcore
     # via httpx
@@ -202,10 +204,12 @@ nbformat==5.10.4
 nest-asyncio==1.6.0
     # via ipykernel
 notebook==7.2.1
+    # via pgdtools
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
 numpy==1.26.4
+    # via ceresfit
     # via contourpy
     # via iniabu
     # via matplotlib
@@ -318,6 +322,7 @@ rpds-py==0.19.1
     # via jsonschema
     # via referencing
 scipy==1.13.1
+    # via ceresfit
     # via pgdtools
 send2trash==1.8.3
     # via jupyter-server

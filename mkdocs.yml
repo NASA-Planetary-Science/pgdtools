@@ -52,6 +52,7 @@ nav:
       - Database management: users/db.md
       - Examples:
           - SiC M GCE plot: examples/sic_m_gce.ipynb
+          - Mo isotopes: examples/sic_mo_stephan.ipynb
   - Maintainer guide:
       - Overview: maintainer/overview.md
       - Add new database: maintainer/db_addition.md

@@ -31,6 +31,7 @@ docs = [
     "mkdocs-material>=9.5.25",
     "mkdocs-jupyter>=0.24.8",
     "notebook>=7.2.1",
+    "ceresfit>=0.3.1",
 ]
 
 [build-system]
