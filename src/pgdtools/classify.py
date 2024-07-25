@@ -60,10 +60,10 @@ def classify_grain(
     # replace no errors (None or nan) with ratio / 10
 
     # get elemental probabilities
-    prob_al = aluminium_probabilities(al26_al27)
-    prob_c = carbon_probabilities(c12_c13)
-    prob_n = nitrogen_probabilities(n14_n15)
-    prob_si = silicon_probabilities(d29si, d30si, rho_si)
+    prob_al = _aluminium_probabilities(al26_al27)
+    prob_c = _carbon_probabilities(c12_c13)
+    prob_n = _nitrogen_probabilities(n14_n15)
+    prob_si = _silicon_probabilities(d29si, d30si, rho_si)
 
     for it, gtype in enumerate(types):
         probabilities[it] = (
@@ -81,7 +81,7 @@ def classify_grain(
         gtype = types[index_max]
 
     if gtype in ["X", "AB", "C"]:
-        subtype = find_subtype(gtype, c12_c13, n14_n15, d29si, d30si)
+        subtype = _find_subtype(gtype, c12_c13, n14_n15, d29si, d30si)
     else:
         subtype = None
 
@@ -91,7 +91,7 @@ def classify_grain(
         return dict(zip(types, probabilities))
 
 
-def aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]:
+def _aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]:
     """Calculate probabilities for aluminium isotopic data.
 
     :param msr: Aluminium 26/27 isotopic ratio and uncertainty.
@@ -101,13 +101,13 @@ def aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]
     prob_dict = {"M": 1, "AB": 1, "Y": 1, "Z": 1, "X": 1, "N": 1, "C": 1, "D": 1}
 
     if msr is not None:
-        prob_dict["M"] = probability_value(msr, 0.02)
+        prob_dict["M"] = _probability_value(msr, 0.02)
 
         prob_dict["Y"] = prob_dict["M"]
 
         prob_dict["Z"] = prob_dict["M"]
 
-        prob_dict["X"] = 0.05 + 0.95 * (1 - probability_value(msr, 0.01))
+        prob_dict["X"] = 0.05 + 0.95 * (1 - _probability_value(msr, 0.01))
 
         prob_dict["C"] = prob_dict["X"]
 
@@ -120,7 +120,7 @@ def aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]
     return prob_dict
 
 
-def carbon_probabilities(
+def _carbon_probabilities(
     msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
 ) -> Dict[str, float]:
     """Calculate probabilities for carbon isotopic data.
@@ -132,18 +132,18 @@ def carbon_probabilities(
     prob_dict = {"M": 1, "AB": 0, "Y": 0, "Z": 1, "X": 1, "N": 0, "C": 1, "D": 1}
 
     if msr is not None:
-        prob_dict["M"] = probability_value(msr, 100) - probability_value(msr, 13.5)
+        prob_dict["M"] = _probability_value(msr, 100) - _probability_value(msr, 13.5)
         prob_dict["Z"] = prob_dict["M"]
-        prob_dict["Y"] = 1 - probability_value(msr, 100)
-        prob_dict["AB"] = 0.8 * probability_value(msr, 13.5) + 0.2 * probability_value(
-            msr, 25
-        )
+        prob_dict["Y"] = 1 - _probability_value(msr, 100)
+        prob_dict["AB"] = 0.8 * _probability_value(
+            msr, 13.5
+        ) + 0.2 * _probability_value(msr, 25)
         prob_dict["N"] = prob_dict["AB"]
 
     return prob_dict
 
 
-def find_subtype(
+def _find_subtype(
     type: str,
     c12_c13: Tuple[float, Union[float, Tuple[float, float]]],
     n14_n15: Tuple[float, Union[float, Tuple[float, float]]],
@@ -187,17 +187,17 @@ def find_subtype(
                 sigma_n_plus = n14_n15[1]
                 sigma_n_minus = n14_n15[1]
             if (
-                probability_value(c12_c13, 4.5) * probability_value(n14_n15, 441)
-                > (1 - probability_value(c12_c13, 4.5))
-                * (1 - probability_value(n14_n15, 272))
+                _probability_value(c12_c13, 4.5) * _probability_value(n14_n15, 441)
+                > (1 - _probability_value(c12_c13, 4.5))
+                * (1 - _probability_value(n14_n15, 272))
                 and c12_c13[0] - sigma_c_minus <= 4.5
                 and n14_n15[0] - sigma_n_minus <= 441
             ):
                 return "AB1"
             elif (
-                probability_value(c12_c13, 4.5) * probability_value(n14_n15, 441)
-                <= (1 - probability_value(c12_c13, 4.5))
-                * (1 - probability_value(n14_n15, 272))
+                _probability_value(c12_c13, 4.5) * _probability_value(n14_n15, 441)
+                <= (1 - _probability_value(c12_c13, 4.5))
+                * (1 - _probability_value(n14_n15, 272))
                 and c12_c13[0] + sigma_c_plus >= 4.5
                 and n14_n15[0] + sigma_n_plus >= 272
             ):
@@ -213,7 +213,7 @@ def find_subtype(
             return "C2"
 
 
-def nitrogen_probabilities(
+def _nitrogen_probabilities(
     msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
 ) -> Dict[str, float]:
     """Calculate probabilities for nitrogen isotopic data.
@@ -225,10 +225,10 @@ def nitrogen_probabilities(
     prob_dict = {"M": 1, "AB": 1, "Y": 1, "Z": 1, "X": 1, "N": 1, "C": 1, "D": 1}
 
     if msr is not None:
-        prob_dict["M"] = 1 - probability_value(msr, 200)
+        prob_dict["M"] = 1 - _probability_value(msr, 200)
         prob_dict["Y"] = prob_dict["M"]
         prob_dict["Z"] = prob_dict["M"]
-        prob_dict["X"] = probability_value(msr, 272)
+        prob_dict["X"] = _probability_value(msr, 272)
         prob_dict["C"] = prob_dict["X"]
         prob_dict["D"] = prob_dict["X"]
         prob_dict["N"] = prob_dict["X"]
@@ -236,7 +236,7 @@ def nitrogen_probabilities(
     return prob_dict
 
 
-def probability_chi(chi: float) -> float:
+def _probability_chi(chi: float) -> float:
     """Calculate the probability for a given chi value.
 
     Integrates the cumulative distribution function from minus infinity to chi for
@@ -249,7 +249,7 @@ def probability_chi(chi: float) -> float:
     return 0.5 * (1 + erf(chi / np.sqrt(2)))
 
 
-def probability_slope(
+def _probability_slope(
     xval: Tuple[float, Union[float, Tuple[float, float]]],
     yval: Tuple[float, Union[float, Tuple[float, float]]],
     comp: Tuple[float, Union[float, Tuple[float, float]]],
@@ -271,10 +271,10 @@ def probability_slope(
     chi = -(y - b * x - a) / np.sqrt(
         yunc**2 + b**2 * xunc**2 - 2 * b * xunc * yunc * rhoxy
     )
-    return probability_chi(chi)
+    return _probability_chi(chi)
 
 
-def silicon_probabilities(
+def _silicon_probabilities(
     msr_d29si: Tuple[float, Union[float, Tuple[float, float]]] = None,
     msr_d30si: Tuple[float, Union[float, Tuple[float, float]]] = None,
     rho: float = 0,
@@ -300,73 +300,73 @@ def silicon_probabilities(
 
     if msr_d29si is not None and msr_d30si is not None:  # values for both
         prob_dict["M"] = (
-            probability_slope(msr_d30si, msr_d29si, pm1, rho)
-            - probability_slope(msr_d30si, msr_d29si, pm2, rho)
+            _probability_slope(msr_d30si, msr_d29si, pm1, rho)
+            - _probability_slope(msr_d30si, msr_d29si, pm2, rho)
         ) * (
-            probability_slope(msr_d30si, msr_d29si, pm3, rho)
-            - probability_slope(msr_d30si, msr_d29si, pm4, rho)
+            _probability_slope(msr_d30si, msr_d29si, pm3, rho)
+            - _probability_slope(msr_d30si, msr_d29si, pm4, rho)
         )
 
         prob_dict["AB"] = prob_dict["M"]
 
         prob_dict["X"] = (
-            probability_value(msr_d29si, 0)
-            * probability_value(msr_d30si, 0)
-            * (0.2 + 0.8 * probability_slope(msr_d30si, msr_d29si, pm4, rho))
+            _probability_value(msr_d29si, 0)
+            * _probability_value(msr_d30si, 0)
+            * (0.2 + 0.8 * _probability_slope(msr_d30si, msr_d29si, pm4, rho))
         )
 
         prob_dict["Y"] = (
-            probability_slope(msr_d30si, msr_d29si, pm1, rho)
+            _probability_slope(msr_d30si, msr_d29si, pm1, rho)
             * (
                 1
-                - (1 - probability_slope(msr_d30si, msr_d29si, pm3, rho))
-                * (1 - probability_value(msr_d29si, 200))
+                - (1 - _probability_slope(msr_d30si, msr_d29si, pm3, rho))
+                * (1 - _probability_value(msr_d29si, 200))
             )
             * (
                 1
-                - probability_slope(msr_d30si, msr_d29si, pm4, rho)
-                * probability_value(msr_d30si, 0)
+                - _probability_slope(msr_d30si, msr_d29si, pm4, rho)
+                * _probability_value(msr_d30si, 0)
             )
-            * (1 - probability_value(msr_d29si, -200))
+            * (1 - _probability_value(msr_d29si, -200))
         )
 
         prob_dict["Z"] = (
-            probability_slope(msr_d30si, msr_d29si, pm2, rho)
-            * (probability_value(msr_d29si, 200) - probability_value(msr_d29si, -200))
-            * (1 - probability_value(msr_d30si, 0))
+            _probability_slope(msr_d30si, msr_d29si, pm2, rho)
+            * (_probability_value(msr_d29si, 200) - _probability_value(msr_d29si, -200))
+            * (1 - _probability_value(msr_d30si, 0))
         )
 
         prob_dict["C"] = (
-            (1 - probability_value(msr_d29si, 200))
-            * (1 - probability_value(msr_d30si, 200))
-            * (1 - probability_slope(msr_d30si, msr_d29si, pm3, rho))
+            (1 - _probability_value(msr_d29si, 200))
+            * (1 - _probability_value(msr_d30si, 200))
+            * (1 - _probability_slope(msr_d30si, msr_d29si, pm3, rho))
         )
 
         prob_dict["D"] = (
-            (1 - probability_value(msr_d29si, 0))
-            * probability_value(msr_d30si, 200)
+            (1 - _probability_value(msr_d29si, 0))
+            * _probability_value(msr_d30si, 200)
             * (
                 1
-                - 0.8 * probability_slope(msr_d30si, msr_d29si, pm1, rho)
-                - 0.2 * probability_slope(msr_d30si, msr_d29si, pm0, rho)
+                - 0.8 * _probability_slope(msr_d30si, msr_d29si, pm1, rho)
+                - 0.2 * _probability_slope(msr_d30si, msr_d29si, pm0, rho)
             )
         )
 
         prob_dict["N"] = (
-            probability_slope(msr_d30si, msr_d29si, pm2, rho)
-            * probability_value(msr_d29si, 200)
-            * (1 - probability_value(msr_d30si, 0))
+            _probability_slope(msr_d30si, msr_d29si, pm2, rho)
+            * _probability_value(msr_d29si, 200)
+            * (1 - _probability_value(msr_d30si, 0))
         )
     elif msr_d29si is not None:  # only d29Si available
-        prob_dict["M"] = probability_value(msr_d29si, 200) - probability_value(
+        prob_dict["M"] = _probability_value(msr_d29si, 200) - _probability_value(
             msr_d29si, -120
         )
 
         prob_dict["AB"] = prob_dict["M"]
 
-        prob_dict["X"] = probability_value(msr_d29si, -120)
+        prob_dict["X"] = _probability_value(msr_d29si, -120)
 
-        prob_dict["Y"] = probability_value(msr_d29si, 200) - probability_value(
+        prob_dict["Y"] = _probability_value(msr_d29si, 200) - _probability_value(
             msr_d29si, -200
         )
 
@@ -379,15 +379,15 @@ def silicon_probabilities(
         prob_dict["N"] = prob_dict["Z"]
 
     elif msr_d30si is not None:  # only d30Si available
-        prob_dict["M"] = probability_value(msr_d30si, 200) - probability_value(
+        prob_dict["M"] = _probability_value(msr_d30si, 200) - _probability_value(
             msr_d30si, -100
         )
 
         prob_dict["AB"] = prob_dict["M"]
 
-        prob_dict["X"] = probability_value(msr_d30si, -100)
+        prob_dict["X"] = _probability_value(msr_d30si, -100)
 
-        prob_dict["Y"] = 1 - probability_value(msr_d30si, -100)
+        prob_dict["Y"] = 1 - _probability_value(msr_d30si, -100)
 
         prob_dict["Z"] = 0
 
@@ -400,7 +400,7 @@ def silicon_probabilities(
     return prob_dict
 
 
-def probability_value(
+def _probability_value(
     msr: Tuple[float, Union[float, Tuple[float, float]]], comp: float
 ) -> float:
     """Calculate the probability  `p(msr < comp`).
@@ -422,7 +422,7 @@ def probability_value(
     except (TypeError, IndexError):
         sigma = sigmas
     chi = (comp - mu) / sigma
-    return probability_chi(chi)
+    return _probability_chi(chi)
 
 
 def _replace_errors(

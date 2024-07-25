@@ -76,7 +76,7 @@ class Data:
 
         Note: This routine does not drop any values, even if no size information is
         present.
-        Note that `Size a (µm)` is always the longer or average reported dimesnions.
+        Note that `Size a (µm)` is always the longer or average reported dimensions.
         `Size b (µm)` is either the shorter dimension or - if not available in the
         database, set equal here to `Size a`.
 

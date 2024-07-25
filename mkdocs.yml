@@ -43,6 +43,13 @@ markdown_extensions:
 plugins:
   - search
   - mkdocs-jupyter
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: sphinx
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
 
 
 nav:
@@ -50,9 +57,17 @@ nav:
   - User guide:
       - Installation: users/install.md
       - Database management: users/db.md
+      - Classify: users/classify.md
+      - Presolar Grains: users/pgd.md
       - Examples:
           - SiC M GCE plot: examples/sic_m_gce.ipynb
           - Mo isotopes: examples/sic_mo_stephan.ipynb
   - Maintainer guide:
       - Overview: maintainer/overview.md
       - Add new database: maintainer/db_addition.md
+  - API:
+      - Classify: api/classify.md
+      - PGDTools: api/pgdtools.md
+      - PGD subtools: api/subtools.md
+      - Database: api/db.md
+      - Maintainer: api/maintainer.md

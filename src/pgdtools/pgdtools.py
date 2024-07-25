@@ -20,13 +20,13 @@ class PresolarGrains:
     .
         Example:
 
-            >>> from pgdtools import pgd
-            >>> pgd.filter.db(pgd.DataBase.SiC)
-            >>> pgd.filter.pgd_type("M")
-            >>> assert pgd.info.pgd_types == {"M"}
-            >>> pgd.reset()
-            >>> pgd.filter.ratio(("29Si", "28Si"), "<", -1000)
-            >>> assert pgd.info.number_of_grains == 0
+        >>> from pgdtools import pgd
+        >>> pgd.filter.db(pgd.DataBase.SiC)
+        >>> pgd.filter.pgd_type("M")
+        >>> assert pgd.info.pgd_types == {"M"}
+        >>> pgd.reset()
+        >>> pgd.filter.ratio(("29Si", "28Si"), "<", -1000)
+        >>> assert pgd.info.number_of_grains == 0
     """
 
     class DataBase(Enum):
