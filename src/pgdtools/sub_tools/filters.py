@@ -141,6 +141,7 @@ class Filters:
         Alternatively, this can also be done directly from the parent class by using
         the `reset` method.
         """
+        self.parent.reset()
 
     def uncertainty(
         self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
@@ -192,8 +193,6 @@ class Filters:
                 .sum(axis=1)
                 == number_of_values
             ]
-
-        self.parent.reset()
 
     def _filter_column(
         self, column: str, value: Union[str, List[str]], exclude: bool
