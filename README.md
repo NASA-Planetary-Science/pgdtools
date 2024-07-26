@@ -8,109 +8,20 @@
 
 # Presolar grain database tools (pgdTools)
 
-Currently under development.
 
-This folder contains a very rough draft /
-development version /
-idea gathering file(s)
-for `pgdtools`.
-Use at your own risk!
+This package provides a set of tools to
+easily access and interface with the presolar grain database.
+This package allows users to manage which database(s) they want to use
+and provides a set of tools to filter and access the data itself.
+Furthermore, maintainer tools are provided as well
+in order for database maintainers to keep the package up to date.
 
-The idea behind this folder is to have a place
-to share (really) early versions of `pgdtools`
-with colleagues for testing
-and feedback.
-Thinks might change at any time!
-There's no guarantee for consistency,
-or anything, you've been warned.
-That being said,
-there should also be example files.
-Have a look at the latest dates, etc.,
-in order to find one that might work.
+For installation, usage guidance, and more information,
+see the [documentation](https://pgdtools.readthedocs.io).
 
-Feedback extremely welcome!
-
-## Installation
-
-### Jupyterlab server (e.g., WENDI, ...)
-
-In the first cell of your jupyter notebook,
-run the following code:
-
-```
-%pip install git+https://github.com/galactic-forensics/pgdtools.git
-```
-
-This should pull the latest version
-of `pgdtools` from GitHub and install it.
-To test, follow steps below.
-
-### Local
-
-To use this module,
-clone this repository
-and enter it:
-```bash
-git clone https://github.com/galactic-forensics/pgdtools.git
-cd pgdtools
-```
-
-It is recommended that you use
-a virtual python environment for the following steps.
-Also: these steps have been tested with python 3.9.
-
-First, install the python requirements,
-then the package itself.
-You can skip the jupyter and ipython line if you
-do not want to use these tools.
-
-```
-pip install .
-```
-
-### Give it a spin
-
-Now you should be ready to use `pgdtools`
-from your session. Try the following:
-
-```python
-import pgdtools
-
-pg = pgdtools.PresolarGrains()
-```
-
-If this does not throw an error,
-you should be fine and the
-presolar grain database was found.
-
-## Examples
-
-The `examples` folder contains some examples for you to read through.
-There are some pure python exampmles,
-as well as an ipython notebook for your consideration.
-Please let me know if things are unclear, etc.
-
-## Presolar grain database
-
-The presolar grain database
-can be found at
-https://presolar.physics.wustl.edu/presolar-grain-database/.
-Note that only the SiC database
-is currently thought of being error free.
-The current version of `pgdtools`
-includes the 2021-01-10 version
-of the presolar SiC grain database,
-which is the current version as of this writing (Nov 2021).
-
-## Development
-
-To make a development installation,
-type:
-
-```python
-pip install -e .[dev]
-```
-
-This will install all required packages.
-
-More to come on this...
+While we hope that most of functionality is stable,
+this package is still under development.
+Please report any issues you encounter and let us know what you think!
+Feel free either open a [new issue](https://github.com/NASA-Planetary-Science/pgdtools/issues) on GitHub,
+start a [new discussion](https://github.com/NASA-Planetary-Science/pgdtools/discussions),
+or reach out to us directly.
