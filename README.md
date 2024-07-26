@@ -1,9 +1,10 @@
 [![PyPi](https://img.shields.io/pypi/v/pgdtools?color=informational)](https://pypi.org/project/pgdtools/)
 [![docs](https://readthedocs.org/projects/pgdtools/badge/?version=latest)](https://pgdtools.readthedocs.io)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/NASA-Planetary-Science/pgdtools/blob/main/LICENSE)
-[![tests](https://github.com/NASA-Planetary-Science/pgdtools/actions/workflows/rimseval_testing.yml/badge.svg?branch=main)](https://github.com/NASA-Planetary-Science/pgdtools/)
+[![tests](https://github.com/NASA-Planetary-Science/pgdtools/actions/workflows/tests.yml/badge.svg)](https://github.com/NASA-Planetary-Science/pgdtools/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/NASA-Planetary-Science/pgdtools/branch/main/graph/badge.svg?token=N0NNVEI8CX)](https://codecov.io/gh/NASA-Planetary-Science/pgdtools)
-[![Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Rye](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/rye/main/artwork/badge.json)](https://rye.astral.sh)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 # Presolar grain database tools (pgdTools)
 

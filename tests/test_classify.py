@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from pgdtools import classify as cl, classify_grain, PresolarGrains
+from pgdtools import classify as cl, classify_sic_grain, PresolarGrains
 
 # grains to test, following definitions:
 # [
@@ -97,9 +97,9 @@ def test_classify_grain(grain):
     """Test classification of grain examples."""
     data, rho_si, expected = grain
     if rho_si is not None:
-        received = classify_grain(*data, rho_si)
+        received = classify_sic_grain(*data, rho_si)
     else:
-        received = classify_grain(*data)
+        received = classify_sic_grain(*data)
     assert received == expected
 
 
@@ -135,11 +135,11 @@ def test_classify_grain_whole_db():
         if np.isnan(al26_al27[0]):
             al26_al27 = None
 
-        type_rec, subtype_rec = classify_grain(
+        type_rec, subtype_rec = classify_sic_grain(
             c12_c13, n14_n15, d29Si, d30Si, al26_al27, rho_si=rho_si
         )
         # get the probabilities for all the grains
-        probs_rec = classify_grain(
+        probs_rec = classify_sic_grain(
             c12_c13,
             n14_n15,
             d29Si,

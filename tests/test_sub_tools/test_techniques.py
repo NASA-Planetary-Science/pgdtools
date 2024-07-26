@@ -14,6 +14,11 @@ def test_init_type_error():
         _ = Techniques("test")
 
 
+def test_full_db(pgd):
+    """Just get a dictionary with all techniques."""
+    _ = pgd.technique.dict
+
+
 def test_repr(pgd_head):
     """Check string representation of class prints IDs."""
     tech = pgd_head.technique

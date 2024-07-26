@@ -6,7 +6,7 @@ import numpy as np
 from scipy.special import erf
 
 
-def classify_grain(
+def classify_sic_grain(
     c12_c13: Tuple[float, Union[float, Tuple[float, float]]] = None,
     n14_n15: Tuple[float, Union[float, Tuple[float, float]]] = None,
     d29si: Tuple[float, float] = None,

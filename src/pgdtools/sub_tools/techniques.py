@@ -3,6 +3,7 @@
 import itertools
 import json
 from typing import List, Set
+import re
 
 import pandas as pd
 
@@ -22,6 +23,9 @@ class Techniques:
         """
         if not isinstance(parent, pgdtools.PresolarGrains):
             raise TypeError("Parent class must be of type PresolarGrains.")
+
+        # list of separators for splitting techniques
+        self._separators = ["&", "and/or"]
 
         self.parent = parent
 
@@ -132,7 +136,8 @@ class Techniques:
         :return: List of all the reference IDs.
         """
         ref_keys = self.parent.db["Technique"].to_list()
-        ret_keys = [[x.strip() for x in y.split("&")] for y in ref_keys]
+        seps = "|".join(self._separators)
+        ret_keys = [[x.strip() for x in re.split(seps, y)] for y in ref_keys]
         return ret_keys
 
     @property

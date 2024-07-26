@@ -38,7 +38,12 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
 
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
   - search
@@ -71,3 +76,5 @@ nav:
       - PGD subtools: api/subtools.md
       - Database: api/db.md
       - Maintainer: api/maintainer.md
+  - About:
+      - Code of Conduct: code_of_conduct.md

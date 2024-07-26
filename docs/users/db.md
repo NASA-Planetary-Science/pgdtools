@@ -13,8 +13,8 @@ can be managed with this tool.
 
 The following grain types are currently implemented:
 
-- `"sic"`: Silicon carbide
-- `"gra"`: Graphite
+- Silicon carbide
+- Graphite
 
 ## Background
 
