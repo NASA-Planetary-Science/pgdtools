@@ -1,0 +1,807 @@
+{
+    "SiC-0000-AMA-0": {
+        "Number of grains": 13,
+        "Reference - short": "Amari (1992) unpublished",
+        "Reference - full": "",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-0000-GYN-0": {
+        "Number of grains": 58,
+        "Reference - short": "Gyngard (2009) unpublished",
+        "Reference - full": "",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-1992-AMA-0": {
+        "Number of grains": 5,
+        "Reference - short": "Amari et al. (1992) ApJL 394:L43",
+        "Reference - full": "Amari S., Hoppe P., Zinner E., and Lewis R. S. (1992) Interstellar SiC with unusual isotopic compositions: Grains from a supernova? Astrophys. J. Lett. 394, L43\u2013L46.",
+        "DOI": "10.1086/186468",
+        "Comments": ""
+    },
+    "SiC-1992-VIR-0": {
+        "Number of grains": 51,
+        "Reference - short": "Virag et al. (1992) GCA 56:1715",
+        "Reference - full": "Virag A., Wopenka B., Amari S., Zinner E., Anders E., and Lewis R. S. (1992) Isotopic, optical, and trace element properties of large single SiC grains from the Murchison meteorite. Geochim. Cosmochim. Acta 56, 1715\u20131733.",
+        "DOI": "10.1016/0016-7037(92)90237-D",
+        "Comments": "Some Hf & W data in Avila et al. (2012) ApJ 744:49. Some Eu data in Avila et al. (2013) ApJL 768:L18. Renormalized delta-13C and delta-15N values."
+    },
+    "SiC-1993-ALE-0": {
+        "Number of grains": 243,
+        "Reference - short": "Alexander (1993) GCA 57:2869",
+        "Reference - full": "Alexander C. M. O'D. (1993) Presolar SiC in chondrites: How variable and how many sources? Geochim. Cosmochim. Acta 57, 2869\u20132888.",
+        "DOI": "10.1016/0016-7037(93)90395-D",
+        "Comments": "1 grain (C11) not in paper."
+    },
+    "SiC-1993-HOP-0": {
+        "Number of grains": 14,
+        "Reference - short": "Hoppe et al. (1993) GCA 57:4059",
+        "Reference - full": "Hoppe P., Geiss J., B\u00fchler F., Neuenschwander J., Amari S., and Lewis R. S. (1993) Fingerprints of carbon, nitrogen, and silicon isotopes in small interstellar SiC grains from the Murchison meteorite. Geochim. Cosmochim. Acta 57, 4059\u20134068.",
+        "DOI": "10.1016/0016-7037(93)90353-X",
+        "Comments": ""
+    },
+    "SiC-1994-HOP-0": {
+        "Number of grains": 681,
+        "Reference - short": "Hoppe et al. (1994) ApJ 430:870",
+        "Reference - full": "Hoppe P., Amari S., Zinner E., Ireland T., and Lewis R. S. (1994) Carbon, nitrogen, magnesium, silicon, and titanium isotopic compositions of single interstellar silicon carbide grains from the Murchison carbonaceous chondrite. Astrophys. J. 430, 870\u2013890.",
+        "DOI": "10.1086/174458",
+        "Comments": "Data for 12 grains in paper, for 5 grains in Amari et al. (2001) ApJ 546:248, for 28 grains in Amari et al. (2001) ApJ 559:463."
+    },
+    "SiC-1996-HOP-0": {
+        "Number of grains": 794,
+        "Reference - short": "Hoppe et al. (1996) GCA 60:883",
+        "Reference - full": "Hoppe P., Strebel R., Eberhardt P., Amari S., and Lewis R. S. (1996) Small SiC grains and a nitride grain of circumstellar origin from the Murchison meteorite: Implications for stellar evolution and nucleosynthesis. Geochim. Cosmochim. Acta 60, 883\u2013907.",
+        "DOI": "10.1016/0016-7037(95)00435-1",
+        "Comments": ""
+    },
+    "SiC-1996-HOP-1": {
+        "Number of grains": 1,
+        "Reference - short": "Hoppe et al. (1996) Science 272:1314",
+        "Reference - full": "Hoppe P., Strebel R., Eberhardt P., Amari S., and Lewis R. S. (1996) Type II supernova matter in a silicon carbide grain from the Murchison meteorite. Science 272, 1314\u20131316.",
+        "DOI": "10.1126/science.272.5266.1314",
+        "Comments": ""
+    },
+    "SiC-1996-HOP-2": {
+        "Number of grains": 210,
+        "Reference - short": "Hoppe et al. (1996) LPS 27:561",
+        "Reference - full": "Hoppe P., Kocher T. A., Strebel R., Eberhardt P., Amari S., and Lewis R. S. (1996) Origin of circumstellar SiC grains with low 12C/13C ratios: A multiple star scenario (abstract). Lunar Planet. Sci. 27, 561\u2013562.",
+        "DOI": "",
+        "Comments": "No data in abstract."
+    },
+    "SiC-1996-NIT-0": {
+        "Number of grains": 5,
+        "Reference - short": "Nittler et al. (1996) ApJL 462:L31",
+        "Reference - full": "Nittler L. R., Amari S., Zinner E., Woosley S. E., and Lewis R. S. (1996) Extinct 44Ti in presolar graphite and SiC: Proof of a supernova origin. Astrophys. J. Lett. 462, L31\u2013L34.",
+        "DOI": "10.1088/1538-4357/462/1/L31",
+        "Comments": ""
+    },
+    "SiC-1996-NIT-1": {
+        "Number of grains": 76,
+        "Reference - short": "Nittler (1996) Dissertation; St. Louis",
+        "Reference - full": "Nittler L. R. (1996) Quantitative isotopic ratio ion imaging and its application to studies of preserved stardust in meteorites. Dissertation, Washington University, Saint Louis, Missouri. 210 pp.",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-1997-GAO-0": {
+        "Number of grains": 5,
+        "Reference - short": "Gao & Nittler (1997) LPS 28:393 (#1769)",
+        "Reference - full": "Gao X. and Nittler L. R. (1997) 30Si-enriched presolar SiC in Acfer 094 (abstract). Lunar Planet. Sci. 28, 393\u2013394 (#1769).",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-1997-HOP-0": {
+        "Number of grains": 9,
+        "Reference - short": "Hoppe et al. (1997) ApJL 487:L101",
+        "Reference - full": "Hoppe P., Annen P., Strebel R., Eberhardt P., Gallino R., Lugaro M., Amari S., and Lewis R. S. (1997) Meteoritic silicon carbide grains with unusual Si-isotopic compositions: Evidence for an origin in low-mass, low-metallicity asymptotic giant branch stars. Astrophys. J. Lett. 487, L101\u2013L104.",
+        "DOI": "10.1086/310869",
+        "Comments": ""
+    },
+    "SiC-1997-HUS-0": {
+        "Number of grains": 140,
+        "Reference - short": "Huss et al. (1997) GCA 61:5117",
+        "Reference - full": "Huss G. R., Hutcheon I. D., and Wasserburg G. J. (1997) Isotopic systematics of presolar silicon carbide from the Orgueil (CI) chondrite: Implications for Solar System formation and stellar nucleosynthesis. Geochim. Cosmochim. Acta 61, 5117\u20135148.",
+        "DOI": "10.1016/S0016-7037(97)00299-8",
+        "Comments": "Errors are 2 sigma in paper. Ti data from Huss & Smith (2007) MAPS 42:1055. Delta values calculated from ratios as in Huss & Smith (2007) MAPS 42:1055."
+    },
+    "SiC-1997-NIC-0": {
+        "Number of grains": 11,
+        "Reference - short": "Nicolussi et al. (1997) Science 277:1281",
+        "Reference - full": "Nicolussi G. K., Davis A. M., Pellin M. J., Lewis R. S., Clayton R. N., and Amari S. (1997) s-Process zirconium in presolar silicon carbide grains. Science 277, 1281\u20131283.",
+        "DOI": "10.1126/science.277.5330.1281",
+        "Comments": ""
+    },
+    "SiC-1998-NIC-0": {
+        "Number of grains": 14,
+        "Reference - short": "Nicolussi et al. (1998) GCA 62:1093",
+        "Reference - full": "Nicolussi G. K., Pellin M. J., Lewis R. S., Davis A. M., Amari S., and Clayton R. N. (1998) Molybdenum isotopic composition of individual presolar silicon carbide grains from the Murchison meteorite. Geochim. Cosmochim. Acta 62, 1093\u20131104.",
+        "DOI": "10.1016/S0016-7037(98)00038-6",
+        "Comments": ""
+    },
+    "SiC-1998-NIC-1": {
+        "Number of grains": 26,
+        "Reference - short": "Nicolussi et al. (1998) PRL 81:3583",
+        "Reference - full": "Nicolussi G. K., Pellin M. J., Lewis R. S., Davis A. M., Clayton R. N., and Amari S. (1998) Strontium isotopic composition in individual circumstellar silicon carbide grains: A record of s-process nucleosynthesis. Phys. Rev. Lett. 81, 3583\u20133586.",
+        "DOI": "10.1103/PhysRevLett.81.3583",
+        "Comments": ""
+    },
+    "SiC-1999-ALE-0": {
+        "Number of grains": 25,
+        "Reference - short": "Alexander & Nittler (1999) ApJ 519:222",
+        "Reference - full": "Alexander C. M. O'D. and Nittler L. R. (1999) The Galactic evolution of Si, Ti, and O isotopic ratios. Astrophys. J. 519, 222\u2013235.",
+        "DOI": "10.1086/307340",
+        "Comments": "5 grains not in paper."
+    },
+    "SiC-1999-AMA-0": {
+        "Number of grains": 1,
+        "Reference - short": "Amari et al. (1999) ApJL 517: L59",
+        "Reference - full": "Amari S., Zinner E., and Lewis R. S. (1999) A singular presolar SiC grain with extreme 29Si and 30Si excesses. Astrophys. J. Lett. 517, L59\u2013L62.",
+        "DOI": "10.1086/312013",
+        "Comments": "Delta-29Si and delta-30Si calculated from ratios given in paper using standard ratios also given in paper."
+    },
+    "SiC-2000-HOP-0": {
+        "Number of grains": 84,
+        "Reference - short": "Hoppe et al. (2000) MAPS 35:1157",
+        "Reference - full": "Hoppe P., Strebel R., Eberhardt P., Amari S., and Lewis R. S. (2000) Isotopic properties of silicon carbide X grains from the Murchison meteorite in the size range 0.5\u20131.5 \u00b5m. Meteorit. Planet. Sci. 35, 1157\u20131176.",
+        "DOI": "10.1111/j.1945-5100.2000.tb01505.x",
+        "Comments": ""
+    },
+    "SiC-2000-PEL-0": {
+        "Number of grains": 4,
+        "Reference - short": "Pellin et al. (2000) LPS 31:#1934",
+        "Reference - full": "Pellin M. J., Davis A. M., Calaway W. F., Lewis R. S., Clayton R. N., and Amari S. (2000) Zr and Mo isotopic constraints on the origins of unusual types of presolar SiC grains (abstract). Lunar Planet. Sci. 31, #1934.",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2001-AMA-0": {
+        "Number of grains": 27,
+        "Reference - short": "Amari et al. (2001) ApJ 546:248",
+        "Reference - full": "Amari S., Nittler L. R., Zinner E., Gallino R., Lugaro M., and Lewis R. S. (2001) Presolar SiC grains of type Y: Origin from low-metallicity asymptotic giant branch stars. Astrophys. J. 546, 248\u2013266.",
+        "DOI": "10.1086/318230",
+        "Comments": ""
+    },
+    "SiC-2001-AMA-1": {
+        "Number of grains": 4,
+        "Reference - short": "Amari et al. (2001) ApJ 551:1065",
+        "Reference - full": "Amari S., Gao X., Nittler L. R., Zinner E., Jos\u00e9 J., Hernanz M., and Lewis R. S. (2001) Presolar grains from novae. Astrophys. J. 551, 1065\u20131072.",
+        "DOI": "10.1086/320235",
+        "Comments": ""
+    },
+    "SiC-2001-AMA-2": {
+        "Number of grains": 124,
+        "Reference - short": "Amari et al. (2001) ApJ 559: 463",
+        "Reference - full": "Amari S., Nittler L. R., Zinner E., Lodders K., and Lewis R. S. (2001) Presolar SiC grains of type A and B: Their isotopic composition and stellar origins. Astrophys. J. 559, 463\u2013483.",
+        "DOI": "10.1086/322397",
+        "Comments": ""
+    },
+    "SiC-2001-BES-0": {
+        "Number of grains": 89,
+        "Reference - short": "Besmehn (2001) Dissertation; Mainz",
+        "Reference - full": "Besmehn A. (2001) Si-, Mg-, Ca- und Ti-Isotopenmessungen an den pr\u00e4solaren Mineralen Diamant, Siliziumkarbid und Siliziumnitrid aus kohligen und Enstatit-Chondriten. Dissertation, Universit\u00e4t Mainz. 111 pp.",
+        "DOI": "",
+        "Comments": "6 grains not in thesis."
+    },
+    "SiC-2001-HOP-0": {
+        "Number of grains": 11,
+        "Reference - short": "Hoppe et al. (2001) ApJ 551:478",
+        "Reference - full": "Hoppe P., Lodders K., Strebel R., Amari S., and Lewis R. S. (2001) Boron in presolar silicon carbide grains from supernovae. Astrophys. J. 551, 478\u2013485.",
+        "DOI": "10.1086/320075",
+        "Comments": ""
+    },
+    "SiC-2002-JEN-0": {
+        "Number of grains": 7,
+        "Reference - short": "Jennings et al. (2002) LPS 33:#1833",
+        "Reference - full": "Jennings C. L., Savina M. R., Messenger S., Amari S., Nichols R. H., Jr., Pellin M. J., and Podosek F. A. (2002) Indarch SiC by TIMS, RIMS, and NanoSIMS (abstract). Lunar Planet. Sci. 33, #1833.",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2002-LIN-0": {
+        "Number of grains": 37,
+        "Reference - short": "Lin et al. (2002) ApJ 575:257",
+        "Reference - full": "Lin Y., Amari S., and Pravdivtseva O. (2002) Presolar grains from the Qingzhen (EH3) meteorite. Astrophys. J. 575, 257\u2013263.",
+        "DOI": "10.1086/341218",
+        "Comments": "Al-Ca-Ti data in Lin et al. (2010) ApJ 709:1157."
+    },
+    "SiC-2003-AMA-0": {
+        "Number of grains": 9,
+        "Reference - short": "Amari et al. (2003) MAPS 38:A66",
+        "Reference - full": "Amari S., Zinner E., Gallino R., and Lewis R. S. (2003) Silicon and titanium isotopic analysis of silicon carbide grains of type X and Z (abstract). Meteorit. Planet. Sci. 38, A66 (#5118).",
+        "DOI": "",
+        "Comments": "Only full data for 2 grains, which got finally published by Zinner et al. (2007), and partial data for 1 grain in abstract. Other grains are related to same study, but data is unpublished."
+    },
+    "SiC-2003-BES-0": {
+        "Number of grains": 37,
+        "Reference - short": "Besmehn & Hoppe (2003) GCA 67:4693",
+        "Reference - full": "Besmehn A. and Hoppe P. (2003) A NanoSIMS study of Si- and Ca-Ti-isotopic compositions of presolar silicon carbide grains from supernovae. Geochim. Cosmochim. Acta 67, 4693\u20134703.",
+        "DOI": "10.1016/S0016-7037(03)00239-4",
+        "Comments": "Some Ti, V, and Ca data from Hoppe & Besmehn (2002) ApJL 576:L69."
+    },
+    "SiC-2003-NIT-0": {
+        "Number of grains": 3630,
+        "Reference - short": "Nittler & Alexander (2003) GCA 67:4961",
+        "Reference - full": "Nittler L. R. and Alexander C. M. O'D. (2003) Automated isotopic measurements of micron-sized dust: Application to meteoritic presolar silicon carbide. Geochim. Cosmochim. Acta 67, 4961\u20134980.",
+        "DOI": "10.1016/S0016-7037(03)00485-X",
+        "Comments": "C-Si Data provided in electronic annex for 3343 grains."
+    },
+    "SiC-2003-SAV-0": {
+        "Number of grains": 15,
+        "Reference - short": "Savina et al. (2003) GCA 67:3201",
+        "Reference - full": "Savina M. R., Davis A. M., Tripa C. E., Pellin M. J., Clayton R. N., Lewis R. S., Amari S., Gallino R., and Lugaro M. (2003) Barium isotopes in individual presolar silicon carbide grains from the Murchison meteorite. Geochim. Cosmochim. Acta 67, 3201\u20133214.",
+        "DOI": "10.1016/S0016-7037(03)00083-8",
+        "Comments": "Ru data for one grain from Savina et al. (2004) Science 303:649."
+    },
+    "SiC-2004-MAR-0": {
+        "Number of grains": 8,
+        "Reference - short": "Marhas et al. (2004) LPS 35:#1834",
+        "Reference - full": "Marhas K. K., Hoppe P., and Besmehn A. (2004) A NanoSIMS study of iron-isotopic compositions in presolar silicon carbide grains (abstract). Lunar Planet. Sci. 35, #1834.",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2004-SAV-0": {
+        "Number of grains": 18,
+        "Reference - short": "Savina et al. (2004) Science 303:649",
+        "Reference - full": "Savina M. R., Davis A. M., Tripa C. E., Pellin M. J., Gallino R., Lewis R. S., and Amari S. (2004) Extinct technetium in silicon carbide stardust grains: Implications for stellar nucleosynthesis. Science 303, 649\u2013652.",
+        "DOI": "10.1126/science.3030649",
+        "Comments": "One grain already in Savina et al. (2003) GCA 67:3201."
+    },
+    "SiC-2005-MAR-0": {
+        "Number of grains": 1,
+        "Reference - short": "Marhas & Hoppe (2005) MAPS 40:A95",
+        "Reference - full": "Marhas K. K. and Hoppe P. (2005) Presolar grains in the Tagish Lake meteorite (abstract). Meteorit. Planet. Sci. 40, A95 (#5184).",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2005-NIT-0": {
+        "Number of grains": 1131,
+        "Reference - short": "Nittler & Hoppe (2005) ApJL 631:L89",
+        "Reference - full": "Nittler L. R. and Hoppe P. (2005) Are presolar silicon carbide grains from novae actually from supernovae? Astrophys. J. Lett. 631, L89\u2013L92.",
+        "DOI": "10.1086/497029",
+        "Comments": ""
+    },
+    "SiC-2006-HYN-0": {
+        "Number of grains": 4,
+        "Reference - short": "Hynes et al. (2006) LPS 37:#2202",
+        "Reference - full": "Hynes K. M., Croat T. K., Amari S., Mertz A. F., and Bernatowicz T. J. (2006) A transmission electron microscopy study of ultramicrotomed SiC-X grains (abstract). Lunar Planet. Sci. 37, #2202.",
+        "DOI": "",
+        "Comments": "Data also related to Amari et al. (2003) MAPS 38:A66."
+    },
+    "SiC-2006-PEL-0": {
+        "Number of grains": 13,
+        "Reference - short": "Pellin et al. (2006) LPS 37:#2041",
+        "Reference - full": "Pellin M. J., Savina M. R., Calaway W. F., Tripa C. E., Barzyk J. G., Davis A. M., Gyngard F., Amari S., Zinner E., Lewis R. S., and Clayton R. N. (2006) Heavy metal isotopic anomalies in supernovae presolar grains (abstract). Lunar Planet. Sci. 37, #2041.",
+        "DOI": "",
+        "Comments": "Some data already in Pellin et al. (2000) LPS 31:#1917."
+    },
+    "SiC-2006-STA-0": {
+        "Number of grains": 1,
+        "Reference - short": "Stadermann et al. (2006) GCA 70:6168",
+        "Reference - full": "Stadermann F. J., Floss C., and Wopenka B. (2006) Circumstellar aluminum oxide and silicon carbide in interplanetary dust particles. Geochim. Cosmochim. Acta 70, 6168\u20136179.",
+        "DOI": "10.1016/j.gca.2006.08.025",
+        "Comments": ""
+    },
+    "SiC-2007-BAR-0": {
+        "Number of grains": 95,
+        "Reference - short": "Barzyk (2007) Dissertation; Chicago",
+        "Reference - full": "Barzyk J. G. (2007) Multielement isotopic analysis of presolar silicon carbide. Dissertation, The University of Chicago, Chicago, IL. 102 pp.",
+        "DOI": "",
+        "Comments": "Some Zr, Mo, and Ba data in Barzyk et al. (2007) MAPS 42:1103. According to the thesis, C, N, and Si data are given with 2-sigma errors; this is most probably wrong."
+    },
+    "SiC-2007-HEC-0": {
+        "Number of grains": 67,
+        "Reference - short": "Heck et al. (2007) ApJ 656:1208",
+        "Reference - full": "Heck P. R., Marhas K. K., Hoppe P., Gallino R., Baur H., and Wieler R. (2007) Presolar He and Ne isotopes in single circumstellar SiC grains. Astrophys. J. 656, 1208\u20131222.",
+        "DOI": "10.1086/510478",
+        "Comments": ""
+    },
+    "SiC-2007-HEN-0": {
+        "Number of grains": 2,
+        "Reference - short": "Henkel et al. (2007) MAPS 42:1121",
+        "Reference - full": "Henkel T., Stephan T., Jessberger E. K., Hoppe P., Strebel R., Amari S., and Lewis R. S. (2007) 3-D elemental and isotopic composition of presolar silicon carbides. Meteorit. Planet. Sci. 42, 1121\u20131134.",
+        "DOI": "10.1111/j.1945-5100.2007.tb00564.x",
+        "Comments": ""
+    },
+    "SiC-2007-LYO-0": {
+        "Number of grains": 21,
+        "Reference - short": "Lyon et al. (2007) MAPS 42:373",
+        "Reference - full": "Lyon I. C., Tizard J. M., and Henkel T. (2007) Evidence for lithium and boron from star-forming regions implanted in presolar SiC grains. Meteorit. Planet. Sci. 42, 373\u2013385.",
+        "DOI": "10.1111/j.1945-5100.2007.tb00240.x",
+        "Comments": ""
+    },
+    "SiC-2007-MAR-0": {
+        "Number of grains": 29,
+        "Reference - short": "Marhas et al. (2007) MAPS 42:1077",
+        "Reference - full": "Marhas K. K., Hoppe P., and Ott U. (2007) NanoSIMS studies of Ba isotopic compositions in single presolar silicon carbide grains from AGB stars and supernovae. Meteorit. Planet. Sci. 42, 1077\u20131101.",
+        "DOI": "10.1111/j.1945-5100.2007.tb00562.x",
+        "Comments": ""
+    },
+    "SiC-2007-ZIN-0": {
+        "Number of grains": 139,
+        "Reference - short": "Zinner et al. (2007) GCA 71:4786",
+        "Reference - full": "Zinner E., Amari S., Guinness R., Jennings C., Mertz A. F., Nguyen A. N., Gallino R., Hoppe P., Lugaro M., Nittler L. R., and Lewis R. S. (2007) NanoSIMS isotopic analysis of small presolar grains: Search for Si3N4 grains from AGB stars and Al and Ti isotopic compositions of rare presolar SiC grains. Geochim. Cosmochim. Acta 71, 4786\u20134813.",
+        "DOI": "10.1016/j.gca.2007.07.012",
+        "Comments": ""
+    },
+    "SiC-2008-HYN-0": {
+        "Number of grains": 3,
+        "Reference - short": "Hynes et al. (2008) LPS 39:#2076",
+        "Reference - full": "Hynes K. M., Amari S., Bernatowicz T. J., Croat T. K., and Mertz A. F. (2008) Continued studies of ultramicrotomed presolar SiC X grains (abstract). Lunar Planet. Sci. 39, #2076.",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2008-MAR-0": {
+        "Number of grains": 120,
+        "Reference - short": "Marhas et al. (2008) ApJ 689:622",
+        "Reference - full": "Marhas K. K., Amari S., Gyngard F., Zinner E., and Gallino R. (2008) Iron and nickel isotopic ratios in presolar SiC grains. Astrophys. J. 689, 622\u2013645.",
+        "DOI": "10.1086/592599",
+        "Comments": ""
+    },
+    "SiC-2008-YAD-0": {
+        "Number of grains": 4,
+        "Reference - short": "Yada et al. (2008) MAPS 43:1287",
+        "Reference - full": "Yada T., Floss C., Stadermann F. J., Zinner E., Nakamura T., Noguchi T., and Lea A. S. (2008) Stardust in Antarctic micrometeorites. Meteorit. Planet. Sci. 43, 1287\u20131298.",
+        "DOI": "10.1111/j.1945-5100.2008.tb00698.x",
+        "Comments": ""
+    },
+    "SiC-2009-BUS-0": {
+        "Number of grains": 1,
+        "Reference - short": "Busemann et al. (2009) EPSL 288:44",
+        "Reference - full": "Busemann H., Nguyen A. N., Cody G. D., Hoppe P., Kilcoyne A. L. D., Stroud R. M., Zega T. J., and Nittler L. R. (2009) Ultra-primitive interplanetary dust particles from the comet 26P/Grigg-Skjellerup dust stream collection. Earth Planet. Sci. Lett. 288, 44\u201357.",
+        "DOI": "10.1016/j.epsl.2009.09.007",
+        "Comments": ""
+    },
+    "SiC-2009-FLO-0": {
+        "Number of grains": 41,
+        "Reference - short": "Floss & Stadermann (2009) ApJ 697:1242",
+        "Reference - full": "Floss C. and Stadermann F. J. (2009) High abundances of circumstellar and interstellar C-anomalous phases in the primitive CR chondrites QUE 99177 and MET 00426. Astrophys. J. 697, 1242\u20131255.",
+        "DOI": "10.1088/0004-637X/697/2/1242",
+        "Comments": ""
+    },
+    "SiC-2009-GYN-0": {
+        "Number of grains": 9,
+        "Reference - short": "Gyngard et al. (2009) ApJ 694:359",
+        "Reference - full": "Gyngard F., Amari S., Zinner E., and Ott U. (2009) Interstellar exposure ages of large presolar SiC grains from the Murchison meteorite. Astrophys. J. 694, 359\u2013366.",
+        "DOI": "10.1088/0004-637X/694/1/359",
+        "Comments": "Only partial data in paper. Li data from Gyngard et al. (2007) LPS 38:#1963."
+    },
+    "SiC-2009-HEC-0": {
+        "Number of grains": 58,
+        "Reference - short": "Heck et al. (2009) ApJ 698:1155",
+        "Reference - full": "Heck P. R., Gyngard F., Ott U., Meier M. M. M., \u00c1vila J. N., Amari S., Zinner E. K., Lewis R. S., Baur H., and Wieler R. (2009) Interstellar residence times of presolar SiC dust grains from the Murchison carbonaceous meteorite. Astrophys. J. 698, 1155\u20131164.",
+        "DOI": "10.1088/0004-637X/698/2/1155",
+        "Comments": "Only data for 22 grains in paper."
+    },
+    "SiC-2009-HOP-0": {
+        "Number of grains": 1,
+        "Reference - short": "Hoppe et al. (2009) ApJL 691:L20",
+        "Reference - full": "Hoppe P., Leitner J., Meyer B., The L.-S., Lugaro M., and Amari S. (2009) An unusual presolar silicon carbide grain from a supernova: Implications for the production of silicon-29 in type II supernovae. Astrophys. J. Lett. 691, L20\u2013L23.",
+        "DOI": "10.1088/0004-637X/691/1/L20",
+        "Comments": ""
+    },
+    "SiC-2010-CRO-0": {
+        "Number of grains": 2,
+        "Reference - short": "Croat et al. (2010) AJ 139:2159",
+        "Reference - full": "Croat T. K., Stadermann F. J., and Bernatowicz T. J. (2010) Unusual 29,30Si-rich SiCs of massive star origin found within graphites from the Murchison meteorite. Astronom. J. 139, 2159\u20132169.",
+        "DOI": "10.1088/0004-6256/139/6/2159",
+        "Comments": ""
+    },
+    "SiC-2010-GYN-0": {
+        "Number of grains": 1,
+        "Reference - short": "Gyngard et al. (2010) MAPS 45:A72",
+        "Reference - full": "Gyngard F., Nittler L. R., and Zinner E. (2010) Presolar SiC grains of Type C (abstract). Meteorit. Planet. Sci. 45, A72 (#5242).",
+        "DOI": "",
+        "Comments": ""
+    },
+    "SiC-2010-HOP-0": {
+        "Number of grains": 2124,
+        "Reference - short": "Hoppe et al. (2010) ApJ 719:1370",
+        "Reference - full": "Hoppe P., Leitner J., Gr\u00f6ner E., Marhas K. K., Meyer B. S., and Amari S. (2010) NanoSIMS studies of small presolar SiC grains: New insights into supernova nucleosynthesis, chemistry, and dust formation. Astrophys. J. 719, 1370\u20131384.",
+        "DOI": "10.1088/0004-637X/719/2/1370",
+        "Comments": "Only data for 4 grains in paper plus the grain from Hoppe et al. (2009) ApJL 691:L20."
+    },
+    "SiC-2010-NGU-0": {
+        "Number of grains": 16,
+        "Reference - short": "Nguyen et al. (2010) ApJ 719:166",
+        "Reference - full": "Nguyen A. N., Nittler L. R., Stadermann F. J., Stroud R. M., and Alexander C. M. O'D. (2010) Coordinated analyses of presolar grains in the Allen Hills 77307 and Queen Elizabeth Range 99177 meteorites. Astrophys. J. 719, 166\u2013189.",
+        "DOI": "10.1088/0004-637X/719/1/166",
+        "Comments": ""
+    },
+    "SiC-2011-FUJ-0": {
+        "Number of grains": 7,
+        "Reference - short": "Fujiya et al. (2011) ApJL 730:L7",
+        "Reference - full": "Fujiya W., Hoppe P., and Ott U. (2011) Hints for neutrino-process boron in presolar silicon carbide grains from supernovae. Astrophys. J. Lett. 730, L7 (5pp).",
+        "DOI": "10.1088/2041-8205/730/1/L7",
+        "Comments": ""
+    },
+    "SiC-2012-BOS-0": {
+        "Number of grains": 25,
+        "Reference - short": "Bose et al. (2012) GCA 93:77",
+        "Reference - full": "Bose M., Floss C., Stadermann F. J., and Speck A. K. (2012) Circumstellar and interstellar material in the CO3 chondrite ALHA77307: An isotope and elemental investigation. Geochim. Cosmochim. Acta 93, 77\u2013101.",
+        "DOI": "10.1016/j.gca.2012.06.027",
+        "Comments": ""
+    },
+    "SiC-2012-FLO-0": {
+        "Number of grains": 9,
+        "Reference - short": "Floss & Stadermann (2012) MAPS 47:992",
+        "Reference - full": "Floss C. and Stadermann F. J. (2012) Presolar silicate and oxide abundances and compositions in the ungrouped carbonaceous chondrite Adelaide and the K chondrite Kakangari: The effects of secondary processing. Meteorit. Planet. Sci. 47, 992\u20131009.",
+        "DOI": "10.1111/j.1945-5100.2012.01366.x",
+        "Comments": ""
+    },
+    "SiC-2012-HOP-0": {
+        "Number of grains": 3351,
+        "Reference - short": "Hoppe et al. (2012) ApJL 745:L26",
+        "Reference - full": "Hoppe P., Fujiya W., and Zinner E. (2012) Sulfur molecule chemistry in supernova ejecta recorded by silicon carbide stardust. Astrophys. J. Lett. 745, L26 (5pp).",
+        "DOI": "10.1088/2041-8205/745/2/L26",
+        "Comments": "Only data for 6 grains in paper."
+    },
+    "SiC-2012-LEI-0": {
+        "Number of grains": 8,
+        "Reference - short": "Leitner et al. (2012) ApJ 745:38",
+        "Reference - full": "Leitner J., Vollmer C., Hoppe P., and Zipfel J. (2012) Characterization of presolar material in the CR chondrite Northwest Africa 852. Astrophys. J. 745, 38 (16pp).",
+        "DOI": "10.1088/0004-637X/745/1/38",
+        "Comments": ""
+    },
+    "SiC-2012-ORT-0": {
+        "Number of grains": 726,
+        "Reference - short": "Orthous-Daunay et al. (2012) LPS 43:#2679",
+        "Reference - full": "Orthous-Daunay F.-R., Gyngard F., Moynier F., and Zinner E. (2012) Multi-element isotopic compositions of presolar SiC grains from the Indarch meteorite (abstract). Lunar Planet. Sci. 43, #2679.",
+        "DOI": "",
+        "Comments": "Only data for two grains in abstract."
+    },
+    "SiC-2013-AVI-0": {
+        "Number of grains": 56,
+        "Reference - short": "Avila et al. (2013) GCA 120:628",
+        "Reference - full": "\u00c1vila J. N., Ireland T. R., Gyngard F., Zinner E., Mallmann G., Lugaro M., Holden P., and Amari S. (2013) Ba isotopic compositions in stardust SiC grains from the Murchison meteorite: Insights into stellar origins of large SiC grains. Geochim. Cosmochim. Acta 120, 628\u2013647.",
+        "DOI": "10.1016/j.gca.2013.03.039",
+        "Comments": "Some data also in Heck et al. (2020) PNAS 117:1884. Some Eu data in Avila et al. (2013) ApJL 768:L18"
+    },
+    "SiC-2013-FUJ-0": {
+        "Number of grains": 41,
+        "Reference - short": "Fujiya et al. (2013) ApJL 776:L29",
+        "Reference - full": "Fujiya W., Hoppe P., Zinner E., Pignatari M., and Herwig F. (2013) Evidence for radiogenic sulfur-32 in type AB presolar silicon carbide grains? Astrophys. J. Lett. 776, L29 (6pp).",
+        "DOI": "10.1088/2041-8205/776/2/L29",
+        "Comments": "Only data for 34 grains in paper."
+    },
+    "SiC-2013-ZHA-0": {
+        "Number of grains": 28,
+        "Reference - short": "Zhao eta al. (2013) ApJ 769:46",
+        "Reference - full": "Zhao X., Floss C., Lin Y., and Bose M. (2013) Stardust investigation into the CR chondrite Grove Mountain 021710. Astrophys. J. 769, 46 (16pp).",
+        "DOI": "10.1088/0004-637X/769/1/49",
+        "Comments": ""
+    },
+    "SiC-2014-LIU-0": {
+        "Number of grains": 38,
+        "Reference - short": "Liu et al. (2014) ApJ 786:66",
+        "Reference - full": "Liu N., Savina M. R., Davis A. M., Gallino R., Straniero O., Gyngard F., Pellin M. J., Willingham D. G., Dauphas N., and Pignatari M. (2014) Barium isotopic composition of mainstream silicon carbides from Murchison: Constraints for s-process nucleosynthesis in asymptotic giant branch stars. Astrophys. J. 786, 66 (20pp).",
+        "DOI": "10.1088/0004-637X/786/1/66",
+        "Comments": "C and Si uncertainties in paper are 1 sigma but were incorrectly reported as 2 sigma."
+    },
+    "SiC-2015-LIU-0": {
+        "Number of grains": 61,
+        "Reference - short": "Liu et al. (2015) ApJ 803:12",
+        "Reference - full": "Liu N., Savina M. R., Gallino R., Davis A. M., Bisterzo S., Gyngard F., K\u00e4ppeler F., Cristallo S., Dauphas N., Pellin M. J., and Dillmann I. (2015) Correlated strontium and barium isotopic compositions of acid-cleaned single mainstream silicon carbides from Murchison. Astrophys. J. 803, 12 (23pp).",
+        "DOI": "10.1088/0004-637X/803/1/12",
+        "Comments": "C and Si uncertainties in paper are 1 sigma but were incorrectly reported as 2 sigma."
+    },
+    "SiC-2015-XUY-0": {
+        "Number of grains": 1111,
+        "Reference - short": "Xu et al. (2015) ApJ 799:156",
+        "Reference - full": "Xu Y., Zinner E., Gallino R., Heger A., Pignatari M., and Lin Y. (2015) Sulfur isotopic compositions of submicrometer SiC grains from the Murchison meteorite. Astrophys. J. 799, 156 (23pp).",
+        "DOI": "10.1088/0004-637X/799/2/156",
+        "Comments": ""
+    },
+    "SiC-2016-LIU-0": {
+        "Number of grains": 14,
+        "Reference - short": "Liu et al. (2016) ApJ 820:140",
+        "Reference - full": "Liu N., Nittler L. R., Alexander C. M. O'D., Wang J., Pignatari M., Jos\u00e9 J., and Nguyen A. (2016) Stellar origins of extremely 13C- and 15N-enriched presolar SiC grains: Novae or supernovae? Astrophys. J. 820, 140 (14pp).",
+        "DOI": "10.3847/0004-637X/820/2/140",
+        "Comments": ""
+    },
+    "SiC-2017-LIU-0": {
+        "Number of grains": 59,
+        "Reference - short": "Liu et al. (2017) ApJL 842:L1",
+        "Reference - full": "Liu N., Nittler L. R., Pignatari M., Alexander C. M. O'D., and Wang J. (2017) Stellar origin of 15N-rich presolar SiC grains of type AB: supernovae with explosive hydrogen burning. Astrophys. J. Lett. 842, L1 (8pp).",
+        "DOI": "10.3847/2041-8213/aa74e5",
+        "Comments": ""
+    },
+    "SiC-2017-LIU-1": {
+        "Number of grains": 17,
+        "Reference - short": "Liu et al. (2017) ApJL 844:L12",
+        "Reference - full": "Liu N., Stephan T., Boehnke P., Nittler L. R., Alexander C. M. O'D., Wang J., Davis A. M., Trappitsch R., and Pellin M. J. (2017) J-type carbon stars: A dominant source of 14N-rich presolar SiC grains of type AB. Astrophys. J. Lett. 844, L12 (7pp).",
+        "DOI": "10.3847/2041-8213/aa7d4c",
+        "Comments": ""
+    },
+    "SiC-2017-LIU-2": {
+        "Number of grains": 173,
+        "Reference - short": "Liu et al. (2017) MAPS 52:2550",
+        "Reference - full": "Liu N., Steele A., Nittler L. R., Stroud R. M., de Gregorio B. T., Alexander C. M. O'D., and Wang J. (2017) Coordinated EDX and micro-Raman analysis of presolar silicon carbide: A novel, nondestructive method to identify rare subgroup SiC. Meteorit. Planet. Sci. 52, 2550\u20132569.",
+        "DOI": "10.1111/maps.12954",
+        "Comments": ""
+    },
+    "SiC-2018-GYN-0": {
+        "Number of grains": 20,
+        "Reference - short": "Gyngard et al. (2018) GCA 221:60",
+        "Reference - full": "Gyngard F., Jadhav M., Nittler L. R., Stroud R. M., and Zinner E. (2018) Bonanza: An extremely large dust grain from a supernova. Geochim. Cosmochim. Acta 221, 60\u201386.",
+        "DOI": "10.1016/j.gca.2017.09.002",
+        "Comments": ""
+    },
+    "SiC-2018-GYN-1": {
+        "Number of grains": 247,
+        "Reference - short": "Gyngard et al. (2018) GCA 221:145",
+        "Reference - full": "Gyngard F., Amari S., Zinner E., and Marhas K. K. (2018) Correlated silicon and titanium isotopic compositions of presolar SiC grains from the Murchison CM2 chondrite. Geochim. Cosmochim. Acta 221, 145\u2013161.",
+        "DOI": "10.1016/j.gca.2017.09.031",
+        "Comments": ""
+    },
+    "SiC-2018-HAE-0": {
+        "Number of grains": 30,
+        "Reference - short": "Haenecour et al. (2018) GCA 221:379",
+        "Reference - full": "Haenecour P., Floss C., Zega T. J., Croat T. K., Wang A., Jolliff B. L., and Carpenter P. (2018) Presolar silicates in the matrix and fine-grained rims around chondrules in primitive CO3.0 chondrites: Evidence for pre-accretionary aqueous alteration of the rims in the solar nebula. Geochim. Cosmochim. Acta 221, 379\u2013405.",
+        "DOI": "10.1016/j.gca.2017.06.004",
+        "Comments": ""
+    },
+    "SiC-2018-HOP-0": {
+        "Number of grains": 1805,
+        "Reference - short": "Hoppe et al. (2018) GCA 221:182",
+        "Reference - full": "Hoppe P., Pignatari M., Kodol\u00e1nyi J., Gr\u00f6ner E., and Amari S. (2018) NanoSIMS isotope studies of rare types of presolar silicon carbide grains from the Murchison meteorite: Implications for supernova models and the role of 14C. Geochim. Cosmochim. Acta 221, 182\u2013199.",
+        "DOI": "10.1016/j.gca.2017.01.051",
+        "Comments": "Some Fe & Ni data in Kodol\u00e1nyi et al. (2018) GCA 221:127"
+    },
+    "SiC-2018-KOD-0": {
+        "Number of grains": 18,
+        "Reference - short": "Kodol\u00e1nyi et al. (2018) GCA 221:127",
+        "Reference - full": "Kodol\u00e1nyi J., Stephan T., Trappitsch R., Hoppe P., Pignatari M., Davis A. M., and Pellin M. J. (2018) Iron and nickel isotope compositions of presolar silicon carbide grains from supernovae. Geochim. Cosmochim. Acta 221, 127\u2013144.",
+        "DOI": "10.1016/j.gca.2017.05.029",
+        "Comments": "Some C & Si data already in Hoppe et al. (2018) GCA 221:182"
+    },
+    "SiC-2018-LIU-0": {
+        "Number of grains": 12,
+        "Reference - short": "Liu et al. (2018) SciA 4:eaao1054",
+        "Reference - full": "Liu N., Nittler L. R., Alexander C. M. O'D., and Wang J. (2018) Late formation of silicon carbide in type II supernovae. Sci. Adv. 4, eaao1054 (6pp).",
+        "DOI": "10.1126/sciadv.aao1054",
+        "Comments": ""
+    },
+    "SiC-2018-LIU-1": {
+        "Number of grains": 2,
+        "Reference - short": "Liu et al. (2018) ApJ 855:144",
+        "Reference - full": "Liu N., Stephan T., Boehnke P., Nittler L. R., Meyer B. S., Alexander C. M. O'D., Davis A. M., Trappitsch R., and Pellin M. J. (2018) Common occurrence of explosive hydrogen burning in Type II Supernovae. Astrophys. J. 855, 144 (9pp).",
+        "DOI": "10.3847/1538-4357/aaab4e",
+        "Comments": ""
+    },
+    "SiC-2018-NGU-0": {
+        "Number of grains": 1549,
+        "Reference - short": "Nguyen et al. (2018) GCA 221:162",
+        "Reference - full": "Nguyen A. N., Nittler L. R., Alexander C. M. O'D., and Hoppe P. (2018) Titanium isotopic compositions of rare presolar SiC grain types from the Murchison meteorite. Geochim. Cosmochim. Acta 221, 162\u2013181.",
+        "DOI": "10.1016/j.gca.2017.02.026",
+        "Comments": "See comment for some grains in Zinner et al. (2007) GCA 71:4786."
+    },
+    "SiC-2018-NIT-0": {
+        "Number of grains": 17,
+        "Reference - short": "Nittler et al. (2018) GCA 226:107",
+        "Reference - full": "Nittler L. R., Alexander C. M. O'D., Davidson J., Riebe M. E. I., Stroud R. M., and Wang J. (2018) High abundance of presolar grains and 15N-rich organic matter in CO3.0 chondrite Dominion Range 08006. Geochim. Cosmochim. Acta 226, 107\u2013131.",
+        "DOI": "10.1016/j.gca.2018.01.038",
+        "Comments": ""
+    },
+    "SiC-2018-STE-0": {
+        "Number of grains": 11,
+        "Reference - short": "Stephan et al. (2018) GCA 221:109",
+        "Reference - full": "Stephan T., Trappitsch R., Davis A. M., Pellin M. J., Rost D., Savina M. R., Jadhav M., Kelly C. H., Gyngard F., Hoppe P., and Dauphas N. (2018) Strontium and barium isotopes in presolar silicon carbide grains measured with CHILI\u2014two types of X grains. Geochim. Cosmochim. Acta 221, 109\u2013126.",
+        "DOI": "10.1016/j.gca.2017.05.001",
+        "Comments": ""
+    },
+    "SiC-2018-TRA-0": {
+        "Number of grains": 87,
+        "Reference - short": "Trappitsch et al. (2018) GCA 221:87",
+        "Reference - full": "Trappitsch R., Stephan T., Savina M. R., Davis A. M., Pellin M. J., Rost D., Gyngard F., Gallino R., Bisterzo S., Cristallo S., and Dauphas N. (2018) Simultaneous iron and nickel isotopic analyses of presolar silicon carbide grains. Geochim. Cosmochim. Acta 221, 87\u2013108.",
+        "DOI": "10.1016/j.gca.2017.05.031",
+        "Comments": ""
+    },
+    "SiC-2019-HOP-0": {
+        "Number of grains": 38,
+        "Reference - short": "Hoppe et al. (2019) ApJ 887:8",
+        "Reference - full": "Hoppe P., Stancliffe R. J., Pignatari M., and Amari S. (2019) Isotopic signatures of supernova nucleosynthesis in presolar silicon carbide grains of type AB with supersolar 14N/15N ratios. Astrophys. J. 887, 8 (10pp).",
+        "DOI": "10.3847/1538-4357/ab521c",
+        "Comments": ""
+    },
+    "SiC-2019-LIU-0": {
+        "Number of grains": 29,
+        "Reference - short": "Liu et al. (2019) ApJ 881:28",
+        "Reference - full": "Liu N., Stephan T., Cristallo S., Gallino R., Boehnke P., Nittler L. R., Alexander C. M. O'D., Davis A. M., Trappitsch R., Pellin M. J., and Dillmann I. (2019) Presolar silicon carbide grains of types Y and Z: Their molybdenum isotopic compositiions and stellar origins. Astrophys. J. 881, 28 (14pp).",
+        "DOI": "10.3847/1538-4357/ab2d27",
+        "Comments": ""
+    },
+    "SiC-2019-STE-0": {
+        "Number of grains": 18,
+        "Reference - short": "Stephan et al. (2019) ApJ 877:101",
+        "Reference - full": "Stephan T., Trappitsch R., Hoppe P., Davis A. M., Pellin M. J., and Pardo O. S. (2019) Molybdenum isotopes in presolar silicon carbide grains: Details of s-process nucleosynthesis in parent stars and implications for r- and p-processes. Astrophys. J. 877, 101 (16pp).",
+        "DOI": "10.3847/1538-4357/ab1c60",
+        "Comments": ""
+    },
+    "SiC-2020-NIT-0": {
+        "Number of grains": 10,
+        "Reference - short": "Nittler et al. (2020) MAPS 55:1160",
+        "Reference - full": "Nittler L. R., Stroud R. M., Alexander C. M. O'D., and Howell K. (2020) Presolar grains in primitive ungrouped carbonaceous chondrite Northwest Africa 5958. Meteorit. Planet. Sci. 55, 1160\u20131175.",
+        "DOI": "10.1111/maps.13397",
+        "Comments": ""
+    },
+    "SiC-2021-LIU-0": {
+        "Number of grains": 70,
+        "Reference - short": "Liu et al. (2021) ApJL 920:L26",
+        "Reference - full": "Liu N., Barosch J., Nittler L. R., Alexander C. M. O'D., Wang J., Cristallo S., Busso M., and Palmerini S. (2021) New multielement isotopic composition of presolar SiC grains: Implications for their stellar origins. Astrophys. J. Lett. 920, L26 (15pp).",
+        "DOI": "10.3847/2041-8213/ac260b",
+        "Comments": "Some data already in Liu et al. (2017) MAPS 52:2550 and Liu et al. (2017) ApJL 842:L1"
+    },
+    "SiC-2021-NIT-0": {
+        "Number of grains": 31,
+        "Reference - short": "Nittler et al. (2021) MAPS 56:260",
+        "Reference - full": "Nittler L. R., Alexander C. M. O'D., Patzer A., and Verdier-Paoletti M. J. (2021) Presolar stardust in highly pristine CM chondrites Asuka 12169 and Asuka 12236. Meteorit. Planet. Sci. 56, 260\u2013276.",
+        "DOI": "10.1111/maps.13618",
+        "Comments": ""
+    },
+    "SiC-2022-BAR-0": {
+        "Number of grains": 53,
+        "Reference - short": "Barosch et al. (2022) ApJL 935:L3",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Alexander C. M. O'D., De Gregorio B. T., Engrand C., Kebukawa Y., Nagashima K., Stroud R. M., Yabuta H., Abe Y., Al\u00e9on J., Amari S., Amelin Y., Bajo K.-I., Bejach L., Bizzarro M., Bonal L., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Cody G. D., Dartois E., Dauphas N., Davis A. M., Dazzi A., Deniset-Besseau A., Di Rocco T., Duprat J., Fujiya W., Fukai R., Gautam I., Haba M. K., Hashiguchi M., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Ito M., Itoh S., Kamide K., Kawasaki N., Kilcoyne A. L. D., Kita N. T., Kitajima K., Kleine T., Komatani S., Komatsu M., Krot A. N., Liu M.-C., Martins Z., Masuda Y., Mathurin J., McKeegan K. D., Montagnac G., Morita M., Mostefaoui S., Motomura K., Moynier F., Nakai I., Nguyen A. N., Ohigashi T., Okumura T., Onose M., Pack A., Park C., Piani L., Qin L., Quirico E., Remusat L., Russell S. S., Sakamoto N., Sandford S. A., Sch\u00f6nb\u00e4chler M., Shigenaka M., Suga H., Tafla L., Takahashi Y., Takeichi Y., Tamenori Y., Tang H., Terada K., Terada Y., Usui T., Verdier-Paoletti M., Wada S., Wadhwa M., Wakabayashi D., Walker R. J., Yamashita K., Yamashita S., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Abe M., Miyazaki A., Nakato A., Nakazawa S., Nishimura M., Okada T., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S.-I., Yada T., Yogata K., Yoshikawa M., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Tachibana S., and Yurimoto H. (2022) Presolar stardust in asteroid Ryugu. Astrophys. J. Lett. 935, L3 (12pp).",
+        "DOI": "10.3847/2041-8213/ac83bd",
+        "Comments": ""
+    },
+    "SiC-2022-BAR-1": {
+        "Number of grains": 79,
+        "Reference - short": "Barosch et al. (2022) GCA 335:169",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Dobrica E., Brearley A., Hezel D. C., and Alexander C. M. O'D. (2022) Presolar O- and C-anomalous grains in unequilibrated ordinary chondrite matrices. Geochim. Cosmochim. Acta 335, 169\u2013182.",
+        "DOI": "10.1016/j.gca.2022.08.027",
+        "Comments": ""
+    },
+    "SiC-2022-LIU-0": {
+        "Number of grains": 5,
+        "Reference - short": "Liu et al. (2022) EPJA 58:216",
+        "Reference - full": "Liu N., Stephan T., Cristallo S., Vescovi D., Gallino R., Nittler L. R., Alexander C. M. O'D., and Davis A. M. (2022) Presolar silicon carbide grains of types Y and Z: their strontium and barium isotopic compositions and stellar origins. Eur. Phys. J. A 58, 216 (15pp).",
+        "DOI": "10.1140/epja/s10050-022-00838-z",
+        "Comments": "Some data already in Liu et al. (2017) MAPS 52:2550 and Liu et al. (2019) ApJ 881:28"
+    },
+    "SiC-2023-HOP-0": {
+        "Number of grains": 6,
+        "Reference - short": "Hoppe et al. (2023) ApJL 943:L22",
+        "Reference - full": "Hoppe P., Leitner J., Pignatari M., and Amari S. (2023) New constraints for supernova models from presolar silicon carbide X grains with very high 26Al/27Al ratios. Astrophys. J. Lett. 943, L22 (6pp).",
+        "DOI": "10.3847/2041-8213/acb157",
+        "Comments": ""
+    },
+    "SiC-2023-NGU-0": {
+        "Number of grains": 47,
+        "Reference - short": "Nguyen et al. (2023) SciAdv 9:eadh1003",
+        "Reference - full": "Nguyen A. N., Mane P., Keller L. P., Piani L., Abe Y., Al\u00e9on J., Alexander C. M. O., Amari S., Amelin Y., Bajo K., Bizzarro M., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Dauphas N., Davis A. M., Di Rocco T., Fujiya W., Fukai R., Gautam I., Haba M. K., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Itoh S., Kawasaki N., Kita N. T., Kitajima K., Kleine T., Komatani S., Krot A. N., Liu M.-C., Masuda Y., McKeegan K. D., Morita M., Motomura K., Moynier F., Nakai I., Nagashima K., Nesvorn\u00fd D., Nittler L., Onose M., Pack A., Park C., Qin L., Russell S. S., Sakamoto N., Sch\u00f6nb\u00e4chler M., Tafla L., Tang H., Terada K., Terada Y., Usui T., Wada S., Wadhwa M., Walker R. J., Yamashita K., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Yabuta H., Abe M., Miyazaki A., Nakato A., Nishimura M., Okada T., Yada T., Yogata K., Nakazawa S., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S., Yoshikawa M., Tachibana S., and Yurimoto H. (2023) Abundant presolar grains and primordial organics preserved in carbon-rich exogenous clasts in asteroid Ryugu. Sci. Adv. 9, eadh1003 (11pp).",
+        "DOI": "10.1126/sciadv.adh1003",
+        "Comments": ""
+    },
+    "SiC-2024-LIU-0": {
+        "Number of grains": 39,
+        "Reference - short": "Liu et al. (2024) ApJL 961:L22",
+        "Reference - full": "Liu N., Alexander C. M. O'D., Meyer B. S., Nittler L. R., Wang J., and Stroud R. M. (2024) Explosive nucleosynthesis in core-collapse Type II supernovae: Insights from new C, N, Si, and Al\u2013Mg isotopic compositions of presolar grains. Astrophys. J. Lett. 961, L22 (14pp).",
+        "DOI": "10.3847/2041-8213/ad18c7",
+        "Comments": ""
+    },
+    "Gra-1995-HOP-0": {
+        "Number of grains": 646,
+        "Reference - short": "Hoppe et al. (1995) GCA 59:4029",
+        "Reference - full": "Hoppe P., Amari S., Zinner E., and Lewis R. S. (1995) Isotopic compositions of C, N, O, Mg, and Si, trace element abundances, and morphologies of single circumstellar graphite grains in four density fractions from the Murchison meteorite. Geochim. Cosmochim. Acta 59, 4029\u20134056.",
+        "DOI": "10.1016/0016-7037(95)00280-D",
+        "Comments": "Data for KFA1 and KFB1 and KFC1 grains are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1996-AMA-0": {
+        "Number of grains": 5,
+        "Reference - short": "Amari et al. (1996) ApJL 470:L101",
+        "Reference - full": "Amari S., Zinner E., and Lewis R. S. (1996) 41Ca in presolar graphite of supernova origin. Astrophys. J. Lett. 470, L101\u2013L104.",
+        "DOI": "10.1086/310306",
+        "Comments": "Data are also in Travaglio et al. (1999) ApJ 510:325 & Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1996-NIT-0": {
+        "Number of grains": 4,
+        "Reference - short": "Nittler et al. (1996) ApJL 462:L31",
+        "Reference - full": "Nittler L. R., Amari S., Zinner E., Woosley S. E., and Lewis R. S. (1996) Extinct 44Ti in presolar graphite and SiC: Proof of a supernova origin. Astrophys. J. Lett. 462, L31\u2013L34.",
+        "DOI": "10.1088/1538-4357/462/1/L31",
+        "Comments": "Data are also in Travaglio et al. (1999) ApJ 510:325 & Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-1998-NIC-0": {
+        "Number of grains": 32,
+        "Reference - short": "Nicolussi et al. (1998) ApJ 504:492",
+        "Reference - full": "Nicolussi G. K., Pellin M. J., Lewis R. S., Davis A. M., Clayton R. N., and Amari S. (1998) Zirconium and molybdenum in individual circumstellar graphite grains: New isotopic data on the nucleosynthesis of heavy elements. Astrophys. J. 504, 492\u2013499.",
+        "DOI": "10.1086/306072",
+        "Comments": ""
+    },
+    "Gra-1999-TRA-0": {
+        "Number of grains": 81,
+        "Reference - short": "Travaglio et al. (1999) ApJ 510:325",
+        "Reference - full": "Travaglio C., Gallino R., Amari S., Zinner E., Woosley S., and Lewis R. S. (1999) Low-density graphite grains and mixing in type II supernovae. Astrophys. J. 510, 325\u2013354.",
+        "DOI": "10.1086/306551",
+        "Comments": "Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2003-CRO-0": {
+        "Number of grains": 3,
+        "Reference - short": "Croat et al. (2003) GCA 67:4705",
+        "Reference - full": "Croat T. K., Bernatowicz T., Amari S., Messenger S., and Stadermann F. J. (2003) Structural, chemical, and isotopic microanalytical investigations of graphite from supernovae. Geochim. Cosmochim. Acta 67, 4705\u20134725.",
+        "DOI": "10.1016/S0016-7037(03)00463-0",
+        "Comments": "Data for some grains are already in Travaglio et al. (1999) ApJ 510:325. Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2008-JAD-0": {
+        "Number of grains": 7,
+        "Reference - short": "Jadhav et al. (2008) ApJ 682:1479",
+        "Reference - full": "Jadhav M., Amari S., Marhas K. K., Zinner E., Maruoka T., and Gallino R. (2008) New stellar sources for high-density, presolar graphite grains. Astrophys. J. 682, 1479\u20131485.",
+        "DOI": "10.1086/589139",
+        "Comments": "Data are also in Jadhav et al. (2013) GCA 113:193."
+    },
+    "Gra-2009-HEC-0": {
+        "Number of grains": 46,
+        "Reference - short": "Heck et al. (2009) ApJ 701:1415",
+        "Reference - full": "Heck P. R., Amari S., Hoppe P., Baur H., Lewis R. S., and Wieler R. (2009) Ne isotopes in individual presolar graphite grains from the Murchison meteorite together with He, C, O, Mg-Al isotopic analyses as tracers of their origins. Astrophys. J. 701, 1415\u20131425.",
+        "DOI": "10.1088/0004-637X/701/2/1415",
+        "Comments": "C & O Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2012-GRO-0": {
+        "Number of grains": 14,
+        "Reference - short": "Groopman et al. (2012) ApJL 754:L8",
+        "Reference - full": "Groopman E., Bernatowicz T., and Zinner E. (2012) C, N, and O isotopic heterogeneities in low-density supernova graphite grains from Orgueil. Astrophys. J. Lett. 754, L8 (6pp).",
+        "DOI": "10.1088/2041-8205/754/1/L8",
+        "Comments": ""
+    },
+    "Gra-2012-MEI-0": {
+        "Number of grains": 14,
+        "Reference - short": "Meier et al. (2012) GCA 76:147",
+        "Reference - full": "Meier M. M. M., Heck P. R., Amari S., Baur H., and Wieler R. (2012) Graphite grains in supernova ejecta \u2013 Insights from a noble gas study of 91 individual KFC1 presolar graphite grains from the Murchison meteorite. Geochim. Cosmochim. Acta 76, 147\u2013160.",
+        "DOI": "10.1016/j.gca.2011.10.027",
+        "Comments": "Data are also in Amari et al. (2014) GCA 59:479."
+    },
+    "Gra-2013-JAD-0": {
+        "Number of grains": 337,
+        "Reference - short": "Jadhav et al. (2013) GCA 113:193",
+        "Reference - full": "Jadhav M., Zinner E., Amari S., Maruoka T., Marhas K. K., and Gallino R. (2013) Multi-element isotopic analyses of presolar graphite grains from Orgueil. Geochim. Cosmochim. Acta 113, 193\u2013224.",
+        "DOI": "10.1016/j.gca.2013.01.018",
+        "Comments": "Data for some grains are already in Jadhav et al. (2008) ApJ 682:1479."
+    },
+    "Gra-2014-AMA-0": {
+        "Number of grains": 909,
+        "Reference - short": "Amari et al. (2014) GCA 59:479",
+        "Reference - full": "Amari S., Zinner E., and Gallino R. (2014) Presolar graphite from the Murchison meteorite: An isotopic study. Geochim. Cosmochim. Acta 133, 479\u2013522.",
+        "DOI": "10.1016/j.gca.2014.01.006",
+        "Comments": "Data for many grains already in Hoppe et al. (1995) GCA 59:4029; Amari et al. (1996) ApJL 470:L101; Nittler et al. (1996) ApJL 462:L31; Travaglio et al. (1999) ApJ 510:325; Croat et al. (2003) GCA 67:4705; Heck et al. (2009) ApJ 701:1415; Meier et al. (2012) GCA 76:147"
+    },
+    "Gra-2016-HAE-0": {
+        "Number of grains": 2,
+        "Reference - short": "Haenecour et al. (2016) ApJ 825:88",
+        "Reference - full": "Haenecour P., Floss C., Jos\u00e9 J., Amari S., Lodders K., Jadhav M., Wang A., and Gyngard F. (2016) Coordinated analysis of two graphite grains from the CO3.0 LAP 031117 meteorite: First identification of a CO nova graphite and a presolar iron sulfide subgrain. Astrophys. J. 825, 88 (9pp)",
+        "DOI": "10.3847/0004-637X/825/2/88",
+        "Comments": ""
+    },
+    "Gra-2018-HEC-0": {
+        "Number of grains": 7,
+        "Reference - short": "Heck et al. (2018) MAPS 53:2327",
+        "Reference - full": "Heck P. R., Jadhav M., Meier M. M. M., Maruoka T., Amari S., Zinner E. K., Busemann H., Maden C., Gyngard F., Baur H., and Wieler R. (2018) Neon isotopes in individual presolar low-density graphite grains from the Orgueil meteorite. Meteorit. Planet. Sci. 53, 2327\u20132342.",
+        "DOI": "10.1111/maps.13129",
+        "Comments": ""
+    },
+    "Gra-2022-BAR-0": {
+        "Number of grains": 2,
+        "Reference - short": "Barosch et al. (2022) ApJL 935:L3",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Alexander C. M. O'D., De Gregorio B. T., Engrand C., Kebukawa Y., Nagashima K., Stroud R. M., Yabuta H., Abe Y., Al\u00e9on J., Amari S., Amelin Y., Bajo K.-I., Bejach L., Bizzarro M., Bonal L., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Cody G. D., Dartois E., Dauphas N., Davis A. M., Dazzi A., Deniset-Besseau A., Di Rocco T., Duprat J., Fujiya W., Fukai R., Gautam I., Haba M. K., Hashiguchi M., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Ito M., Itoh S., Kamide K., Kawasaki N., Kilcoyne A. L. D., Kita N. T., Kitajima K., Kleine T., Komatani S., Komatsu M., Krot A. N., Liu M.-C., Martins Z., Masuda Y., Mathurin J., McKeegan K. D., Montagnac G., Morita M., Mostefaoui S., Motomura K., Moynier F., Nakai I., Nguyen A. N., Ohigashi T., Okumura T., Onose M., Pack A., Park C., Piani L., Qin L., Quirico E., Remusat L., Russell S. S., Sakamoto N., Sandford S. A., Sch\u00f6nb\u00e4chler M., Shigenaka M., Suga H., Tafla L., Takahashi Y., Takeichi Y., Tamenori Y., Tang H., Terada K., Terada Y., Usui T., Verdier-Paoletti M., Wada S., Wadhwa M., Wakabayashi D., Walker R. J., Yamashita K., Yamashita S., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Abe M., Miyazaki A., Nakato A., Nakazawa S., Nishimura M., Okada T., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S.-I., Yada T., Yogata K., Yoshikawa M., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Tachibana S., and Yurimoto H. (2022) Presolar stardust in asteroid Ryugu. Astrophys. J. Lett. 935, L3 (12pp).",
+        "DOI": "10.3847/2041-8213/ac83bd",
+        "Comments": ""
+    },
+    "Gra-2022-BAR-1": {
+        "Number of grains": 1,
+        "Reference - short": "Barosch et al. (2022) GCA 335:169",
+        "Reference - full": "Barosch J., Nittler L. R., Wang J., Dobrica E., Brearley A., Hezel D. C., and Alexander C. M. O'D. (2022) Presolar O- and C-anomalous grains in unequilibrated ordinary chondrite matrices. Geochim. Cosmochim. Acta 335, 169\u2013182.",
+        "DOI": "10.1016/j.gca.2022.08.027",
+        "Comments": ""
+    },
+    "Gra-2022-ITO-0": {
+        "Number of grains": 1,
+        "Reference - short": "Ito et al. (2022) NatAs 6:1163",
+        "Reference - full": "Ito M., Tomioka N., Uesugi M., Yamaguchi A., Shirai N., Ohigashi T., Liu M.-C., Greenwood R. C., Kimura M., Imae N., Uesugi K., Nakato A., Yogata K., Yuzawa H., Kodama Y., Tsuchiyama A., Yasutake M., Findlay R., Franchi I. A., Malley J. A., McCain K. A., Matsuda N., McKeegan K. D., Hirahara K., Takeuchi A., Sekimoto S., Sakurai I., Okada I., Karouji Y., Arakawa M., Fujii A., Fujimoto M., Hayakawa M., Hirata N., Hirata N., Honda R., Honda C., Hosoda S., Iijima Y., Ikeda H., Ishiguro M., Ishihara Y., Iwata T., Kawahara K., Kikuchi S., Kitazato K., Matsumoto K., Matsuoka M., Michikami T., Mimasu Y., Miura A., Mori O., Morota T., Nakazawa S., Namiki N., Noda H., Noguchi R., Ogawa N., Ogawa K., Okada T., Okamoto C., Ono G., Ozaki M., Saiki T., Sakatani N., Sawada H., Senshu H., Shimaki Y., Shirai K., Sugita S., Takei Y., Takeuchi H., Tanaka S., Tatsumi E., Terui F., Tsukizaki R., Wada K., Yamada M., Yamada T., Yamamoto Y., Yano H., Yokota Y., Yoshihara K., Yoshikawa M., Yoshikawa K., Fukai R., Furuya S., Hatakeda K., Hayashi T., Hitomi Y., Kumagai K., Miyazaki A., Nishimura M., Soejima H., Iwamae A., Yamamoto D., Yoshitake M., Yada T., Abe M., Usui T., Watanabe S., and Tsuda Y. (2022) A pristine record of outer Solar System materials from asteroid Ryugu's returned sample. Nature Astronomy 6, 1163\u20131171.",
+        "DOI": "10.1038/s41550-022-01745-5",
+        "Comments": ""
+    },
+    "Gra-2023-NGU-0": {
+        "Number of grains": 11,
+        "Reference - short": "Nguyen et al. (2023) SciAdv 9:eadh1003",
+        "Reference - full": "Nguyen A. N., Mane P., Keller L. P., Piani L., Abe Y., Al\u00e9on J., Alexander C. M. O., Amari S., Amelin Y., Bajo K., Bizzarro M., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Dauphas N., Davis A. M., Di Rocco T., Fujiya W., Fukai R., Gautam I., Haba M. K., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Itoh S., Kawasaki N., Kita N. T., Kitajima K., Kleine T., Komatani S., Krot A. N., Liu M.-C., Masuda Y., McKeegan K. D., Morita M., Motomura K., Moynier F., Nakai I., Nagashima K., Nesvorn\u00fd D., Nittler L., Onose M., Pack A., Park C., Qin L., Russell S. S., Sakamoto N., Sch\u00f6nb\u00e4chler M., Tafla L., Tang H., Terada K., Terada Y., Usui T., Wada S., Wadhwa M., Walker R. J., Yamashita K., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Yabuta H., Abe M., Miyazaki A., Nakato A., Nishimura M., Okada T., Yada T., Yogata K., Nakazawa S., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S., Yoshikawa M., Tachibana S., and Yurimoto H. (2023) Abundant presolar grains and primordial organics preserved in carbon-rich exogenous clasts in asteroid Ryugu. Sci. Adv. 9, eadh1003 (11pp).",
+        "DOI": "10.1126/sciadv.adh1003",
+        "Comments": ""
+    }
+}

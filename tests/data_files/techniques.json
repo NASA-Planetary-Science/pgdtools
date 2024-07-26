@@ -1,0 +1,114 @@
+{
+    "ANL RIMS": {
+        "Institution": "Argonne National Laboratory",
+        "Technique": "Resonance Ionization Mass Spectrometry",
+        "Instrument": "CHARISMA",
+        "Reference": "Savina M. R., Pellin M. J., Tripa C. E., Veryovkin I. V., Calaway W. F., and Davis A. M. (2003) Analyzing individual presolar grains with CHARISMA. Geochim. Cosmochim. Acta 67, 3215\u20133225.",
+        "DOI": "10.1016/S0016-7037(03)00082-6"
+    },
+    "ANU SHRIMP": {
+        "Institution": "Australian National University",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "SHRIMP \u2013 Sensitive High Resolution Ion Microprobe",
+        "Reference": "Ireland T. R., Compston W., and Esat T. M. (1986) Magnesium isotopic compositions of olivine, spinel, and hibonite from the Murchison carbonaceous chondrite. Geochim. Cosmochim. Acta 50, 1413\u20131421.",
+        "DOI": "10.1016/0016-7037(86)90314-5"
+    },
+    "ASU 6f": {
+        "Institution": "Arizona State University",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 6f",
+        "Reference": "",
+        "DOI": ""
+    },
+    "Caltech 3f": {
+        "Institution": "California Institute of Technology",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 3f",
+        "Reference": "Huss G. R., Hutcheon I. D., and Wasserburg G. J. (1997) Isotopic systematics of presolar silicon carbide from the Orgueil (CI) chondrite: Implications for Solar System formation and stellar nucleosynthesis. Geochim. Cosmochim. Acta 61, 5117\u20135148.",
+        "DOI": "10.1016/S0016-7037(97)00299-8"
+    },
+    "CHILI": {
+        "Institution": "The University of Chicago",
+        "Technique": "Resonance Ionization Mass Spectrometry",
+        "Instrument": "CHILI \u2013 Chicago Instrument for Laser Ionization",
+        "Reference": "Stephan T., Trappitsch R., Davis A. M., Pellin M. J., Rost D., Savina M. R., Yokochi R., and Liu N. (2016) CHILI \u2013 the Chicago Instrument for Laser Ionization \u2013 a new tool for isotope measurements in cosmochemistry. Int. J. Mass Spectrom. 407, 1\u201315.",
+        "DOI": "10.1016/j.ijms.2016.06.001"
+    },
+    "CIW 6f": {
+        "Institution": "Carnegie Institution of Washington",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 6f",
+        "Reference": "",
+        "DOI": ""
+    },
+    "CIW NanoSIMS": {
+        "Institution": "Carnegie Institution of Washington",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50L",
+        "Reference": "",
+        "DOI": ""
+    },
+    "JSC NanoSIMS": {
+        "Institution": "NASA Johnson Space Center",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50L",
+        "Reference": "",
+        "DOI": ""
+    },
+    "Manchester TOF-SIMS": {
+        "Institution": "The University of Manchester",
+        "Technique": "Time-of-Flight Secondary Ion Mass Spectromterty",
+        "Instrument": "IDLE \u2013 Interstellar Dust Laser Explorer",
+        "Reference": "Henkel T., Tizard J., Blagburn D. J., and Lyon I. C. (2007) Interstellar dust laser explorer: A new instrument for elemental and isotopic analysis and imaging of interstellar and interplanetary dust. Rev. Sci. Instrum. 78, 055107.",
+        "DOI": "10.1063/1.2735565"
+    },
+    "MPIC 3f": {
+        "Institution": "Max Planck Institute for Chemistry",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 3f",
+        "Reference": "",
+        "DOI": ""
+    },
+    "MPIC NanoSIMS": {
+        "Institution": "Max Planck Institute for Chemistry",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50",
+        "Reference": "Hoppe P., Cohen S., and Meibom A. (2013) NanoSIMS: Technical aspects and applications in cosmochemistry and biological geochemistry. Geostand. Geoanal. Res. 37, 111\u2013154.",
+        "DOI": "10.1111/j.1751-908X.2013.00239.x"
+    },
+    "M\u00fcnster TOF-SIMS": {
+        "Institution": "University of M\u00fcnster",
+        "Technique": "Time-of-Flight Secondary Ion Mass Spectromterty",
+        "Instrument": "ION-TOF TOF-SIMS IV",
+        "Reference": "Stephan T. (2001) TOF-SIMS in cosmochemistry. Planet. Space Sci. 49, 859\u2013906.",
+        "DOI": "10.1016/S0032-0633(01)00037-X"
+    },
+    "U Bern 3f": {
+        "Institution": "University of Bern",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 3f",
+        "Reference": "Hoppe P., Geiss J., B\u00fchler F., Neuenschwander J., Amari S., and Lewis R. S. (1993) Fingerprints of carbon, nitrogen, and silicon isotopes in small interstellar SiC grains from the Murchison meteorite. Geochim. Cosmochim. Acta 57, 4059\u20134068.",
+        "DOI": "10.1016/0016-7037(93)90353-X"
+    },
+    "WU 3f": {
+        "Institution": "Washington University in St. Louis",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA IMS 3f",
+        "Reference": "Zinner E. (1989) Isotopic measurements with the ion microprobe. New Frontiers in Stable Isotope Research: Laser Probes, Ion Probes, and Small-Sample Analysis, USGS Bulletin 1890, 145\u2013162.",
+        "DOI": "10.3133/b1890"
+    },
+    "WU NanoSIMS": {
+        "Institution": "Washington University in St. Louis",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50",
+        "Reference": "Stadermann F. J., Walker R. M., and Zinner E. (1999) Sub-micron isotopic measurements with the CAMECA NanoSIMS (abstract). Lunar Planet. Sci. 30, #1407.",
+        "DOI": ""
+    },
+    "JAMSTEC NanoSIMS": {
+        "Institution": "Japan Agency for Marine-Earth Science Technology",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50L",
+        "Reference": "",
+        "DOI": ""
+    }
+}
