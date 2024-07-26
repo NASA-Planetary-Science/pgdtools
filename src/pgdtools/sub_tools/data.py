@@ -130,7 +130,7 @@ class Data:
 
         unc_sym = df[iso_unc_none[0]] if iso_unc_none[0] else None
         if iso_unc_none[1] is not None:
-            ret_uncp = df[iso_unc_none[1]]
+            ret_uncp = df[iso_unc_none[1]].copy()
             if unc_sym is not None:  # so we have symmetric and asymmetric errs
                 ret_uncp.where(ret_uncp.notna(), unc_sym, inplace=True)
         else:
@@ -138,7 +138,7 @@ class Data:
             ret_uncp.name = ret_uncp.name.replace("err", "err+")
 
         if iso_unc_none[2] is not None:
-            ret_uncn = df[iso_unc_none[2]]
+            ret_uncn = df[iso_unc_none[2]].copy()
             if unc_sym is not None:
                 ret_uncn.where(ret_uncn.notna(), unc_sym, inplace=True)
         else:
@@ -164,7 +164,7 @@ class Data:
 
         :param rat_x: Isotope ratio to get for x-axis of plot. Tuple of two strings.
             Each string represents an isotope. Example: ("29Si", "28Si").
-        :param rat_x: Isotope ratio to get for y-axis of plot. Tuple of two strings.
+        :param rat_y: Isotope ratio to get for y-axis of plot. Tuple of two strings.
             Each string represents an isotope. Example: ("29Si", "28Si").
         :param simplify_unc: By default, uncertainties are returned as asymmetric
             errors. This would return a dataframe with two columns.
