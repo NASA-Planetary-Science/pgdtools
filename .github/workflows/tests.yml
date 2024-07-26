@@ -27,7 +27,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install the latest version of rye
-      uses: eifinger/setup-rye@v3
+      uses: eifinger/setup-rye@v4
     - name: Sync Rye
       run: |
         rye pin ${{ matrix.python-version }}

@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install the latest version of rye
-      uses: eifinger/setup-rye@v1
+      uses: eifinger/setup-rye@v4
     - name: Sync Rye
       run: |
         rye sync --all-features
