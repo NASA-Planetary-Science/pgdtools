@@ -22,10 +22,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
     - name: Install the latest version of rye
       uses: eifinger/setup-rye@v4
     - name: Sync Rye

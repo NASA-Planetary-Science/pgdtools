@@ -24,4 +24,4 @@ jobs:
         PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
       run: |
         rye build
-        rye publish --toke $PYPI_TOKEN --yes
+        rye publish --token $PYPI_TOKEN --yes
