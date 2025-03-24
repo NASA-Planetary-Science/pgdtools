@@ -76,5 +76,6 @@ nav:
       - PGD subtools: api/subtools.md
       - Database: api/db.md
       - Maintainer: api/maintainer.md
+  - Changelog: changelog.md
   - About:
       - Code of Conduct: code_of_conduct.md
