@@ -107,36 +107,55 @@ def test_classify_grain(grain):
 def test_classify_grain_whole_db():
     """Test classification of all grains in the whole database."""
     pgd = PresolarGrains()
+    pgd.filter.db(pgd.DataBase.SiC)
     db = pgd.db
     grain_ids = list(db.index)
 
     for id in grain_ids:
-        grain = pgd.grain[id]
-        type_db, subtype_db = grain.pgd_type
-        if subtype_db == np.nan:
+        pgd.filter.pgd_id(id)
+        type_db = pgd.db.loc[id, "PGD Type"]
+        subtype_db = pgd.db.loc[id, "PGD Subtype"]
+        if subtype_db is np.nan:
             subtype_db = None
-        probs_db = grain.probabilities
 
-        c12_c13 = grain.value("C12", "C13")[0:2]
-        n14_n15 = grain.value("N14", "N15")[0:2]
-        d29Si = grain.value("29Si", "28Si")[0:2]
-        d30Si = grain.value("30Si", "28Si")[0:2]
-        al26_al27 = grain.value("26Al", "27Al")[0:2]
-        rho_si = grain.correlation("Si30", "Si29")
+        c12_c13 = np.array(pgd.data.ratio(["C12", "C13"], dropnan=False)).flatten()
+        n14_n15 = np.array(pgd.data.ratio(["N14", "N15"], dropnan=False)).flatten()
+        d29Si = np.array(pgd.data.ratio(["Si29", "Si28"], dropnan=False)).flatten()
+        d30Si = np.array(pgd.data.ratio(["Si30", "Si28"], dropnan=False)).flatten()
+        al26_al27 = np.array(pgd.data.ratio(["Al26", "Al27"], dropnan=False)).flatten()
+        rho_si = pgd.db.loc[id, "rho[30Si-29Si]"]
 
         if np.isnan(c12_c13[0]):
             c12_c13 = None
+        else:
+            c12_c13 = (c12_c13[0], (c12_c13[1], c12_c13[2]))
         if np.isnan(n14_n15[0]):
             n14_n15 = None
+        else:
+            n14_n15 = (n14_n15[0], (n14_n15[1], n14_n15[2]))
         if np.isnan(d29Si[0]):
             d29Si = None
+        else:
+            d29Si = (d29Si[0], d29Si[1])
         if np.isnan(d30Si[0]):
             d30Si = None
+        else:
+            d30Si = (d30Si[0], d30Si[1])
         if np.isnan(al26_al27[0]):
             al26_al27 = None
+        else:
+            al26_al27 = (al26_al27[0], al26_al27[1])
+        if np.isnan(rho_si):
+            rho_si = 0
 
         type_rec, subtype_rec = classify_sic_grain(
-            c12_c13, n14_n15, d29Si, d30Si, al26_al27, rho_si=rho_si
+            c12_c13,
+            n14_n15,
+            d29Si,
+            d30Si,
+            al26_al27,
+            rho_si=rho_si,
+            ret_probabilities=False,
         )
         # get the probabilities for all the grains
         probs_rec = classify_sic_grain(
@@ -149,12 +168,19 @@ def test_classify_grain_whole_db():
             ret_probabilities=True,
         )
 
+        # get probabilites from the database
+        probs_db = {}
+        for key in probs_rec.keys():
+            probs_db[key] = pgd.db.loc[id, f"p({key})"]
+
         try:
             assert type_rec == type_db
             assert subtype_rec == subtype_db
             assert probs_rec == probs_db
         except AssertionError as err:
             raise AssertionError(f"Grain id: {id}") from err
+
+        pgd.reset()
 
 
 # TEST PRIVATE ROUTINES #
