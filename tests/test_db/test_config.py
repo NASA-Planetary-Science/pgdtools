@@ -27,7 +27,7 @@ def test_databases_urls_all(conf_files):
     urls = db.urls(all=True)
 
     assert isinstance(urls, list)
-    assert len(set(urls)) == 8  # 8 unique URLs in the test database
+    assert len(set(urls)) == 9  # 8 unique URLs in the test database
     for url in urls:
         assert isinstance(url, str)
         assert url.startswith("http")
@@ -47,7 +47,7 @@ def test_databases_urls_latest(conf_files):
         assert url.endswith(".csv")
 
     # ensure that really the latest dates were chosen
-    latest_dates = ["2023-07-22", "2021-01-01"]
+    latest_dates = ["2025-03-10", "2023-07-22", "2021-01-01"]
     for url in urls:
         assert any(latest_date in url for latest_date in latest_dates)
 

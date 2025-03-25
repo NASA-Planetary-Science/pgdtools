@@ -613,7 +613,7 @@
         "Reference - short": "Stephan et al. (2019) ApJ 877:101",
         "Reference - full": "Stephan T., Trappitsch R., Hoppe P., Davis A. M., Pellin M. J., and Pardo O. S. (2019) Molybdenum isotopes in presolar silicon carbide grains: Details of s-process nucleosynthesis in parent stars and implications for r- and p-processes. Astrophys. J. 877, 101 (16pp).",
         "DOI": "10.3847/1538-4357/ab1c60",
-        "Comments": ""
+        "Comments": "Mo and Ru data reevaluated in Stephan et al. (2025) ApJ 981:201"
     },
     "SiC-2020-NIT-0": {
         "Number of grains": 10,
@@ -803,5 +803,33 @@
         "Reference - full": "Nguyen A. N., Mane P., Keller L. P., Piani L., Abe Y., Al\u00e9on J., Alexander C. M. O., Amari S., Amelin Y., Bajo K., Bizzarro M., Bouvier A., Carlson R. W., Chaussidon M., Choi B.-G., Dauphas N., Davis A. M., Di Rocco T., Fujiya W., Fukai R., Gautam I., Haba M. K., Hibiya Y., Hidaka H., Homma H., Hoppe P., Huss G. R., Ichida K., Iizuka T., Ireland T. R., Ishikawa A., Itoh S., Kawasaki N., Kita N. T., Kitajima K., Kleine T., Komatani S., Krot A. N., Liu M.-C., Masuda Y., McKeegan K. D., Morita M., Motomura K., Moynier F., Nakai I., Nagashima K., Nesvorn\u00fd D., Nittler L., Onose M., Pack A., Park C., Qin L., Russell S. S., Sakamoto N., Sch\u00f6nb\u00e4chler M., Tafla L., Tang H., Terada K., Terada Y., Usui T., Wada S., Wadhwa M., Walker R. J., Yamashita K., Yin Q.-Z., Yokoyama T., Yoneda S., Young E. D., Yui H., Zhang A.-C., Nakamura T., Naraoka H., Noguchi T., Okazaki R., Sakamoto K., Yabuta H., Abe M., Miyazaki A., Nakato A., Nishimura M., Okada T., Yada T., Yogata K., Nakazawa S., Saiki T., Tanaka S., Terui F., Tsuda Y., Watanabe S., Yoshikawa M., Tachibana S., and Yurimoto H. (2023) Abundant presolar grains and primordial organics preserved in carbon-rich exogenous clasts in asteroid Ryugu. Sci. Adv. 9, eadh1003 (11pp).",
         "DOI": "10.1126/sciadv.adh1003",
         "Comments": ""
+    },
+    "SiC-2018-LEI-0": {
+        "Number of grains": 9,
+        "Reference - short": "Leitner et al. (2018) MAPS 53:204",
+        "Reference - full": "Leitner J., Hoppe P., and Zipfel J. (2018) A study of presolar material in hydrated lithic clasts from metal-rich carbonaceous chondrites. Meteorit. Planet. Sci. 53, 204\u2013231.",
+        "DOI": "10.1111/maps.12994",
+        "Comments": ""
+    },
+    "SiC-2020-LEI-0": {
+        "Number of grains": 21,
+        "Reference - short": "Leitner et al. (2020) MAPS 55:1176",
+        "Reference - full": "Leitner J., Metzler K., Vollmer C., Floss C., Haenecour P., Kodol\u00e1nyi J., Harries D., and Hoppe P. (2020) The presolar grain inventory of fine-grained chondrule rims in the Mighei-type (CM) chondrites. Meteorit. Planet. Sci. 55, 1176\u20131206.",
+        "DOI": "10.1111/maps.13412",
+        "Comments": ""
+    },
+    "SiC-2024-HOP-0": {
+        "Number of grains": 31,
+        "Reference - short": "Hoppe et al. (2024) MNRAS 532:211",
+        "Reference - full": "Hoppe P., Leitner J., Pignatari M., and Amari S. (2024) Isotope studies of presolar silicon carbide grains from supernovae: new constraints for hydrogen-ingestion supernova models. Mon. Not. R. Astron. Soc. 532, 211\u2013222.",
+        "DOI": "10.1093/mnras/stae1523",
+        "Comments": "Some data already in Hoppe et al. (2023) ApJL 943:L22"
+    },
+    "SiC-2025-STE-0": {
+        "Number of grains": 55,
+        "Reference - short": "Stephan et al. (2025) ApJ 981:201",
+        "Reference - full": "Stephan T., Hoppe P., Davis A. M., Korsmeyer J. M., Regula A., and Richards H. E. (2025) Correlated molybdenum, ruthenium, and barium isotope anomalies in presolar silicon carbide grains. Astrophys. J. 981, 201 (22pp).",
+        "DOI": "10.3847/1538-4357/adb308",
+        "Comments": "Reevaluation of some data from Stephan et al. (2019) ApJ 877:101"
     }
 }

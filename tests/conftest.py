@@ -32,7 +32,7 @@ def pgd_head(pgd):
 @pytest.fixture
 def pgd_setup(tmpdir_home, data_files_dir):
     """Copy and create the required files for reading the PGD."""
-    sic_db_name = "PGD_SiC_2023-10-30.csv"
+    sic_db_name = "PGD_SiC_2025-03-10.csv"
     gra_db_name = "PGD_Gra_2024-05-13.csv"
 
     db_json = tmpdir_home.joinpath("config/db.json")

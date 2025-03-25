@@ -55,6 +55,15 @@
                 "Known issues": "",
                 "Released on": "Zenodo",
                 "URL": "https://zenodo.org/record/8187488/files/PGD_SiC_2023-07-22.csv"
+            },
+            {
+                "Change": "1. New classification tool now provided on sheet \"Classification\"\n2. Definitions for X, C, D, and N grains changed, now allowing 14N/15N ratios up to solar (441)\n3. Corrected some typos in meteorite names\n4. Corrected: Zr data from Nicolussi et al. (1997) Science 277:1281 were normalized to 92Zr instead of 94Zr\n5. Al data from Hoppe et al. (2023) ApJL 943:L22 were replaced with reevaluated data\n6. Mo and Ru data from Stephan et al. (2019) ApJ 877:101 were replaced with reevaluated data from Stephan et al. (2025) ApJ 981:201\n7. Data from the following references were added:\nLeitner et al. (2018) MAPS 53:204\nLeitner et al. (2020) MAPS 55:1176\nHoppe et al. (2024) MNRAS 532:211\nStephan et al. (2025) ApJ 981:201",
+                "Date": "2025-03-10",
+                "DOI": "10.60520/IEDA/113714",
+                "Grains": 20432,
+                "Known issues": "",
+                "Released on": "Astromat",
+                "URL": "https://zenodo.org/record/15015059/files/PGD_SiC_2025-03-10.csv"
             }
         ]
     },
