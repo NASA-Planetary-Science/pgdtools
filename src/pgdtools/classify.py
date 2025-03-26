@@ -228,7 +228,7 @@ def _nitrogen_probabilities(
         prob_dict["M"] = 1 - _probability_value(msr, 200)
         prob_dict["Y"] = prob_dict["M"]
         prob_dict["Z"] = prob_dict["M"]
-        prob_dict["X"] = _probability_value(msr, 272)
+        prob_dict["X"] = _probability_value(msr, 441)
         prob_dict["C"] = prob_dict["X"]
         prob_dict["D"] = prob_dict["X"]
         prob_dict["N"] = prob_dict["X"]
@@ -428,14 +428,14 @@ def _probability_value(
 def _replace_errors(
     msr: Union[float, Tuple[float, Union[float, Tuple[float, float]]], None],
 ) -> Union[Tuple[float, Union[float, Tuple[float, float]]], None]:
-    """If no errors are given (or given as ``np.nan`` or ``None``), replace them.
+    """If no errors are given (or given as ``np.nan`` or ``None``, or 0), replace them.
+    )/
+        Replacement takes place with ratio / 10.
 
-    Replacement takes place with ratio / 10.
+        :param msr: Measurement as float (no error), as Tuple with one or two errors,
+            or None.
 
-    :param msr: Measurement as float (no error), as Tuple with one or two errors,
-        or None.
-
-    :return: Measurement with errors where non-existent replaced.
+        :return: Measurement with errors where non-existent replaced.
     """
     if msr is None:
         return None
@@ -445,12 +445,18 @@ def _replace_errors(
         value, err = msr
         if hasattr(err, "__iter__"):  # two errors
             err_plus, err_minus = err
-            if err_plus is None or np.isnan(err_plus):
+            if err_plus is None or np.isnan(err_plus) or err_plus == 0:
                 err_plus = np.abs(value / 10)
-            if err_minus is None or np.isnan(err_minus):
+            elif err_plus == 1e6:
+                err_plus = value
+            if err_minus is None or np.isnan(err_minus) or err_minus == 0:
                 err_minus = np.abs(value / 10)
+            elif err_minus == 1e6:
+                err_minus = value
             return value, (err_plus, err_minus)
         else:  # one error
-            if err is None or np.isnan(err):
+            if err is None or np.isnan(err) or err == 0:
                 err = np.abs(value / 10)
+            elif err == 1e6:
+                err = value
             return value, err
