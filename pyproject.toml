@@ -39,7 +39,7 @@ docs = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.rye]
+[tool.uv]
 managed = true
 dev-dependencies = [
     "hypothesis>=6.98.2",
@@ -49,10 +49,6 @@ dev-dependencies = [
     "requests-mock>=1.11.0",
     "xdoctest>=1.1.5",
 ]
-
-[tool.rye.scripts]
-test_docs = "xdoctest pgdtools"
-test_cov = "pytest --cov=pgdtools --cov-report xml"
 
 [tool.hatch.metadata]
 allow-direct-references = true
