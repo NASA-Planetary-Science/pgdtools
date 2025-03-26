@@ -47,6 +47,7 @@ dev-dependencies = [
     "pytest-cov>=4.1.0",
     "pytest-mock>=3.12.0",
     "requests-mock>=1.11.0",
+    "ruff>=0.11.2",
     "xdoctest>=1.1.5",
 ]
 
