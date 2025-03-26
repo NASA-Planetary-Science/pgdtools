@@ -110,5 +110,12 @@
         "Instrument": "CAMECA NanoSIMS 50L",
         "Reference": "",
         "DOI": ""
+    },
+    "IGGCAS NanoSIMS": {
+        "Institution": "Institute of Geology and Geophysics, Chinese Academy of Science",
+        "Technique": "Secondary Ion Mass Spectrometry",
+        "Instrument": "CAMECA NanoSIMS 50L",
+        "Reference": "",
+        "DOI": ""
     }
 }

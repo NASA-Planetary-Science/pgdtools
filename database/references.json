@@ -739,7 +739,7 @@
         "Reference - short": "Groopman et al. (2012) ApJL 754:L8",
         "Reference - full": "Groopman E., Bernatowicz T., and Zinner E. (2012) C, N, and O isotopic heterogeneities in low-density supernova graphite grains from Orgueil. Astrophys. J. Lett. 754, L8 (6pp).",
         "DOI": "10.1088/2041-8205/754/1/L8",
-        "Comments": ""
+        "Comments": "Mg & K & Ca & Ti data in Groopman (2015) Dissertation; St. Louis"
     },
     "Gra-2012-MEI-0": {
         "Number of grains": 14,
@@ -831,5 +831,47 @@
         "Reference - full": "Stephan T., Hoppe P., Davis A. M., Korsmeyer J. M., Regula A., and Richards H. E. (2025) Correlated molybdenum, ruthenium, and barium isotope anomalies in presolar silicon carbide grains. Astrophys. J. 981, 201 (22pp).",
         "DOI": "10.3847/1538-4357/adb308",
         "Comments": "Reevaluation of some data from Stephan et al. (2019) ApJ 877:101"
+    },
+    "Gra-1995-ZIN-0": {
+        "Number of grains": 40,
+        "Reference - short": "Zinner et al. (1995) MAPS 30:209",
+        "Reference - full": "Zinner E., Amari S., Wopenka B., and Lewis R. S. (1995) Interstellar graphite in meteorites: Isotopic compositions and structural properties of single graphite grains from Murchison. Meteoritics 30, 209\u2013226.",
+        "DOI": "10.1111/j.1945-5100.1995.tb01115.x",
+        "Comments": ""
+    },
+    "Gra-2010-CRO-0": {
+        "Number of grains": 6,
+        "Reference - short": "Croat et al. (2010) AJ 139:2159",
+        "Reference - full": "Croat T. K., Stadermann F. J., and Bernatowicz T. J. (2010) Unusual 29,30Si-rich SiCs of massive star origin found within graphites from the Murchison meteorite. Astronom. J. 139, 2159\u20132169.",
+        "DOI": "10.1088/0004-6256/139/6/2159",
+        "Comments": ""
+    },
+    "Gra-2013-WOP-0": {
+        "Number of grains": 101,
+        "Reference - short": "Wopenka et al. (2013) GCA 106:463",
+        "Reference - full": "Wopenka B., Xu X. C., Zinner E., and Amari S. (2013) Murchison presolar carbon grains of different density fractions: A Raman spectroscopic perspective. Geochim. Cosmochim. Acta 106, 463\u2013489.",
+        "DOI": "10.1016/j.gca.2012.12.022",
+        "Comments": ""
+    },
+    "Gra-2015-GRO-0": {
+        "Number of grains": 27,
+        "Reference - short": "Groopman (2015) Dissertation; St. Louis",
+        "Reference - full": "Groopman E. E. (2015) Correlated NanoSIMS, TEM, and XANES studies of presolar grains. Dissertation, Washington University, Saint Louis, Missouri. 233 pp.",
+        "DOI": "10.7936/K7P26W8R",
+        "Comments": "Data for many grains already in Groopman et al. (2012) ApJL 754:L8"
+    },
+    "Gra-2016-XUY-0": {
+        "Number of grains": 44,
+        "Reference - short": "Xu et al. (2016) ApJ 825:111",
+        "Reference - full": "Xu Y., Lin Y., Zhang J., and Hao J. (2016) The first discovery of presolar graphite grains from the highly reducing Qingzhen (EH3) meteorite. Astrophys. J. 825, 111 (12pp).",
+        "DOI": "10.3847/0004-637X/825/2/111",
+        "Comments": ""
+    },
+    "Gra-2018-GRO-0": {
+        "Number of grains": 2,
+        "Reference - short": "Groopman & Nittler (2018) GCA 221:219",
+        "Reference - full": "Groopman E. E. and Nittler L. R. (2018) Correlated XANES, TEM, and NanoSIMS of presolar graphite grains. Geochim. Cosmochim. Acta 221, 219\u2013236.",
+        "DOI": "10.1016/j.gca.2017.02.011",
+        "Comments": ""
     }
 }

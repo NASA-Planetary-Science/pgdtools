@@ -96,6 +96,15 @@
                 "Known issues": "There is more data to be added.",
                 "Released on": "Zenodo",
                 "URL": "https://zenodo.org/record/11188116/files/PGD_Gra_2024-05-13.csv"
+            },
+            {
+                "Change": "More data added.\nNew Type definition unifying, e.g., Amari et al. (2014) GCA 59:479 and Jadhav et al. (2013) GCA 113:193 by introducing \"medium density\" grains.",
+                "Date": "2025-03-24",
+                "DOI": "10.5281/zenodo.15079635",
+                "Grains": 2342,
+                "Known issues": "Further classification needed.",
+                "Released on": "Zenodo",
+                "URL": "https://zenodo.org/record/15079635/files/PGD_Gra_2025-03-24.csv"
             }
         ]
     }
