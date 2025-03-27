@@ -1,6 +1,6 @@
 [project]
 name = "pgdtools"
-version = "0.1.0"
+version = "0.2.0"
 description = "Read and interact with the presolar grain database with python."
 authors = [
     { name = "Reto Trappitsch", email = "reto@galactic-forensics.space" }
