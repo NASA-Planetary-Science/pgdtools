@@ -82,10 +82,8 @@ class Data:
 
         :return: Two columns of size information.
         """
-        ret_db = self.parent.db[["Size a (µm)", "Size b (µm)"]]
-        ret_db["Size b (µm)"].where(
-            ret_db["Size b (µm)"].notna(), ret_db["Size a (µm)"], inplace=True
-        )
+        ret_db = self.parent.db[["Size a (µm)", "Size b (µm)"]].copy()
+        ret_db["Size b (µm)"] = ret_db["Size b (µm)"].fillna(ret_db["Size a (µm)"])
         return ret_db
 
     # METHODS

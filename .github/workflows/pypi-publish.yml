@@ -1,6 +1,3 @@
-# This workflows will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
-
 name: Upload Python Package PyPi
 
 on:
@@ -14,14 +11,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install the latest version of rye
-      uses: eifinger/setup-rye@v4
-    - name: Sync Rye
-      run: |
-        rye sync --all-features
+    - name: Install uv and set the python version
+      uses: astral-sh/setup-uv@v5
+    - name: Sync UV
+      run: uv sync --all-extras --dev
     - name: Build and publish
       env:
         PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
       run: |
-        rye build
-        rye publish --token $PYPI_TOKEN --yes
+        uv build
+        uv publish --token $PYPI_TOKEN
