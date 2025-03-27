@@ -29,6 +29,7 @@ def test_append_to_db_json_astromat(excel_file, db_json):
     assert zenodo_record in db_json.read_text()
 
 
+@pytest.mark.filterwarnings("ignore::UserWarning")
 def test_append_to_db_json_repo_db(excel_file, mocker):
     """Assert that if no `db_json` is given, the default one is used."""
     # mock the open routine so that we won't write to the actual file
@@ -137,6 +138,7 @@ def test_append_techniques_json_create_append_quiet(excel_file, chtmpdir):
     assert fout.exists()
 
 
+@pytest.mark.filterwarnings("ignore::UserWarning")
 def test_compare_and_append_dictionaries_new_and_existing_overwrite():
     """Test the comparison of two dictionaries."""
     dict_ex = {"a": 1, "b": 2}

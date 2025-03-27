@@ -47,9 +47,9 @@ def test_ratio(pgd, grain):
     pgd_id, ratio, exp_values = grain
     pgd.filter.pgd_id(pgd_id)
     data, unc_pos, unc_neg = pgd.data.ratio(ratio)
-    assert data[0] == exp_values[0]
-    assert unc_pos[0] == exp_values[1]
-    assert unc_neg[0] == exp_values[2]
+    assert data.iloc[0] == exp_values[0]
+    assert unc_pos.iloc[0] == exp_values[1]
+    assert unc_neg.iloc[0] == exp_values[2]
 
 
 @pytest.mark.parametrize(
