@@ -1,6 +1,6 @@
 """Sub tool to retrieve data from the filtered database."""
 
-from typing import Tuple, Union
+from typing import List, Tuple, Union
 
 import pandas as pd
 
@@ -144,6 +144,65 @@ class Data:
             ret_uncn.name = ret_uncn.name.replace("err", "err-")
 
         return ret_ratio, ret_uncp, ret_uncn
+
+    def ratios(
+        self,
+        rat: List[Union[str, Tuple[str, str]]],
+        dropnan: bool = True,
+    ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        """Get multiple isotope ratios, even for whole elements.
+
+        This function retrieves multiple isotope ratios from the database. It can
+        also retrieve isotope ratios for a whole element, e.g., "Si" for all Si
+        isotope ratios. The function returns a dataframe with the isotope ratios,
+        and a dataframe with the uncertainties.
+
+        FIXME: Currently uncertainties for graphite/SiC mix grains, e.g., for N isotopes
+        would be returned with three error columns (err+,err- for SiC, err for graphite).
+
+        :param rat: List of isotope ratios to retrieve. Each ratio can be a string
+            for an element (e.g., "Si") or a tuple of two strings for an isotope
+            ratio (e.g., ("29Si", "28Si")).
+        :param dropnan: Drop rows that have NaN values for all isotopes.
+            Defaults to `True`.
+
+        :return: A tuple of two dataframes: The first dataframe contains all the
+            data for the given isotope ratios. The second dataframe contains
+            all the uncertainties. Note that while they are ordered the same,
+            the uncertainties dataframe might contain more columns than the value
+            dataframe, as for certain isotope ratios asymmetric errors are available.
+        """
+        if isinstance(rat, str):
+            rat = [rat]
+
+        headers = []
+        for rt in rat:
+            if isinstance(rt, str):  # a whole element!
+                ele_ratios = self.parent.info.ratios(rt, no_print=True)
+                for entry in ele_ratios:
+                    isos_tpl = pgdtools.sub_tools.headers.get_iso_ratio_from_hdr(
+                        entry[0]
+                    )
+                    headers.append(self.parent._header(*isos_tpl))
+            else:
+                if len(rt) != 2:
+                    raise ValueError("Isotope ratio names must be a tuple of length 2.")
+                headers.append(self.parent._header(rt[0], rt[1]))
+
+        hdr_ratios = [h.ratio[0] for h in headers]
+        hdr_uncertainties = []
+        for h in headers:
+            [hdr_uncertainties.append(u) for u in h.uncertainty if u is not None]
+
+        data_df = self.parent.db[hdr_ratios].copy(deep=True)
+        unc_df = self.parent.db[hdr_uncertainties].copy(deep=True)
+
+        if dropnan:
+            unc_df = unc_df.dropna(axis=1, how="all")
+            data_df = data_df.dropna(how="all")
+            unc_df = unc_df.dropna(how="all")
+
+        return data_df, unc_df
 
     def ratio_xy(
         self, rat_x: Tuple[str, str], rat_y: Tuple[str, str], simplify_unc=False

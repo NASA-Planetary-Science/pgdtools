@@ -1,5 +1,6 @@
 """Functional tests for the data sub tool."""
 
+import pandas as pd
 import numpy as np
 import pytest
 
@@ -108,6 +109,60 @@ def test_ratio_xy(pgd, grains):
         assert corr is None
     else:
         np.testing.assert_equal(corr.to_numpy(), corr_exp)
+
+
+@pytest.mark.parametrize(
+    "grains",
+    [
+        [
+            ["SiC-2018-NGU-001467", "SiC-2018-NGU-001468", "SiC-2018-NGU-001469"],
+            [("30Si", "28Si"), ("29Si", "28Si")],
+            pd.DataFrame(
+                [[2.878785, 1.614332], [-14.65148, 53.60126], [9.194016, -49.70938]]
+            ),
+            pd.DataFrame(
+                [
+                    [17.3810739784015, 36.1074016544854],
+                    [27.2944250477073, 16.603475361908],
+                    [25.2720715909656, 35.379145053113],
+                ]
+            ),
+        ],
+        [
+            ["SiC-2018-NGU-001467", "SiC-2018-NGU-001468", "SiC-2018-NGU-001469"],
+            ["Si"],
+            pd.DataFrame(
+                [
+                    [1.614332, 2.878785],
+                    [53.60126, -14.65148],
+                    [-49.70938, 9.194016],
+                ]
+            ),
+            pd.DataFrame(
+                [
+                    [36.1074016544854, 17.3810739784015],
+                    [16.603475361908, 27.2944250477073],
+                    [35.379145053113, 25.2720715909656],
+                ]
+            ),
+        ],
+        [
+            ["SiC-2025-STE-000054", "SiC-2025-STE-000055"],
+            "N",
+            pd.DataFrame([[630.83206089286]]),
+            pd.DataFrame([[45.2169170503371, 45.2169170503371]]),
+        ],
+    ],
+)
+def test_ratios(pgd, grains):
+    """Get random isotope ratios for a given element or various isotope ratios."""
+    grain_list, ratios, data_exp, uncertainties_exp = grains
+
+    pgd.filter.pgd_id(grain_list)
+    data, uncertainties = pgd.data.ratios(ratios)
+
+    # np.testing.assert_equal(data.to_numpy(), data_exp.to_numpy())
+    np.testing.assert_equal(uncertainties.to_numpy(), uncertainties_exp.to_numpy())
 
 
 def test_size(pgd):

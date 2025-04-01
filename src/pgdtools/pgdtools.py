@@ -150,7 +150,7 @@ class PresolarGrains:
     def technique(self) -> Techniques:
         """Return the technique class initialized with the current database
 
-        Various routines are implemented, e.g., to return technques for each
+        Various routines are implemented, e.g., to return techniques for each
         grain as a table, or to return techniques as a set,
         which can be useful to ensure the original authors are cited
         when you use the database. For a quick overview, you can also simply

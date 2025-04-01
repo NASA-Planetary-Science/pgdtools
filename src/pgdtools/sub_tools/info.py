@@ -86,10 +86,14 @@ class Info:
                 print(f"- {entry}")
             return entries
 
-    def ratios(self, inp: str) -> Union[None, List[Tuple[str, bool]]]:
+    def ratios(
+        self, inp: str, no_print: bool = False
+    ) -> Union[None, List[Tuple[str, bool]]]:
         """Get/print available ratios for a given element or isotope.
 
         :param inp: Input isotope or element.
+        :param no_print: If True, do not print the results.
+            Defaults to False.
 
         :return: A tuple of tuples. In the latter, each entry consists of available
             isotope ratio and a boolean value to indicate if this is a delta-value.
@@ -97,7 +101,7 @@ class Info:
         excl_startswith = ("err", "rho")
 
         iso = str(utl.Isotope(inp, allow_element=True))
-        all_in_hdr = (x for x in self.parent.db.columns if iso in x)
+        all_in_hdr = (x for x in self.parent.db.columns if f"{iso}/" in x)
         flt_hdr = [
             (x, x.startswith("d"))
             for x in all_in_hdr
@@ -105,10 +109,12 @@ class Info:
         ]
 
         if len(flt_hdr) == 0:
-            print(f"No isotope ratios containing {iso} found.")
+            if not no_print:
+                print(f"No isotope ratios containing {iso} found.")
             return None
         else:
-            print(f"Isotope ratios containing {iso}:")
-            for entry in flt_hdr:
-                print(f"- {entry[0]}, delta value: {entry[1]}")
+            if not no_print:
+                print(f"Isotope ratios containing {iso}:")
+                for entry in flt_hdr:
+                    print(f"- {entry[0]}, delta value: {entry[1]}")
             return flt_hdr

@@ -101,3 +101,15 @@ class Headers:
         :return: Correct formatting for finding given isotope ratio.
         """
         return f"{self.iso1}/{self.iso2}"
+
+
+def get_iso_ratio_from_hdr(hdr: str) -> Tuple[str, str]:
+    """Get the isotope ratio from the header.
+
+    :param hdr: Header string, i.e., `d(29Si/30Si)` or `12C/13C`.
+
+    :return: Tuple of the two isotopes. Information if delta is lost.
+    """
+    hdr = hdr.lstrip("d(").rstrip(")")
+    iso1, iso2 = hdr.split("/")
+    return iso1, iso2

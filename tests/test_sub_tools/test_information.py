@@ -62,6 +62,13 @@ def test_ratio(pgd_head):
     assert pgd_head.info.ratios("29Si") == [("d(29Si/28Si)", True)]
 
 
+def test_ratio_one_letter_element(pgd_head):
+    """Ensure isotope ratios are found correctly for one-letter elements."""
+    assert pgd_head.info.ratios("N") == [
+        ("14N/15N", False),
+    ]
+
+
 def test_ratio_none(pgd_head):
     """Return None if ratios were not found."""
     assert pgd_head.info.ratios("275C") is None
