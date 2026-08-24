@@ -6,8 +6,7 @@ from typing import Any, Dict
 
 import requests
 
-from pgdtools import data
-from pgdtools import db
+from pgdtools import data, db
 
 
 def current() -> Dict[str, Path]:
@@ -33,7 +32,7 @@ def current() -> Dict[str, Path]:
     try:
         curr = json.load(open(db.LOCAL_CURRENT, "r"))
     except json.JSONDecodeError as err:
-        raise IOError(file_io_error) from err
+        raise OSError(file_io_error) from err
 
     # turn values of keys into paths
     curr_ret = {k: Path(v) for k, v in curr.items()}
@@ -166,5 +165,4 @@ def _download_file(url: str, local_file: Path) -> None:
             raise ConnectionError(f"Connection error {rin.status_code} for url {url}.")
 
         with open(local_file, "wb") as floc:
-            for chunk in rin.iter_content(chunk_size=8192):
-                floc.write(chunk)
+            floc.writelines(rin.iter_content(chunk_size=8192))

@@ -49,7 +49,7 @@ def classify_sic_grain(
         if not ret_probabilities:
             return "U", None  # unclassified
         else:
-            return dict(zip(types, probabilities))  #
+            return dict(zip(types, probabilities))
 
     c12_c13 = _replace_errors(c12_c13)
     n14_n15 = _replace_errors(n14_n15)

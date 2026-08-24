@@ -1,6 +1,6 @@
 """Sub tool to add information querying capabilities."""
 
-from typing import List, Union, Set, Tuple
+from typing import List, Set, Tuple, Union
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl

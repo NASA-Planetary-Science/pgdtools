@@ -4,7 +4,6 @@ import pytest
 
 from pgdtools.sub_tools import References
 
-
 # DUNDER METHODS #
 
 

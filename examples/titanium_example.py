@@ -1,8 +1,8 @@
 """For Benoit: Compare some Ti isotope ratios."""
 
-from iniabu import inimf  # import as mass_fraction values right away
 import matplotlib.pyplot as plt
 import numpy as np
+from iniabu import inimf  # import as mass_fraction values right away
 
 import pgdtools
 
@@ -79,14 +79,14 @@ for a in ax:
     a.set_ylim(ylim)
 
     # labels for axes
-    a.set_xlabel("$\delta^{46}$Ti$_{48}$   (‰)")
+    a.set_xlabel(r"$\delta^{46}$Ti$_{48}$   (‰)")
 
     # aspect and layout
     a.set_aspect("equal")
 
 # y label
-ax[0].set_ylabel("$\delta^{47}$Ti$_{48}$   (‰)")
-ax[1].set_ylabel("$\delta^{49}$Ti$_{48}$   (‰)")
+ax[0].set_ylabel(r"$\delta^{47}$Ti$_{48}$   (‰)")
+ax[1].set_ylabel(r"$\delta^{49}$Ti$_{48}$   (‰)")
 
 fig.tight_layout()
 

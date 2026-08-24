@@ -1,7 +1,7 @@
 """Classes to deal with the configuration files."""
 
-from datetime import datetime
 import json
+from datetime import datetime
 from typing import Any, List
 
 from pgdtools import db

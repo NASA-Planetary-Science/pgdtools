@@ -3,7 +3,8 @@
 import numpy as np
 import pytest
 
-from pgdtools import classify as cl, classify_sic_grain, PresolarGrains
+from pgdtools import PresolarGrains, classify_sic_grain
+from pgdtools import classify as cl
 
 # grains to test, following definitions:
 # [

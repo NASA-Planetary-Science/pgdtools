@@ -2,8 +2,8 @@
 
 import itertools
 import json
-from typing import List, Set
 import re
+from typing import List, Set
 
 import pandas as pd
 

@@ -1,6 +1,6 @@
 """Utilities for all tool modules in pgdtools."""
 
-from typing import Iterable
+from collections.abc import Iterable
 
 
 class Isotope:

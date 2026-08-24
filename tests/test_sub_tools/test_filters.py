@@ -4,9 +4,8 @@ import pandas as pd
 import pytest
 
 from pgdtools import PresolarGrains
-from pgdtools.sub_tools import filters as flt
 from pgdtools.sub_tools import Filters
-
+from pgdtools.sub_tools import filters as flt
 
 # DUNDER METHODS #
 

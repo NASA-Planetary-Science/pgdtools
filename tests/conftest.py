@@ -51,7 +51,7 @@ def pgd_setup(tmpdir_home, data_files_dir):
 
     current_file = tmpdir_home.joinpath("current.json")
     current_file.write_text(
-        f'{{"sic": "{str(sic_db.absolute())}", "gra": "{str(gra_db.absolute())}"}}'
+        f'{{"sic": "{sic_db.absolute()!s}", "gra": "{gra_db.absolute()!s}"}}'
     )  # noqa: B907
 
 

@@ -4,11 +4,11 @@ These tools are mainly used in order to release a new version of the database to
 used with `pgdtools`.
 """
 
-from datetime import datetime
 import json
+import warnings
+from datetime import datetime
 from pathlib import Path
 from typing import Union
-import warnings
 
 import numpy as np
 import pandas as pd

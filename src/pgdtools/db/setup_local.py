@@ -1,7 +1,7 @@
 """Set up the local path for the database based on OS."""
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 def setup_path() -> Path:

@@ -1,6 +1,6 @@
 """Sub tool to add filtering capabilities."""
 
-from typing import List, Union, Tuple
+from typing import List, Tuple, Union
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl

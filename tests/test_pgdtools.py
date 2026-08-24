@@ -5,7 +5,6 @@ import pytest
 import pgdtools.sub_tools.headers
 import pgdtools.sub_tools.utilities as utl
 
-
 # ISOTOPE CLASS #
 
 
