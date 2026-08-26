@@ -62,7 +62,6 @@ excel_file = Path(
 mt.append_reference_json(excel_file)
 ```
 
-
 Note that we assume that the information is in a tab called "References".
 If not, please specify the tab name using the `tab_name` argument.
 This will add the references to the `references.json` file in the `database` directory of the repository.
@@ -104,7 +103,11 @@ This file is used by `pgdtools` to know which databases are available
 and where to get them from.
 A new release must be added to this file.
 This can be done automatically with the maintainer tools.
-You will need the excel file (as above) and the DOI of the release.
+
+### Database release has a Zenodo DOI
+
+If you have a Zenodo DOI,
+you will need the excel file (as above) and the DOI of the release.
 
 ```python
 from pathlib import Path
@@ -118,9 +121,36 @@ doi = "10.5281/zenodo.1234567"  # replace with the DOI of the release
 mt.append_to_db_json(excel_file, doi, db_json=db_json)
 ```
 
+### Database release has an Astromat DOI and a Zenodo release
+
+If you have an Astromat DOI and have released the database on Zenodo as well,
+you need the DOI and and the Zenodo record,
+which you can find in the download link of the databse.
+For example, The zenodo record for the download link
+`https://zenodo.org/records/20317007/files/PGD_SiC_2026-05-19.csv?download=1`
+would be `20317007`.
+
+Then run:
+
+```python
+from pathlib import Path
+
+import pgdtools.maintainer as mt
+
+excel_file = Path("PGD_SiC_2023-07-22.xlsx")
+db_json = Path("db.json")
+
+doi = "10.5281/ABCD.1234567"  # replace with the DOI of the release
+zenodo_record = "20317007"
+
+mt.append_to_db_json(excel_file, doi, zenodo_record=zenodo_record, db_json=db_json)
+```
+
 If the current database is not yet in the `db.json` file,
 it will be appended.
 Otherwise, a warning will be raised and the `db.json` file will not be modified.
+
+### Notes
 
 If you run `pgdtools` from a cloned GitHub branch,
 the `db_json` keyword can be omitted.
@@ -135,7 +165,8 @@ If this is not the case, you can use the `url` and `db_name` keywords.
 !!! info "Database on Astromat but cross-listed on Zenodo"
 
     If the doi of the database does not contain the word `zenodo`,
-    it was not minted by Zenodo and was most likely created by Astromat (IEDA).
+    it was not minted by Zenodo and the above procedure assumes
+    that it was released on Astromat.
     If the database is cross-referenced on Zenodo,
     hover over the Zenodo download link and extract the record ID manually.
     This record ID is the number after `record/` and before `files` in the URL.
