@@ -4,7 +4,6 @@ import pytest
 
 from pgdtools.sub_tools import Techniques
 
-
 # DUNDER METHODS #
 
 
@@ -42,7 +41,7 @@ def test_iter(pgd_head):
     """Iterate over the key, value pairs."""
     tech = pgd_head.technique
     for key, value in tech:
-        assert key in tech.dict.keys()
+        assert key in tech.dict
         assert value in tech.dict.values()
 
 

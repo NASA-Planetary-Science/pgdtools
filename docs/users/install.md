@@ -27,6 +27,7 @@ Alternatively, you can run the following commands inside your python console:
 
 ```python
 from pgdtools import db
+
 db.update()
 ```
 

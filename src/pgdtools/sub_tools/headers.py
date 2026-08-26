@@ -1,6 +1,6 @@
 """Sub tool to search the header for information."""
 
-from typing import List, Tuple, Union
+from __future__ import annotations
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl
@@ -9,7 +9,7 @@ import pgdtools.sub_tools.utilities as utl
 class Headers:
     """Class to search all header information for an isotope ratio."""
 
-    def __init__(self, parent: "pgdtools.PresolarGrains", iso1: str, iso2: str) -> None:
+    def __init__(self, parent: pgdtools.PresolarGrains, iso1: str, iso2: str) -> None:
         """Initialize the SearchHeader class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
@@ -26,7 +26,7 @@ class Headers:
         self.iso2 = utl.Isotope(iso2)
 
     @property
-    def correlation(self) -> Union[None, str]:
+    def correlation(self) -> None | str:
         """Search the header for a given isotope correlation.
 
         If the correlation is not found in the header, return `None`.
@@ -37,7 +37,7 @@ class Headers:
         return search_str if search_str in self.parent.db.columns else None
 
     @property
-    def ratio(self) -> Tuple[str, bool]:
+    def ratio(self) -> tuple[str, bool]:
         """Search the header for a given isotope ratio.
 
         If the header is not found, None is returned.
@@ -56,11 +56,11 @@ class Headers:
         if hdr is None:
             raise ValueError(f"Isotope ratio {iso_rat} not found in header.")
         else:
-            delta = True if hdr.lower().startswith("d") else False
+            delta = bool(hdr.lower().startswith("d"))
             return hdr, delta
 
     @property
-    def uncertainty(self) -> List[Union[str, None]]:
+    def uncertainty(self) -> list[str | None]:
         """Search the header for uncertainty of a given isotope ratio.
 
         If the errors are not found, a tuple of three None values is returned.

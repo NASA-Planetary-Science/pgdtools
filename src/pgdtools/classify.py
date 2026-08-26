@@ -1,20 +1,20 @@
 """Routines to automatically classify a grain based on definitions in paper."""
 
-from typing import Dict, Tuple, Union
+from __future__ import annotations
 
 import numpy as np
 from scipy.special import erf
 
 
 def classify_sic_grain(
-    c12_c13: Tuple[float, Union[float, Tuple[float, float]]] = None,
-    n14_n15: Tuple[float, Union[float, Tuple[float, float]]] = None,
-    d29si: Tuple[float, float] = None,
-    d30si: Tuple[float, float] = None,
-    al26_al27: Tuple[float, float] = None,
+    c12_c13: tuple[float, float | tuple[float, float]] | None = None,
+    n14_n15: tuple[float, float | tuple[float, float]] | None = None,
+    d29si: tuple[float, float] | None = None,
+    d30si: tuple[float, float] | None = None,
+    al26_al27: tuple[float, float] | None = None,
     rho_si: float = 0,
     ret_probabilities: bool = False,
-) -> Union[Tuple[str, Union[str, None]], Dict[str, float]]:
+) -> tuple[str, str | None] | dict[str, float]:
     """Classify a measured grain according to the classification scheme.
 
     This returns either a Tuple of grain type and subtype (if `probabilities=False`,
@@ -49,7 +49,7 @@ def classify_sic_grain(
         if not ret_probabilities:
             return "U", None  # unclassified
         else:
-            return dict(zip(types, probabilities))  #
+            return dict(zip(types, probabilities))
 
     c12_c13 = _replace_errors(c12_c13)
     n14_n15 = _replace_errors(n14_n15)
@@ -91,7 +91,9 @@ def classify_sic_grain(
         return dict(zip(types, probabilities))
 
 
-def _aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float]:
+def _aluminium_probabilities(
+    msr: tuple[float, float] | None = None,
+) -> dict[str, float]:
     """Calculate probabilities for aluminium isotopic data.
 
     :param msr: Aluminium 26/27 isotopic ratio and uncertainty.
@@ -121,8 +123,8 @@ def _aluminium_probabilities(msr: Tuple[float, float] = None) -> Dict[str, float
 
 
 def _carbon_probabilities(
-    msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
-) -> Dict[str, float]:
+    msr: tuple[float, float | tuple[float, float]] | None = None,
+) -> dict[str, float]:
     """Calculate probabilities for carbon isotopic data.
 
     :param msr: Carbon 12/13 isotopic ratio and uncertainty.
@@ -145,11 +147,11 @@ def _carbon_probabilities(
 
 def _find_subtype(
     type: str,
-    c12_c13: Tuple[float, Union[float, Tuple[float, float]]],
-    n14_n15: Tuple[float, Union[float, Tuple[float, float]]],
-    d29si: Tuple[float, float],
-    d30si: Tuple[float, float],
-) -> Union[str, None]:
+    c12_c13: tuple[float, float | tuple[float, float]],
+    n14_n15: tuple[float, float | tuple[float, float]],
+    d29si: tuple[float, float],
+    d30si: tuple[float, float],
+) -> str | None:
     """Find subtype for types X, AB or C.
 
     :param type: Main grain type.
@@ -214,8 +216,8 @@ def _find_subtype(
 
 
 def _nitrogen_probabilities(
-    msr: Tuple[float, Union[float, Tuple[float, float]]] = None,
-) -> Dict[str, float]:
+    msr: tuple[float, float | tuple[float, float]] | None = None,
+) -> dict[str, float]:
     """Calculate probabilities for nitrogen isotopic data.
 
     :param msr: Nitrogen 14/15 isotopic ratio and uncertainty.
@@ -250,9 +252,9 @@ def _probability_chi(chi: float) -> float:
 
 
 def _probability_slope(
-    xval: Tuple[float, Union[float, Tuple[float, float]]],
-    yval: Tuple[float, Union[float, Tuple[float, float]]],
-    comp: Tuple[float, Union[float, Tuple[float, float]]],
+    xval: tuple[float, float | tuple[float, float]],
+    yval: tuple[float, float | tuple[float, float]],
+    comp: tuple[float, float | tuple[float, float]],
     rhoxy: float = 0,
 ) -> float:
     """Calculate the probability for a grain when compared to a line.
@@ -275,10 +277,10 @@ def _probability_slope(
 
 
 def _silicon_probabilities(
-    msr_d29si: Tuple[float, Union[float, Tuple[float, float]]] = None,
-    msr_d30si: Tuple[float, Union[float, Tuple[float, float]]] = None,
+    msr_d29si: tuple[float, float | tuple[float, float]] | None = None,
+    msr_d30si: tuple[float, float | tuple[float, float]] | None = None,
     rho: float = 0,
-) -> Dict[str, float]:
+) -> dict[str, float]:
     """Calculate probabilities for silicon isotopic data.
 
     :param msr_d29si: Silicon 29/28 isotopic ratio as delta value (permil)
@@ -401,7 +403,7 @@ def _silicon_probabilities(
 
 
 def _probability_value(
-    msr: Tuple[float, Union[float, Tuple[float, float]]], comp: float
+    msr: tuple[float, float | tuple[float, float]], comp: float
 ) -> float:
     """Calculate the probability  `p(msr < comp`).
 
@@ -426,8 +428,8 @@ def _probability_value(
 
 
 def _replace_errors(
-    msr: Union[float, Tuple[float, Union[float, Tuple[float, float]]], None],
-) -> Union[Tuple[float, Union[float, Tuple[float, float]]], None]:
+    msr: float | tuple[float, float | tuple[float, float]] | None,
+) -> tuple[float, float | tuple[float, float]] | None:
     """If no errors are given (or given as ``np.nan`` or ``None``, or 0), replace them.
     )/
         Replacement takes place with ratio / 10.

@@ -1,6 +1,6 @@
 """Sub tool to retrieve data from the filtered database."""
 
-from typing import Tuple, Union
+from __future__ import annotations
 
 import pandas as pd
 
@@ -18,7 +18,7 @@ class Data:
      See the documentation of individual routines to see how data are filtered.
     """
 
-    def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
+    def __init__(self, parent: pgdtools.PresolarGrains) -> None:
         """Initialize the Data class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
@@ -89,8 +89,8 @@ class Data:
     # METHODS
 
     def ratio(
-        self, rat: Tuple[str, str], dropnan: bool = True
-    ) -> Tuple[
+        self, rat: tuple[str, str], dropnan: bool = True
+    ) -> tuple[
         pd.Series,
         pd.Series,
         pd.Series,
@@ -146,13 +146,13 @@ class Data:
         return ret_ratio, ret_uncp, ret_uncn
 
     def ratio_xy(
-        self, rat_x: Tuple[str, str], rat_y: Tuple[str, str], simplify_unc=False
-    ) -> Tuple[
+        self, rat_x: tuple[str, str], rat_y: tuple[str, str], simplify_unc=False
+    ) -> tuple[
         pd.Series,
-        Union[pd.Series, pd.DataFrame],
+        pd.Series | pd.DataFrame,
         pd.Series,
-        Union[pd.Series, pd.DataFrame],
-        Union[None, pd.Series],
+        pd.Series | pd.DataFrame,
+        None | pd.Series,
     ]:
         """Retrieve two isotope ratios and their respective uncertainties.
 

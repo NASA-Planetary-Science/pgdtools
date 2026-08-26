@@ -54,6 +54,7 @@ Simply updating to the latest version of the database can be done using the foll
 
 ```python
 from pgdtools import db
+
 db.update()
 ```
 
@@ -76,6 +77,7 @@ To display the currently used database, use the following command:
 
 ```python
 from pgdtools import db
+
 db.current()
 ```
 
@@ -106,6 +108,7 @@ To set the current database use the following command:
 
 ```python
 from pgdtools import db
+
 doi = "10.5281/zenodo.8187446"
 db.set_current("sic", "DOI", doi)
 ```

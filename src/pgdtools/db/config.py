@@ -1,8 +1,8 @@
 """Classes to deal with the configuration files."""
 
-from datetime import datetime
 import json
-from typing import Any, List
+from datetime import datetime
+from typing import Any
 
 from pgdtools import db
 
@@ -31,7 +31,8 @@ class DataBases:
                 f"`pgdtools.db.update()` first."
             )
 
-        self._dbs = json.load(open(db.LOCAL_DB_JSON, "r"))
+        with open(db.LOCAL_DB_JSON, "r") as d:
+            self._dbs = json.load(d)
 
         # formatting of the dictionary entries
         for key in self._dbs:
@@ -72,7 +73,7 @@ class DataBases:
             return versions[newest_index]
 
         @property
-        def versions(self) -> List[dict]:
+        def versions(self) -> list[dict]:
             """Return all versions of the database."""
             return self._db["versions"]
 
@@ -96,7 +97,7 @@ class DataBases:
             return {}
 
     @property
-    def dbs(self) -> List[str]:
+    def dbs(self) -> list[str]:
         """Return a list of all available databases.
 
         :return: List of all available databases as a list of strings.
@@ -112,7 +113,7 @@ class DataBases:
         """
         return self.DataBase(self, db)
 
-    def urls(self, all=False) -> List[str]:
+    def urls(self, all=False) -> list[str]:
         """Return a list of URLs for all types of databases.
 
         :param all: If True, return all URLs for all versions of the database.

@@ -11,7 +11,6 @@ import requests
 
 from pgdtools import data
 
-
 ALL_URLS = [data.BIBFILE, data.DB_JSON, data.REFERENCES_JSON, data.TECHNIQUES_JSON]
 
 

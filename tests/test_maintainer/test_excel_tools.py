@@ -97,7 +97,7 @@ def test_append_reference_json_create_append_quiet(excel_file, chtmpdir):
     # pop one key
     with open(fout, "r") as f:
         refs = json.load(f)
-    key = list(refs.keys())[0]
+    key = next(iter(refs.keys()))
     refs.pop(key)
     with open(fout, "w") as f:
         json.dump(refs, f, indent=4)
@@ -108,7 +108,7 @@ def test_append_reference_json_create_append_quiet(excel_file, chtmpdir):
     # ensure key exists again
     with open(fout, "r") as f:
         refs = json.load(f)
-    assert key in refs.keys()
+    assert key in refs
 
     assert fout.exists()
 
@@ -122,7 +122,7 @@ def test_append_techniques_json_create_append_quiet(excel_file, chtmpdir):
     # pop one key
     with open(fout, "r") as f:
         refs = json.load(f)
-    key = list(refs.keys())[0]
+    key = next(iter(refs.keys()))
     refs.pop(key)
     with open(fout, "w") as f:
         json.dump(refs, f, indent=4)
@@ -133,7 +133,7 @@ def test_append_techniques_json_create_append_quiet(excel_file, chtmpdir):
     # ensure key exists again
     with open(fout, "r") as f:
         refs = json.load(f)
-    assert key in refs.keys()
+    assert key in refs
 
     assert fout.exists()
 

@@ -1,6 +1,6 @@
 """Sub tool to add filtering capabilities."""
 
-from typing import List, Union, Tuple
+from __future__ import annotations
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl
@@ -12,7 +12,7 @@ class Filters:
     Note that this class will filter the dataset in the parent class!
     """
 
-    def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
+    def __init__(self, parent: pgdtools.PresolarGrains) -> None:
         """Initialize the Filters class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
@@ -26,9 +26,7 @@ class Filters:
 
     def db(
         self,
-        dbs: Union[
-            "pgdtools.PresolarGrains.DataBase", List["pgdtools.PresolarGrains.DataBase"]
-        ],
+        dbs: pgdtools.PresolarGrains.DataBase | list[pgdtools.PresolarGrains.DataBase],
         exclude: bool = False,
     ) -> None:
         """Filter out a specific database.
@@ -38,7 +36,7 @@ class Filters:
 
         :raises TypeError: Database is not of type PresolarGrains.DataBase.
         """
-        if not isinstance(dbs, List):
+        if not isinstance(dbs, list):
             dbs = [dbs]
 
         if not all(isinstance(db, pgdtools.PresolarGrains.DataBase) for db in dbs):
@@ -57,7 +55,7 @@ class Filters:
                 )
             ]
 
-    def pgd_id(self, ids: Union[str, List[str]], exclude: bool = False) -> None:
+    def pgd_id(self, ids: str | list[str], exclude: bool = False) -> None:
         """Filter the data set based on PGD IDs.
 
         :param ids: PGD ID (single or multiple) to filter the data set on.
@@ -70,7 +68,7 @@ class Filters:
         else:
             self.parent.db = self.parent.db.loc[ids]
 
-    def pgd_type(self, tp: Union[str, List[str]], exclude: bool = False) -> None:
+    def pgd_type(self, tp: str | list[str], exclude: bool = False) -> None:
         """Filter for a given PGD type or types.
 
         :param tp: PGD type or types to filter the data set on.
@@ -78,7 +76,7 @@ class Filters:
         """
         self._filter_column("PGD Type", tp, exclude)
 
-    def pgd_subtype(self, st: Union[str, List[str]], exclude: bool = False) -> None:
+    def pgd_subtype(self, st: str | list[str], exclude: bool = False) -> None:
         """Filter for a given PGD subtype or subtypes.
 
         Note: Empty values are not dropped if `exclude` is set to `True`.
@@ -89,7 +87,7 @@ class Filters:
         self._filter_column("PGD Subtype", st, exclude)
 
     def ratio(
-        self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
+        self, rat: tuple[str, str], cmp: str, value: float, exclude: bool = False
     ) -> None:
         """Filter the data set based on a given isotope ratio.
 
@@ -123,7 +121,7 @@ class Filters:
                 self.parent.db[iso_rat[0]].apply(lambda x: eval(f"x {cmp} {value}"))
             ]
 
-    def reference(self, refs: Union[str, List[str]], exclude=False) -> None:
+    def reference(self, refs: str | list[str], exclude=False) -> None:
         """Filter the data set based on (a) given reference(s).
 
         Note that the references must be exactly what is written in the database.
@@ -144,7 +142,7 @@ class Filters:
         self.parent.reset()
 
     def uncertainty(
-        self, rat: Tuple[str, str], cmp: str, value: float, exclude: bool = False
+        self, rat: tuple[str, str], cmp: str, value: float, exclude: bool = False
     ) -> None:
         """Filter the data set based on a given uncertainty of an isotope ratio.
 
@@ -195,7 +193,7 @@ class Filters:
             ]
 
     def _filter_column(
-        self, column: str, value: Union[str, List[str]], exclude: bool
+        self, column: str, value: str | list[str], exclude: bool
     ) -> None:
         """Filter the data set based on a given column.
 
@@ -211,7 +209,7 @@ class Filters:
             self.parent.db = self.parent.db[self.parent.db[column].isin(value)]
 
 
-def _check_comparator(cmp: str) -> Union[str, None]:
+def _check_comparator(cmp: str) -> str | None:
     """Check comparator for validity and correct if necessary and possible.
 
     If the comparator is not valid, a ValueError is raised.
