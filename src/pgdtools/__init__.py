@@ -4,7 +4,17 @@ from . import data, db, maintainer
 from .classify import classify_sic_grain
 from .pgdtools import PresolarGrains
 
-pgd = PresolarGrains()
+_pgd: PresolarGrains | None = None
+
+
+def __getattr__(name: str):
+    """Lazily initialize module attributes."""
+    if name == "pgd":
+        global _pgd
+        if _pgd is None:
+            _pgd = PresolarGrains()
+        return _pgd
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 __all__ = [
     "PresolarGrains",
