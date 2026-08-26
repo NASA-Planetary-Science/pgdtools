@@ -56,7 +56,9 @@ from pathlib import Path
 
 import pgdtools.maintainer as mt
 
-excel_file = Path("PGD_SiC_2023-07-22.xlsx", quiet=True)  # assuming the file is in the current directory
+excel_file = Path(
+    "PGD_SiC_2023-07-22.xlsx", quiet=True
+)  # assuming the file is in the current directory
 mt.append_reference_json(excel_file)
 ```
 

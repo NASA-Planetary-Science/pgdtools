@@ -1,4 +1,5 @@
 """Sub tool to retrieve data from the filtered database."""
+
 from __future__ import annotations
 
 import pandas as pd

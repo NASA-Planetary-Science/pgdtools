@@ -1,4 +1,5 @@
 """Sub tool to search the header for information."""
+
 from __future__ import annotations
 
 import pgdtools

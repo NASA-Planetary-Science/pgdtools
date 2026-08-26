@@ -1,4 +1,5 @@
 """Routines to automatically classify a grain based on definitions in paper."""
+
 from __future__ import annotations
 
 import numpy as np
@@ -90,7 +91,9 @@ def classify_sic_grain(
         return dict(zip(types, probabilities))
 
 
-def _aluminium_probabilities(msr: tuple[float, float] | None = None) -> dict[str, float]:
+def _aluminium_probabilities(
+    msr: tuple[float, float] | None = None,
+) -> dict[str, float]:
     """Calculate probabilities for aluminium isotopic data.
 
     :param msr: Aluminium 26/27 isotopic ratio and uncertainty.

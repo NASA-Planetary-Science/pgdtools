@@ -14,7 +14,7 @@ dependencies = [
   "requests>=2.31.0",
 ]
 readme = "README.md"
-requires-python = ">= 3.9"
+requires-python = ">= 3.11"
 license = { text = "MIT" }
 
 [project.urls]
@@ -24,12 +24,12 @@ Documentation = "https://pgdtools.readthedocs.io"
 [project.optional-dependencies]
 maintainer = ["bibtexparser>=1.4.1", "openpyxl>=3.1.2"]
 docs = [
-  "mkdocs>=1.6.0",
-  "mkdocs-material>=9.5.25",
-  "mkdocs-jupyter>=0.24.8",
-  "notebook>=7.2.1",
+  "mkdocs>=1.6.1",
+  "mkdocs-material>=9.7.7",
+  "mkdocs-jupyter>=0.26.3",
+  "notebook>=7.6.2",
   "ceresfit>=0.3.1",
-  "mkdocstrings[python]>=0.25.1",
+  "mkdocstrings[python]>=0.26.3",
 ]
 
 [build-system]
@@ -55,8 +55,8 @@ allow-direct-references = true
 packages = ["src/pgdtools"]
 
 [tool.pytest]
-testpaths = "tests"
-addopts = "--cov=pgdtools -v"
+testpaths = ["tests"]
+addopts = ["--cov=pgdtools", "-v"]
 
 [tool.ruff.lint]
 ignore = ["DTZ007"] # ignore timezone missing errors
