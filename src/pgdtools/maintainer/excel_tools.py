@@ -30,7 +30,7 @@ def append_to_db_json(
 
     Currently, only releases on Zenodo are supported for SiC and Graphite grains.
     If the DOI does not contain the word `zenodo`, it refers likely to another archive
-    (Astromat - IEDA) and the `zenodo_record` number is required.
+    (Astromat - IEDA c) and the `zenodo_record` number is required.
 
     :param excel_file: Path to the Excel file.
     :param doi: DOI of the database.
@@ -81,7 +81,7 @@ def append_to_db_json(
                 f"https://zenodo.org/record/{doi.split('.')[-1]}/files/"
                 f"{excel_file.with_suffix('.csv').name}"
             )
-    elif zenodo_record is not None and "IEDA" in doi:  # Astromat/Zenodo cross release
+    elif zenodo_record is not None:  # Astromat/Zenodo cross release
         released_on = "Astromat"
         if url is None:
             url = (
@@ -90,8 +90,7 @@ def append_to_db_json(
             )
     else:
         raise NotImplementedError(
-            "Only Zenodo releases and Astromat (IEDA) releases that are "
-            "cross-released on Zenodo are currently supported."
+            "If you do not provie a zenodo DOI, please specify the Zenodo record."
         )
 
     # read the VersionHistory sheet for info where the correct date is displayed

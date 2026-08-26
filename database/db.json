@@ -82,6 +82,15 @@
                 "Known issues": "",
                 "Released on": "Astromat",
                 "URL": "https://zenodo.org/record/15015059/files/PGD_SiC_2025-03-10.csv"
+            },
+            {
+                "Change": "1. Four PGD-IDs of duplicates retired.\n2. Renormalized data for Nicolussi et al. (1997) Science 277:1281 added.\n3. Data from the following references were added:\nNguyen et al. (2025) NatAs 9:1812\nMarhas et al. (2026) ApJ 997:275",
+                "Date": "2026-05-19",
+                "DOI": "10.60707/VZ7T-7628",
+                "Grains": 20502,
+                "Known issues": "",
+                "Released on": "Astromat",
+                "URL": "https://zenodo.org/record/20317007/files/PGD_SiC_2026-05-19.csv"
             }
         ]
     },
