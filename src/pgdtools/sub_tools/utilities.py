@@ -1,6 +1,6 @@
 """Utilities for all tool modules in pgdtools."""
 
-from typing import Iterable
+from collections.abc import Iterable
 
 
 class Isotope:
@@ -17,7 +17,7 @@ class Isotope:
         :raises ValueError: Input value is not a string.
         """
         if not isinstance(isotope, str):
-            raise ValueError("Input value must be a string.")
+            raise TypeError("Input value must be a string.")
 
         self._iso_in = isotope
 

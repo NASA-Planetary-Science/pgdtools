@@ -1,7 +1,5 @@
 """Sub tool to format header infor, etc."""
 
-from typing import Tuple
-
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl
@@ -26,7 +24,7 @@ class Format:
 
         self.parent = parent
 
-    def ratio(self, rat: Tuple[str, str]) -> str:
+    def ratio(self, rat: tuple[str, str]) -> str:
         """Format an isotope ratio header in html style.
 
         This can, e.g,. directly be used as an axis label for a plot.
@@ -46,7 +44,7 @@ class Format:
             out_str = f"${iso1.latex}/{iso2.latex}$"
         return out_str
 
-    def _get_and_check_hdr_ratio(self, rat: Tuple[str, str]):
+    def _get_and_check_hdr_ratio(self, rat: tuple[str, str]):
         """Get the header ratio for a given isotope ratio.
 
         :param rat: Isotope ratio to filter the data set on. Tuple of two strings.

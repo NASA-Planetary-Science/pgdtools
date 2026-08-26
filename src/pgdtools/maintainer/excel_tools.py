@@ -4,22 +4,22 @@ These tools are mainly used in order to release a new version of the database to
 used with `pgdtools`.
 """
 
-from datetime import datetime
-import json
-from pathlib import Path
-from typing import Union
-import warnings
+from __future__ import annotations
 
-import numpy as np
+import json
+import warnings
+from datetime import datetime
+from pathlib import Path
+
 import pandas as pd
 
 
 def append_to_db_json(
     excel_file: Path,
     doi: str,
-    db_json: Path = None,
-    url: str = None,
-    zenodo_record: str = None,
+    db_json: Path | None = None,
+    url: str | None = None,
+    zenodo_record: str | None = None,
     db_name=None,
     sheet_name: str = "VersionHistory",
 ) -> None:
@@ -55,7 +55,8 @@ def append_to_db_json(
     if not db_json.is_file():
         raise FileNotFoundError(f"db.json not found at {db_json}.")
 
-    db = json.load(open(db_json, "r"))
+    with open(db_json, "r") as d:
+        db = json.load(d)
 
     # create database key
     if db_name is None:
@@ -141,7 +142,7 @@ def append_to_db_json(
 def append_reference_json(
     excel_file: Path,
     sheet_name: str = "References",
-    ref_json: Path = None,
+    ref_json: Path | None = None,
     quiet: bool = False,
 ) -> None:
     """Create/append to `references.json` from the Excel file.
@@ -160,7 +161,8 @@ def append_reference_json(
     if not ref_json.is_file():  # create the file
         refs = {}
     else:
-        refs = json.load(open(ref_json, "r"))
+        with open(ref_json, "r") as d:
+            refs = json.load(d)
 
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
@@ -173,7 +175,7 @@ def append_reference_json(
     # create the dictionary
     new_refs = {}
     for _, row in df.iterrows():
-        if (tmp_id := row["PGD ID"]) is not np.nan:
+        if not pd.isna(tmp_id := row["PGD ID"]):
             new_refs[tmp_id] = {
                 "Number of grains": int(row["Number of grains"]),
                 "Reference - short": row["Reference - short"],
@@ -192,7 +194,7 @@ def append_reference_json(
 def append_techniques_json(
     excel_file: Path,
     sheet_name: str = "Techniques",
-    tech_json: Path = None,
+    tech_json: Path | None = None,
     quiet: bool = False,
 ) -> None:
     """Create/append to `techniques.json` from the Excel file.
@@ -211,7 +213,8 @@ def append_techniques_json(
     if not tech_json.is_file():  # create the file
         techniques = {}
     else:
-        techniques = json.load(open(tech_json, "r"))
+        with open(tech_json, "r") as d:
+            techniques = json.load(d)
     # read in the Excel file
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -220,7 +223,7 @@ def append_techniques_json(
     # create the dictionary
     techniques_new = {}
     for _, row in df.iterrows():
-        if (tmp_id := row["PGD Technique"]) is not np.nan:
+        if not pd.isna(tmp_id := row["PGD Technique"]):
             techniques_new[tmp_id] = {
                 "Institution": row["Institution"],
                 "Technique": row["Technique"],
@@ -261,27 +264,27 @@ def _compare_and_append_dictionaries(
             warnings.warn(
                 f"Keys {keys_exist} already exists in references.json. Overwriting."
             )
-            for key in dict_new:
-                dict_ex[key] = dict_new[key]
+            for key, value in dict_new.items():
+                dict_ex[key] = value
         else:
             print("The following keys already exist in the references.json file:")
             print(keys_exist)
             print("Do you want to overwrite them? (y/n)")
             answer = input()
             if answer.lower() == "y":
-                for key in dict_new:
-                    dict_ex[key] = dict_new[key]
+                for key, value in dict_new.items():
+                    dict_ex[key] = value
             else:
                 print("Not overwriting keys.")
-                for key in dict_new:
+                for key, value in dict_new.items():
                     if key not in keys_exist:
-                        dict_ex[key] = dict_new[key]
+                        dict_ex[key] = value
     else:
         dict_ex.update(dict_new)
 
     return dict_ex
 
 
-def _get_database_file(fname: Union[Path, str]) -> Path:
+def _get_database_file(fname: Path | str) -> Path:
     """Get the path for a file in the database folder."""
     return Path(__file__).parents[3].joinpath(f"database/{fname}")

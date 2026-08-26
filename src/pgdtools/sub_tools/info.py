@@ -1,6 +1,5 @@
 """Sub tool to add information querying capabilities."""
-
-from typing import List, Union, Set, Tuple
+from __future__ import annotations
 
 import pgdtools
 import pgdtools.sub_tools.utilities as utl
@@ -12,7 +11,7 @@ class Info:
     Note: This class will print and return values.
     """
 
-    def __init__(self, parent: "pgdtools.PresolarGrains") -> None:
+    def __init__(self, parent: pgdtools.PresolarGrains) -> None:
         """Initialize the Info class.
 
         :param parent: Parent class, must be of type ``PresolarGrains``.
@@ -25,7 +24,7 @@ class Info:
         self.parent = parent
 
     @property
-    def dbs(self) -> Tuple["pgdtools.PresolarGrains.DataBase", ...]:
+    def dbs(self) -> tuple[pgdtools.PresolarGrains.DataBase, ...]:
         """Get/print what databases are currently in the selection."""
         index_start = set()
         for ind in self.parent.db.index:
@@ -52,7 +51,7 @@ class Info:
         return nog
 
     @property
-    def pgd_types(self) -> Set[str]:
+    def pgd_types(self) -> set[str]:
         """Get/print what PGD types of presolar grains are in the current database.
 
         :return: List of all PGD grain types available.
@@ -69,7 +68,7 @@ class Info:
 
     # METHODS #
 
-    def correlations(self, inp: str) -> Union[None, List[str]]:
+    def correlations(self, inp: str) -> None | list[str]:
         """Get/print available correlations for a given element or isotope."""
         iso = str(utl.Isotope(inp, allow_element=True))
 
@@ -86,7 +85,7 @@ class Info:
                 print(f"- {entry}")
             return entries
 
-    def ratios(self, inp: str) -> Union[None, List[Tuple[str, bool]]]:
+    def ratios(self, inp: str) -> None | list[tuple[str, bool]]:
         """Get/print available ratios for a given element or isotope.
 
         :param inp: Input isotope or element.
@@ -101,7 +100,7 @@ class Info:
         flt_hdr = [
             (x, x.startswith("d"))
             for x in all_in_hdr
-            if all([not x.startswith(y) for y in excl_startswith]) and "/" in x
+            if all(not x.startswith(y) for y in excl_startswith) and "/" in x
         ]
 
         if len(flt_hdr) == 0:

@@ -1,7 +1,6 @@
 """Sub tool to gather references for data sets and return them."""
 
 import json
-from typing import List, Set
 
 import pandas as pd
 
@@ -99,7 +98,7 @@ class References:
         return {key: self._reference_json[key] for key in self._create_ref_keys_set}
 
     @property
-    def doi(self) -> Set[str]:
+    def doi(self) -> set[str]:
         """Return a set of all DOIs for the references of the current database.
 
         If no DOI is available for a given reference, it will not be included in the
@@ -135,7 +134,7 @@ class References:
         return table_set.set_index([self._create_ref_keys(table_set.index)])
 
     @property
-    def _create_ref_keys_list(self) -> List[str]:
+    def _create_ref_keys_list(self) -> list[str]:
         """Create the reference key as a list (in order).
 
         :return: List of all the reference IDs.
@@ -143,11 +142,11 @@ class References:
         return self._create_ref_keys(self.parent.db.index)
 
     @property
-    def _create_ref_keys_set(self) -> Set[str]:
+    def _create_ref_keys_set(self) -> set[str]:
         """Create the reference key as a set."""
         return set(self._create_ref_keys_list)
 
-    def search(self, search_str: str) -> List[str]:
+    def search(self, search_str: str) -> list[str]:
         """Search all references information (except for notes) for keywords.
 
         If you want to provide multiple keywords to search for, please provide
@@ -177,7 +176,7 @@ class References:
 
         ret_list = []
         for key, item in ref_search_dict.items():
-            if all([x in item for x in search_terms]):
+            if all(x in item for x in search_terms):
                 ret_list.append(key)
 
         ret_list.sort()
@@ -196,7 +195,7 @@ class References:
             self._reference_json = json.load(file)
 
     @staticmethod
-    def _create_ref_keys(pgd_ids: List[str]) -> List[str]:
+    def _create_ref_keys(pgd_ids: list[str]) -> list[str]:
         """Create reference keys from a PGD IDs.
 
         :param pgd_ids: List of PGD IDs to create reference keys from.

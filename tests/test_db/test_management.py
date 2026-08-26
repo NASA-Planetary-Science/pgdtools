@@ -6,7 +6,8 @@ import pytest
 import requests_mock
 
 from pgdtools import db
-from pgdtools.db import DataBases, management as mgmt
+from pgdtools.db import DataBases
+from pgdtools.db import management as mgmt
 
 
 def test_current_no_file():

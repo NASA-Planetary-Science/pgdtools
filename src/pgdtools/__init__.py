@@ -11,6 +11,6 @@ __all__ = [
     "classify_sic_grain",
     "data",
     "db",
-    "pgd",
     "maintainer",
+    "pgd",
 ]

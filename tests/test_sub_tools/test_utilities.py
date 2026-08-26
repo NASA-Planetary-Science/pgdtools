@@ -25,7 +25,7 @@ def test_iso_ele_a(iso):
 
 def test_iso_value_error():
     """Raise a value error if the input is not a string."""
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         _ = utl.Isotope(123)
 
 

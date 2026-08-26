@@ -2,7 +2,6 @@
 
 import itertools
 import json
-from typing import List, Set
 import re
 
 import pandas as pd
@@ -130,7 +129,7 @@ class Techniques:
         return ret_frame
 
     @property
-    def _create_ref_keys_list(self) -> List[List[str]]:
+    def _create_ref_keys_list(self) -> list[list[str]]:
         """Create the techniques key as a list (in order).
 
         :return: List of all the reference IDs.
@@ -141,7 +140,7 @@ class Techniques:
         return ret_keys
 
     @property
-    def _create_ref_keys_set(self) -> Set[str]:
+    def _create_ref_keys_set(self) -> set[str]:
         """Create the techniques key as a set."""
         return set(itertools.chain.from_iterable(self._create_ref_keys_list))
 

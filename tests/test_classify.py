@@ -3,7 +3,8 @@
 import numpy as np
 import pytest
 
-from pgdtools import classify as cl, classify_sic_grain, PresolarGrains
+from pgdtools import PresolarGrains, classify_sic_grain
+from pgdtools import classify as cl
 
 # grains to test, following definitions:
 # [
@@ -115,7 +116,7 @@ def test_classify_grain_whole_db():
         pgd.filter.pgd_id(id)
         type_db = pgd.db.loc[id, "PGD Type"]
         subtype_db = pgd.db.loc[id, "PGD Subtype"]
-        if subtype_db is np.nan:
+        if subtype_db.isnan():
             subtype_db = None
 
         c12_c13 = np.array(pgd.data.ratio(["C12", "C13"], dropnan=False)).flatten()
@@ -170,7 +171,7 @@ def test_classify_grain_whole_db():
 
         # get probabilites from the database
         probs_db = {}
-        for key in probs_rec.keys():
+        for key in probs_rec:
             probs_db[key] = pgd.db.loc[id, f"p({key})"]
 
         try:

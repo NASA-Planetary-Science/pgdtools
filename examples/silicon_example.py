@@ -1,8 +1,8 @@
 """For Benoit: Compare some Si isotope ratios."""
 
-from iniabu import inimf  # import as mass_fraction values right away
 import matplotlib.pyplot as plt
 import numpy as np
+from iniabu import inimf  # import as mass_fraction values right away
 
 import pgdtools
 
@@ -65,8 +65,8 @@ ax.set_xlim(xlim)
 ax.set_ylim(ylim)
 
 # labels for axes
-ax.set_xlabel("$\delta^{30}$Si$_{28}$   (‰)")
-ax.set_ylabel("$\delta^{29}$Si$_{28}$   (‰)")
+ax.set_xlabel(r"$\delta^{30}$Si$_{28}$   (‰)")
+ax.set_ylabel(r"$\delta^{29}$Si$_{28}$   (‰)")
 ax.legend()
 
 # aspect and layout

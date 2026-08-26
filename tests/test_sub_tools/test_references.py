@@ -4,7 +4,6 @@ import pytest
 
 from pgdtools.sub_tools import References
 
-
 # DUNDER METHODS #
 
 
@@ -37,7 +36,7 @@ def test_iter(pgd_head):
     """Iterate over the key, value pairs."""
     ref = pgd_head.reference
     for key, value in ref:
-        assert key in ref.dict.keys()
+        assert key in ref.dict
         assert value in ref.dict.values()
 
 

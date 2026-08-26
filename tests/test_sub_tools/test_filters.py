@@ -4,9 +4,8 @@ import pandas as pd
 import pytest
 
 from pgdtools import PresolarGrains
-from pgdtools.sub_tools import filters as flt
 from pgdtools.sub_tools import Filters
-
+from pgdtools.sub_tools import filters as flt
 
 # DUNDER METHODS #
 
@@ -38,9 +37,13 @@ def test_db(pgd, dbs, exclude):
 
     for db in dbs:
         if exclude:
-            any(~pgd.db.index.to_series().apply(lambda x: x.startswith(db.value)))
+            _ = any(
+                ~pgd.db.index.to_series().apply(lambda x, db=db: x.startswith(db.value))
+            )
         else:
-            any(pgd.db.index.to_series().apply(lambda x: x.startswith(db.value)))
+            _ = any(
+                pgd.db.index.to_series().apply(lambda x, db=db: x.startswith(db.value))
+            )
 
 
 def test_db_type_error(pgd):
@@ -78,7 +81,7 @@ def test_pgd_type(pgd, tp):
 
     unique_series = pgd.db["PGD Type"].unique()
     assert len(pgd.db["PGD Type"].unique()) == len(tp_list)
-    assert all([tp in unique_series for tp in tp_list])
+    assert all(tp in unique_series for tp in tp_list)
 
     # filter for exclusion
     pgd.filter.pgd_type(tp, exclude=True)
@@ -94,7 +97,7 @@ def test_pgd_subtype(pgd, st):
 
     unique_series = pgd.db["PGD Subtype"].unique()
     assert len(pgd.db["PGD Subtype"].unique()) == len(st_list)
-    assert all([st in unique_series for st in st_list])
+    assert all(st in unique_series for st in st_list)
 
     # filter for exclusion
     pgd.filter.pgd_subtype(st, exclude=True)

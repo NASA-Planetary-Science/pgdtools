@@ -2,7 +2,6 @@
 
 import json
 from pathlib import Path
-from typing import Tuple
 
 import pytest
 
@@ -21,7 +20,7 @@ def conf_files(tmpdir_home, data_files_dir) -> Path:
 
 
 @pytest.fixture
-def current_file(tmpdir_home) -> Tuple[Path, dict]:
+def current_file(tmpdir_home) -> tuple[Path, dict]:
     """Create a fake `current.json` file and write into the right location."""
     curr_to_write = {"sic": "test.csv", "gra": "test-graphites.csv"}
     curr_ret = {k: Path(v) for k, v in curr_to_write.items()}
@@ -33,7 +32,7 @@ def current_file(tmpdir_home) -> Tuple[Path, dict]:
 
 
 @pytest.fixture
-def mock_update(mocker, tmpdir_home, data_files_dir) -> Tuple:
+def mock_update(mocker, tmpdir_home, data_files_dir) -> tuple:
     """Mock all downloads for db management tests and setup local files."""
     mock_get = mocker.patch.object(mgmt, "_get_online_config")
     mock_clean = mocker.patch.object(mgmt, "_clean_local_db")
