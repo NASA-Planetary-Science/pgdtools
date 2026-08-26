@@ -873,5 +873,19 @@
         "Reference - full": "Groopman E. E. and Nittler L. R. (2018) Correlated XANES, TEM, and NanoSIMS of presolar graphite grains. Geochim. Cosmochim. Acta 221, 219\u2013236.",
         "DOI": "10.1016/j.gca.2017.02.011",
         "Comments": ""
+    },
+    "SiC-2025-NGU-0": {
+        "Number of grains": 58,
+        "Reference - short": "Nguyen et al. (2025) NatAs 9:1812",
+        "Reference - full": "Nguyen A. N., Seifert L. B., Shimizu K., Thomas-Keprta K., Le L., Keller L. P., Clemett S. J., Rahman Z., Barnes J. J., Connolly H. C., Jr., and Lauretta D. S. (2025) Abundant supernova dust and heterogeneous aqueous alteration revealed by stardust in two lithologies of asteroid Bennu. Nature Astron. 9, 1812\u20131820.",
+        "DOI": "10.1038/s41550-025-02688-3",
+        "Comments": ""
+    },
+    "SiC-2026-MAR-0": {
+        "Number of grains": 16,
+        "Reference - short": "Marhas et al. (2026) ApJ 997:275",
+        "Reference - full": "Marhas K. K., Sanghani M. N., Messenger S. R., Mitra A., and Mishra R. K. (2026) Isotopic compositions and elemental abundances of chromium in presolar silicon carbide grains from asymptotic giant branch stars. Astrophys. J. 997, 275 (12pp).",
+        "DOI": "10.3847/1538-4357/ae2bf6",
+        "Comments": "d(54Cr/52Cr] data are corrected using solar d(54Fe/56Fe) ratio"
     }
 }
